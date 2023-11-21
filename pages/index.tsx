@@ -1,12 +1,3 @@
-import { HeadMeta } from '@/shared'
+import { HomePage } from '@/pages'
 
-export default function Home() {
-  return (
-    <>
-      <HeadMeta title={'Main page'} />
-      <main>
-        <span>Main page </span>
-      </main>
-    </>
-  )
-}
+export default HomePage
