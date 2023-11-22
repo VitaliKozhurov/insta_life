@@ -47,18 +47,27 @@ export const Tertiary: Story = {
     variant: ButtonVariant.TERTIARY,
   },
 }
-export const Link: Story = {
+/*export const Link: Story = {
   args: {
     children: 'Link',
     disabled: false,
     variant: ButtonVariant.LINK,
   },
-}
+}*/
 
 export const FullWidth: Story = {
   args: {
     children: 'Fullwidth Button',
     disabled: false,
     fullWidth: true,
+  },
+}
+
+export const Link: Story = {
+  args: {
+    as: 'a',
+    children: 'Link',
+    disabled: false,
+    variant: ButtonVariant.LINK,
   },
 }
