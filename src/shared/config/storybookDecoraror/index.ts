@@ -1,0 +1,1 @@
+export { StorybookFontsDecorator } from './StorybookFontsDecorator'
