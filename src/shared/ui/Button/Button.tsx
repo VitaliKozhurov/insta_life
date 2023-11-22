@@ -7,16 +7,18 @@ import {
   forwardRef,
 } from 'react'
 
+import { ButtonVariant } from '@/shared'
 import { clsx } from 'clsx'
 
 import s from './Button.module.scss'
+
 type AsProp<T extends ElementType> = {
   as?: T
 }
 type CustomProps = {
   className?: string
   fullWidth?: boolean
-  variant?: any
+  variant?: ButtonVariant
 }
 type PropsToOmit<T extends ElementType, P> = keyof (AsProp<T> & P)
 type PolymorphicType<T extends ElementType, Props = {}> = PropsWithChildren<Props & AsProp<T>> &
@@ -30,7 +32,7 @@ type ComponentType = <T extends ElementType = 'button'>(props: Props<T>) => Reac
 
 export const Button: ComponentType = forwardRef(
   <T extends ElementType = 'button'>(
-    { as, children, className, fullWidth, variant = 'primary', ...restProps }: Props<T>,
+    { as, children, className, fullWidth, variant = ButtonVariant.PRIMARY, ...restProps }: Props<T>,
     ref?: PolymorphicRef<T>
   ) => {
     const Component = as || 'button'
