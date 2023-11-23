@@ -1,10 +1,7 @@
 @import 'src/shared/styles/mixins';
 
 .checkBoxWrapper {
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: left;
+  @include flex($align: center, $justify: left, $direction: row-reverse);
 }
 
 .root {
@@ -35,6 +32,10 @@
     @include checkbox(var(--color-dark-300));
   }
 
+  &:focus-visible {
+    outline: none;
+  }
+
   &:active::before,
   &:focus-visible::before {
     @include checkbox(var(--color-dark-500));
@@ -42,16 +43,14 @@
 
   &:disabled {
     cursor: auto;
-    border: none;
+    border: 2px solid var(--color-dark-100);
   }
 
   .indicator {
-    display: flex;
-    align-items: center;
+    @include flex($align: center, $justify: center);
 
     width: 1.8rem;
     height: 1.8rem;
-
     background-color: var(--color-dark-900);
     border-radius: 2px;
   }
@@ -81,5 +80,5 @@
 
 .label.disabledLabel {
   cursor: auto;
-  color: var(--color-dark-100);
+  color: var(--color-light-900);
 }
