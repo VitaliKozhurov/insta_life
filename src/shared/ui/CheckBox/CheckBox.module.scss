@@ -1,0 +1,85 @@
+@import 'src/shared/styles/mixins';
+
+.checkBoxWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: left;
+}
+
+.root {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-right: 1rem;
+  padding: 0;
+
+  background: transparent;
+  border: 2px solid var(--color-light-500);
+  border-radius: 2px;
+
+  &::before {
+    content: '';
+    transition: background-color ease 0.2s;
+  }
+
+  &:hover::before {
+    @include checkbox(var(--color-dark-300));
+  }
+
+  &:active::before,
+  &:focus-visible::before {
+    @include checkbox(var(--color-dark-500));
+  }
+
+  &:disabled {
+    cursor: auto;
+    border: none;
+  }
+
+  .indicator {
+    display: flex;
+    align-items: center;
+
+    width: 1.8rem;
+    height: 1.8rem;
+
+    background-color: var(--color-dark-900);
+    border-radius: 2px;
+  }
+
+  .disabledIndicator {
+    color: var(--color-dark-100);
+    background-color: var(--color-light-700);
+    border-radius: 0.5rem;
+  }
+}
+
+.label {
+  cursor: pointer;
+}
+
+.label:hover + .root::before {
+  @include checkbox(var(--color-dark-300));
+}
+
+.label:active + .root::before {
+  @include checkbox(var(--color-dark-100));
+}
+
+.label.disabledLabel + .root::before {
+  background-color: transparent;
+}
+
+.label.disabledLabel {
+  cursor: auto;
+  color: var(--color-dark-100);
+}
