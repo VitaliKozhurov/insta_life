@@ -40,3 +40,39 @@
   line-height: $lineHeight;
   color: var(--color-light-100);
 }
+
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $gap: 0, $wrap: nowrap) {
+  display: flex;
+  flex-flow: $direction $wrap;
+  flex-wrap: $wrap;
+  gap: $gap;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin input-icon($left, $right) {
+  @include flex($align: center);
+
+  cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+
+  color: var(--color-light-100);
+
+  background: transparent;
+  border: none;
+
+  @if $right != 0 {
+    right: $right;
+  }
+
+  @if $left != 0 {
+    left: $left;
+  }
+}

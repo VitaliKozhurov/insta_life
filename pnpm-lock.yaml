@@ -28,6 +28,9 @@ devDependencies:
   '@it-incubator/stylelint-config':
     specifier: ^0.1.5
     version: 0.1.5(postcss@8.4.31)(typescript@5.0.2)
+  '@storybook/addon-actions':
+    specifier: ^7.5.3
+    version: 7.5.3(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)
   '@storybook/addon-essentials':
     specifier: 7.5.3
     version: 7.5.3(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)

@@ -63,7 +63,7 @@
 }
 
 .error {
-  @include typography(var(--font-size-xs), var(--line-height-m), var(--font-weight-regular));
+  @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-regular));
 
-  color: var(--color-danger-300);
+  color: var(--color-danger-500);
 }

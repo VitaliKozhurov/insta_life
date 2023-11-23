@@ -1,0 +1,121 @@
+@import 'src/shared/styles/mixins';
+
+.root {
+  position: relative;
+  width: 100%;
+
+  input[type='search']::-webkit-search-cancel-button,
+  input[type='search']::-webkit-search-decoration {
+    display: none;
+  }
+
+  .label {
+    color: var(--color-dark-100);
+  }
+
+  .inputWrapper {
+    @include flex($align: center);
+
+    position: relative;
+    overflow: hidden;
+    height: 3.6rem;
+    border-radius: 2px;
+
+    .input {
+      width: 100%;
+      height: 100%;
+      padding: 0 1.2rem;
+
+      font-size: var(--font-size-m);
+      font-weight: var(--font-weight-regular);
+      line-height: var(--line-height-m);
+      color: var(--color-light-900);
+
+      background-color: transparent;
+      border: 1px solid var(--color-dark-100);
+      border-radius: 2px;
+      outline: none;
+
+      &.isLeftIcon {
+        padding-left: 4rem;
+      }
+
+      &.isRightIcon {
+        padding-right: 4rem;
+      }
+
+      &:disabled {
+        color: var(--color-dark-100);
+        border: 1px solid var(--color-dark-100);
+      }
+
+      &:disabled::placeholder {
+        color: var(--color-dark-100);
+      }
+    }
+
+    &:hover .input {
+      border: 1px solid var(--color-light-900);
+    }
+
+    &.error .input {
+      border: 1px solid var(--color-danger-500);
+    }
+
+    &.error .input,
+    &.error .input::placeholder {
+      color: var(--color-danger-500);
+    }
+
+    &:focus-within .input {
+      border: 1px solid var(--color-accent-500);
+    }
+
+    &:focus-within {
+      outline: 1px solid var(--color-accent-500);
+    }
+
+    &.active:focus-within {
+      outline: none;
+    }
+
+    &.active:focus-visible .input,
+    &.active:focus-within .input {
+      color: var(--color-light-100);
+      border: 1px solid var(--color-light-100);
+    }
+
+    &.disabled:focus-visible .input,
+    &.disabled:focus-within .input {
+      border: 1px solid var(--color-dark-300);
+    }
+
+    &.disabled:hover .input {
+      color: var(--color-dark-300);
+      background-color: transparent;
+      border: 1px solid var(--color-dark-300);
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    .leftIcon {
+      @include input-icon(1.2rem, 0);
+    }
+
+    .rightIcon {
+      @include input-icon(0, 1.2rem);
+    }
+
+    &.disabled .leftIcon,
+    &.disabled .rightIcon {
+      cursor: auto;
+      color: var(--color-dark-300);
+    }
+  }
+
+  .disabledText {
+    color: var(--color-dark-300);
+  }
+}
