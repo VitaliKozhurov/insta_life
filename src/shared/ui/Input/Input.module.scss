@@ -115,6 +115,10 @@
     }
   }
 
+  .requiredMark {
+    color: var(--color-danger-500);
+  }
+
   .disabledText {
     color: var(--color-dark-300);
   }

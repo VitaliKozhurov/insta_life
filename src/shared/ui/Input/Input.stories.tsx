@@ -72,6 +72,15 @@ export const Disabled: Story = {
   },
 }
 
+export const Required: Story = {
+  args: {
+    isRequired: true,
+    label: 'Required input',
+    placeholder: 'Required Input',
+    type: 'text',
+  },
+}
+
 export const Search: Story = {
   args: {
     label: 'Search input',

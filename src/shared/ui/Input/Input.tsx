@@ -16,6 +16,7 @@ import s from './Input.module.scss'
 
 export type InputProps = {
   error?: string
+  isRequired?: boolean
   label?: string
   leftIcon?: ReactNode
   onChangeValue?: (value: string) => void
@@ -31,6 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     className,
     error,
+    isRequired,
     label,
     leftIcon,
     onChange,
@@ -70,6 +72,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     ),
     label: clsx(s.label, restProps.disabled && s.disabledText),
     leftIcon: s.leftIcon,
+    requiredMark: s.requiredMark,
     rightIcon: s.rightIcon,
     root: clsx(s.root, className),
   }
@@ -85,6 +88,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           variant={TypographyVariant.Regular_14}
         >
           {label}
+          {isRequired && (
+            <Typography
+              as={'span'}
+              className={s.requiredMark}
+              variant={TypographyVariant.Regular_14}
+            >
+              *
+            </Typography>
+          )}
         </Typography>
       )}
       <div className={classNames.inputWrapper}>
