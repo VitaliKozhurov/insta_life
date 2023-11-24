@@ -3,30 +3,39 @@ import React, { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } fr
 import * as RadixSelect from '@radix-ui/react-select'
 import clsx from 'clsx'
 
+import s from './Select.module.scss'
 type SelectProps = {
   className?: string
   label?: string
   options: SelectItemProps[]
   placeholder?: string
-} & ComponentPropsWithoutRef<RadixSelect.Root>
+} & ComponentPropsWithoutRef<typeof RadixSelect.Root>
 
 export const Select = forwardRef<ElementRef<typeof RadixSelect.Root>, SelectProps>(
-  ({ className, label, options, placeholder, ...restProps }, ref) => (
-    <RadixSelect.Root>
-      <RadixSelect.Trigger aria-label={'Food'} className={''}>
-        <RadixSelect.Value placeholder={'Select a fruit…'} />
-        <RadixSelect.Icon className={'SelectIcon'}>{/*<ChevronDownIcon />*/}</RadixSelect.Icon>
-      </RadixSelect.Trigger>
+  ({ className, label, onValueChange, options, placeholder, value, ...restProps }, ref) => {
+    const classNames = {
+      trigger: s.trigger,
+    }
 
-      <RadixSelect.Portal>
-        <RadixSelect.Content className={'SelectContent'}>
-          <RadixSelect.Viewport className={'SelectViewport'}>
-            {/*  <RadixSelect value={'apple'}>Apple</RadixSelect>*/}
-          </RadixSelect.Viewport>
-        </RadixSelect.Content>
-      </RadixSelect.Portal>
-    </RadixSelect.Root>
-  )
+    return (
+      <RadixSelect.Root onValueChange={onValueChange} value={value} {...restProps}>
+        <RadixSelect.Trigger aria-label={'Food'} className={s.trigger}>
+          <RadixSelect.Value placeholder={placeholder} />
+          <RadixSelect.Icon className={s.selectItem}>{/*<ChevronDownIcon />*/}</RadixSelect.Icon>
+        </RadixSelect.Trigger>
+
+        <RadixSelect.Portal>
+          <RadixSelect.Content className={s.content} position={'popper'}>
+            <RadixSelect.Viewport className={'SelectViewport'}>
+              {options.map(item => (
+                <SelectItem key={item.title} {...item} />
+              ))}
+            </RadixSelect.Viewport>
+          </RadixSelect.Content>
+        </RadixSelect.Portal>
+      </RadixSelect.Root>
+    )
+  }
 )
 
 type SelectItemProps = {
@@ -36,8 +45,13 @@ type SelectItemProps = {
 
 const SelectItem = forwardRef<ElementRef<typeof RadixSelect.SelectItem>, SelectItemProps>(
   ({ className, icon, title, ...restProps }, forwardedRef) => {
+    const classNames = {
+      item: clsx(s.selectItem, className),
+      text: clsx(s.itemText),
+    }
+
     return (
-      <RadixSelect.Item className={className} {...restProps} ref={forwardedRef}>
+      <RadixSelect.Item className={classNames.item} {...restProps} ref={forwardedRef}>
         <RadixSelect.ItemText>{title}</RadixSelect.ItemText>
       </RadixSelect.Item>
     )

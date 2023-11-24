@@ -6,7 +6,7 @@ import { inter } from '../src/application'
 const preview: Preview = {
   parameters: {
     backgrounds: {
-      default: '#000',
+      default: 'Dark',
       values: [
         {
           name: 'Dark',

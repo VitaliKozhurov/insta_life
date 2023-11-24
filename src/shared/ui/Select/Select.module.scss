@@ -1,0 +1,57 @@
+@import 'src/shared/styles/mixins';
+
+@mixin regular-font {
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 2.4rem;
+}
+
+button {
+  all: unset;
+}
+
+.trigger {
+  @include flex($align: center, $justify: space-beetwen, $gap: 1rem);
+  @include regular-font;
+
+  padding: 0.6rem 1.2rem;
+
+  color: var(--color-light-100);
+
+  background-color: transparent;
+  border: solid 1px var(--color-dark-100);
+  border-radius: 2px;
+
+  &:focus {
+    border-color: var(--color-accent-500);
+    outline: solid 1px var(--color-accent-500);
+  }
+
+  &[data-state='open'] {
+    background-color: var(--color-dark-500);
+    border: solid 1px var(--color-light-100);
+    border-radius: 2px 2px 0 0;
+  }
+}
+
+.content {
+  width: var(--radix-select-trigger-width);
+  padding: 0.6rem 1.2rem;
+  border: solid 1px var(--color-dark-100);
+  border-radius: 2px;
+
+  &[data-state='open'] {
+    background-color: var(--color-dark-500);
+    border: solid 1px var(--color-light-100);
+    border-top: none;
+    border-radius: 0 0 2px 2px;
+  }
+}
+
+.selectItem {
+  @include regular-font;
+}
+
+/* .itemText {
+} */
