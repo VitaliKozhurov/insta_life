@@ -1,4 +1,6 @@
 export { CheckBoxIcon } from './CheckBoxIcon'
 export { ClosedEyeIcon } from './ClosedEyeIcon'
+export { GitHubIcon } from './GitHubIcon'
+export { GoogleIcon } from './GoogleIcon'
 export { OpenEyeIcon } from './OpenedEyeIcon'
 export { SearchIcon } from './SearchIcon'
