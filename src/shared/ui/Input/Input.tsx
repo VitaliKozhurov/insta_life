@@ -7,12 +7,12 @@ import {
   useState,
 } from 'react'
 
-import { TypographyVariant } from '@/shared'
-import { ClosedEyeIcon, OpenEyeIcon } from '@/shared/icons/components'
-import { Typography } from '@/shared/ui/Typography'
+import { ClosedEyeIcon, OpenedEyeIcon, TypographyVariant } from '@/shared'
 import clsx from 'clsx'
 
 import s from './Input.module.scss'
+
+import { Typography } from '../Typography'
 
 export type InputProps = {
   error?: string
@@ -149,7 +149,7 @@ const InputIcon = ({ className, icon, onClick }: IconProps) => {
 
 const getRightInputIcon = (type: string, isVisible: boolean, rightIcon: ReactNode) => {
   if (type === 'password' && isVisible) {
-    return <OpenEyeIcon size={2.4} />
+    return <OpenedEyeIcon size={2.4} />
   } else if (type === 'password' && !isVisible) {
     return <ClosedEyeIcon size={2.4} />
   } else {
