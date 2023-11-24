@@ -1,1 +1,6 @@
 export * from './Button'
+export * from './CheckBox'
+export * from './Select'
+export * from './Typography'
+export * from './Flag'
+export * from './Input'

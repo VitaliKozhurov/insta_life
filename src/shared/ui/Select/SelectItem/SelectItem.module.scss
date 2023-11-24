@@ -1,0 +1,19 @@
+@import 'src/shared/styles/mixins';
+
+.selectItem {
+  @include font($size: 1.6rem, $weight: 400, $height: 2.4rem);
+
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  outline: none;
+
+  &[data-highlighted],
+  &:hover {
+    color: var(--color-accent-500);
+    background-color: var(--color-dark-300);
+  }
+}
+
+.selectItem > span {
+  @include flex($align: center, $gap: 1.2rem);
+}

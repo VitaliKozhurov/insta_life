@@ -92,3 +92,10 @@
   background-color: $color;
   border-radius: 50%;
 }
+
+@mixin font($size, $weight, $style: normal, $height) {
+  font-size: $size;
+  font-weight: $weight;
+  font-style: $style;
+  line-height: $height;
+}

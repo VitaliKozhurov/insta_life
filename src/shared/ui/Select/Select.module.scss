@@ -1,20 +1,16 @@
 @import 'src/shared/styles/mixins';
 
-@mixin regular-font {
-  font-size: 1.6rem;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 2.4rem;
-}
-
 button {
   all: unset;
 }
 
 .trigger {
-  @include flex($align: center, $justify: space-beetwen, $gap: 1rem);
-  @include regular-font;
+  @include flex($align: center, $justify: space-between, $gap: 2.4rem);
+  @include font($size: 1.6rem, $weight: 400, $height: 2.4rem);
 
+  pointer-events: auto;
+
+  box-sizing: border-box;
   padding: 0.6rem 1.2rem;
 
   color: var(--color-light-100);
@@ -28,16 +24,42 @@ button {
     outline: solid 1px var(--color-accent-500);
   }
 
+  & .icon {
+    @include flex($align: center, $justify: center);
+
+    cursor: pointer;
+    color: var(--color-light-100);
+    transition: transform 0.3s ease;
+  }
+
   &[data-state='open'] {
+    cursor: initial;
     background-color: var(--color-dark-500);
     border: solid 1px var(--color-light-100);
     border-radius: 2px 2px 0 0;
   }
+
+  &[data-state='open'] .icon {
+    transform: rotate(180deg);
+  }
+
+  &[data-disabled] .icon {
+    cursor: auto;
+  }
+
+  &[data-disabled] {
+    cursor: auto;
+    color: var(--color-dark-100);
+    border-color: var(--color-dark-100);
+  }
+}
+
+.trigger > span {
+  @include flex($align: center, $gap: 1.2rem);
 }
 
 .content {
   width: var(--radix-select-trigger-width);
-  padding: 0.6rem 1.2rem;
   border: solid 1px var(--color-dark-100);
   border-radius: 2px;
 
@@ -49,9 +71,8 @@ button {
   }
 }
 
-.selectItem {
-  @include regular-font;
-}
+.label {
+  @include font($size: 1.4rem, $weight: 400, $height: 2.4rem);
 
-/* .itemText {
-} */
+  color: var(--color-light-900);
+}
