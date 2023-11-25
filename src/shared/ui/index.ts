@@ -1,5 +1,5 @@
 export * from './Button'
-export * from './CheckBox'
+export * from './Checkbox'
 export * from './Select'
 export * from './Typography'
 export * from './Flag'

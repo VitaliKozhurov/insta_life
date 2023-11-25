@@ -1,9 +1,5 @@
 @import 'src/shared/styles/mixins';
 
-button {
-  all: unset;
-}
-
 .trigger {
   @include flex($align: center, $justify: space-between, $gap: 2.4rem);
   @include font($size: 1.6rem, $weight: 400, $height: 2.4rem);
