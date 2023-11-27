@@ -1,7 +1,7 @@
-@import 'src/shared/styles/mixins';
+@use 'src/shared/styles/mixins' as mixin;
 
 .selectItem {
-  @include font($size: 1.6rem, $weight: 400, $height: 2.4rem);
+  @include mixin.font($size: 1.6rem, $weight: 400, $height: 2.4rem);
 
   cursor: pointer;
   padding: 0.6rem 1.2rem;
@@ -15,5 +15,5 @@
 }
 
 .selectItem > span {
-  @include flex($align: center, $gap: 1.2rem);
+  @include mixin.flex($align: center, $gap: 1.2rem);
 }

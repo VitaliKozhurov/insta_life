@@ -1,7 +1,7 @@
-@import 'src/shared/styles/mixins';
+@use 'src/shared/styles/mixins' as mixin;
 
 .primary {
-  @include button;
+  @include mixin.button;
 
   color: var(--color-light-100);
   background-color: var(--color-accent-500);
@@ -21,7 +21,7 @@
 }
 
 .secondary {
-  @include button;
+  @include mixin.button;
 
   color: var(--color-light-100);
   background-color: var(--color-dark-300);
@@ -41,7 +41,7 @@
 }
 
 .tertiary {
-  @include button;
+  @include mixin.button;
 
   color: var(--color-accent-500);
   border: 1px solid var(--color-accent-500);
@@ -63,7 +63,7 @@
 }
 
 .link {
-  @include button;
+  @include mixin.button;
 
   padding: 0.6rem 0;
   font-size: var(--font-size-m);

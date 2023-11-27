@@ -1,4 +1,4 @@
-@import 'src/shared/styles/mixins';
+@use 'src/shared/styles/mixins' as mixin;
 
 .root {
   position: relative;
@@ -14,7 +14,7 @@
   }
 
   .inputWrapper {
-    @include flex($align: center);
+    @include mixin.flex($align: center);
 
     position: relative;
     overflow: hidden;
@@ -101,11 +101,11 @@
     }
 
     .leftIcon {
-      @include input-icon(1.2rem, 0);
+      @include mixin.input-icon(1.2rem, 0);
     }
 
     .rightIcon {
-      @include input-icon(0, 1.2rem);
+      @include mixin.input-icon(0, 1.2rem);
     }
 
     &.disabled .leftIcon,
