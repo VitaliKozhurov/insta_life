@@ -1,3 +1,4 @@
+export { BellIcon } from './BellIcon'
 export { CheckBoxIcon } from './CheckBoxIcon'
 export { ClosedEyeIcon } from './ClosedEyeIcon'
 export { GitHubIcon } from './GitHubIcon'
