@@ -1,0 +1,56 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.trigger {
+  all: unset;
+  display: inline-flex;
+  box-sizing: border-box;
+}
+
+.content {
+  padding: 1.2rem;
+  background-color: var(--color-dark-500);
+  border: solid 1px var(--color-dark-100);
+  border-radius: 4px;
+
+  .arrow {
+    position: relative;
+    top: -5px;
+    transform: rotate(45deg);
+
+    box-sizing: border-box;
+    width: 0.9rem;
+    height: 0.9rem;
+
+    background-color: var(--color-dark-500);
+    border: solid 1px var(--color-dark-100);
+    border-top: none;
+    border-left: none;
+  }
+
+  .dropDownTitle {
+    @include mixin.font($size: 1.6, $weight: 500);
+
+    all: unset;
+  }
+
+  .scrollContainer {
+    overflow-y: scroll;
+    max-height: 36rem;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      margin-left: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--color-dark-300);
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      cursor: pointer;
+      background-color: var(--color-dark-100);
+      border-radius: 2px;
+    }
+  }
+}
