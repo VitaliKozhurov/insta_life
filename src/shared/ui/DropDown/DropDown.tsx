@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import s from './DropDown.module.scss'
 type DropDownProps = {
   children: ReactNode
-  dropDownTitle?: ReactNode
+  dropDownTitle?: string
   trigger: ReactNode
 } & ComponentPropsWithoutRef<typeof RadixDropDown.Content>
 
@@ -17,7 +17,7 @@ export const DropDown = forwardRef<ElementRef<typeof RadixDropDown.Content>, Dro
       arrow: s.arrow,
       content: clsx(s.content, className),
       dropDownTitle: s.dropDownTitle,
-      scrollContainer: s.scrollContainer,
+      scrollContainer: clsx(s.scrollContainer, s.containerWithTitle),
       trigger: s.trigger,
     }
 
@@ -31,7 +31,7 @@ export const DropDown = forwardRef<ElementRef<typeof RadixDropDown.Content>, Dro
             <RadixDropDown.Arrow asChild className={classNames.arrow}>
               <div></div>
             </RadixDropDown.Arrow>
-            {dropDownTitle && dropDownTitle}
+            {dropDownTitle && <h3 className={classNames.dropDownTitle}>{dropDownTitle}</h3>}
             <div className={classNames.scrollContainer}>{children}</div>
           </RadixDropDown.Content>
         </RadixDropDown.Portal>

@@ -7,7 +7,7 @@
 }
 
 .content {
-  padding: 1.2rem;
+  padding: 1.6rem;
   background-color: var(--color-dark-500);
   border: solid 1px var(--color-dark-100);
   border-radius: 4px;
@@ -28,18 +28,23 @@
   }
 
   .dropDownTitle {
-    @include mixin.font($size: 1.6, $weight: 500);
+    @include mixin.font($size: 1.6rem);
 
-    all: unset;
+    display: block;
+    margin: 0;
+
+    /* padding-right: 2rem; */
+    border-bottom: 1px solid var(--color-dark-100);
   }
 
   .scrollContainer {
+    scrollbar-width: thin;
+    position: relative;
     overflow-y: scroll;
     max-height: 36rem;
 
     &::-webkit-scrollbar {
       width: 4px;
-      margin-left: 10px;
     }
 
     &::-webkit-scrollbar-track {
@@ -52,5 +57,10 @@
       background-color: var(--color-dark-100);
       border-radius: 2px;
     }
+  }
+
+  .containerWithTitle {
+    margin-right: -1.2rem;
+    padding-right: 0.8rem;
   }
 }
