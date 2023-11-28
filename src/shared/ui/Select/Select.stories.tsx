@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 
 import { inter } from '@/application'
-import { Flag } from '@/shared'
+import { Flag } from '@/shared/ui'
 import { action } from '@storybook/addon-actions'
 import russianFlag from 'public/flags/russianFlag.png'
 import ukFlag from 'public/flags/ukFlag.png'

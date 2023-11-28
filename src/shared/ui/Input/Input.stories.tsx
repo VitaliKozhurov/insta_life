@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { useState } from 'react'
 
-import { SearchIcon } from '@/shared'
+import { SearchIcon } from '@/shared/assets'
 import { action } from '@storybook/addon-actions'
 
 import { Input, InputProps } from './Input'

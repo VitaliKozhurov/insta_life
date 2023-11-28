@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { ButtonVariant } from '@/shared'
+import { ButtonVariant } from '@/shared/types'
 
 import { Button } from './Button'
 

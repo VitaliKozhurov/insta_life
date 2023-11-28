@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
-import { VerticalArrowIcon } from '@/shared'
+import { VerticalArrowIcon } from '@/shared/assets'
 import * as RadixSelect from '@radix-ui/react-select'
 import clsx from 'clsx'
 

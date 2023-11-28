@@ -7,7 +7,7 @@ import {
   forwardRef,
 } from 'react'
 
-import { ButtonVariant } from '@/shared'
+import { ButtonVariant } from '@/shared/types'
 import { clsx } from 'clsx'
 
 import s from './Button.module.scss'

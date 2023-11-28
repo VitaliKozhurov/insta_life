@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
-import { TypographyVariant } from '@/shared'
+import { TypographyVariant } from '@/shared/types'
 import { clsx } from 'clsx'
 
 import s from './Typography.module.scss'

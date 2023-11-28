@@ -7,12 +7,12 @@ import {
   useState,
 } from 'react'
 
-import { ClosedEyeIcon, OpenedEyeIcon, TypographyVariant } from '@/shared'
+import { ClosedEyeIcon, OpenedEyeIcon } from '@/shared/assets'
+import { TypographyVariant } from '@/shared/types'
+import { Typography } from '@/shared/ui'
 import clsx from 'clsx'
 
 import s from './Input.module.scss'
-
-import { Typography } from '../Typography'
 
 export type InputProps = {
   error?: string

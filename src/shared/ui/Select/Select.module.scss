@@ -15,7 +15,14 @@
   border: solid 1px var(--color-dark-100);
   border-radius: 2px;
 
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--color-light-900);
+  }
+
   &:focus {
+    color: var(--color-light-900);
     border-color: var(--color-accent-500);
     outline: solid 1px var(--color-accent-500);
   }
