@@ -14,7 +14,6 @@ export const DropDownItem = forwardRef<ElementRef<typeof RadixDropDown.Item>, Dr
     }
     const onSelectHandler = (e: Event) => {
       onSelect && onSelect(e)
-      console.log('Click on dropdown item')
     }
 
     return (
