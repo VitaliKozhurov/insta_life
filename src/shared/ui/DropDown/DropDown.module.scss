@@ -7,7 +7,7 @@
 }
 
 .content {
-  padding: 1.6rem;
+  padding: 1.2rem;
   background-color: var(--color-dark-500);
   border: solid 1px var(--color-dark-100);
   border-radius: 4px;
@@ -31,9 +31,7 @@
     @include mixin.font($size: 1.6rem);
 
     display: block;
-    margin: 0;
-
-    /* padding-right: 2rem; */
+    margin: 4px 4px 0;
     border-bottom: 1px solid var(--color-dark-100);
   }
 
@@ -56,11 +54,15 @@
       cursor: pointer;
       background-color: var(--color-dark-100);
       border-radius: 2px;
+
+      &:hover {
+        background-color: var(--color-light-900);
+      }
     }
   }
 
   .containerWithTitle {
-    margin-right: -1.2rem;
+    margin: 0 -8px 0 4px;
     padding-right: 0.8rem;
   }
 }
