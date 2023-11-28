@@ -21,8 +21,3 @@ export enum TypographyVariant {
   Small_text = 'small_text',
   Small_text_semi_bold = 'small_text_semi_bold',
 }
-/*
-Link1 = 'link1',
-  Link2 = 'link2',*/
-/*
-Overline = 'overline',*/
