@@ -9,7 +9,7 @@ type Props = { children: ReactNode }
 export const RootLayout = ({ children }: Props) => {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={false} />
       <main className={s.main}>{children}</main>
     </>
   )

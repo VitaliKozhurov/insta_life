@@ -1,0 +1,7 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.checkboxWrapper {
+  @include mixin.flex($gap: 1rem);
+
+  padding-left: 0.9rem;
+}
