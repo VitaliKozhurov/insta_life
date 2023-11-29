@@ -1,7 +1,7 @@
 @use 'src/shared/styles/mixins' as mixin;
 
 .wrapper {
-  @include mixin.flex($align: center, $gap: 12px, $direction: row-reverse, $justify: start);
+  @include mixin.flex($align: center, $gap: 12px, $direction: row-reverse, $justify: flex-start);
 }
 
 .root {

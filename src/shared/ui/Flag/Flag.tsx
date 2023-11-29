@@ -9,7 +9,7 @@ type Props = {
 export const Flag = ({ alt = 'Country Flag', size, src }: Props) => {
   return (
     <span className={s.flag} style={{ height: `${size}rem`, width: `${size}rem` }}>
-      <Image alt={alt} fill objectFit={'cover'} src={src} />
+      <Image alt={alt} src={src} style={{ height: '100%', objectFit: 'cover', width: '100%' }} />
     </span>
   )
 }

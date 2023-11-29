@@ -15,8 +15,5 @@ export const ControlledInput = <T extends FieldValues>({
     fieldState: { error },
   } = useController({ control, name })
 
-  console.log(field)
-  console.log(restProps)
-
   return <Input {...field} {...restProps} error={error?.message} />
 }
