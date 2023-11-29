@@ -8,7 +8,7 @@ import s from './Select.module.scss'
 
 import { SelectItem } from './SelectItem'
 
-export type Option = {
+export type SelectOptions = {
   className?: string
   icon?: ReactNode
   title: string
@@ -19,7 +19,7 @@ export type SelectProps = {
   className?: string
   fullWidth?: boolean
   label?: string
-  options: Option[]
+  options: SelectOptions[]
   placeholder?: string
 } & ComponentPropsWithoutRef<typeof RadixSelect.Root>
 

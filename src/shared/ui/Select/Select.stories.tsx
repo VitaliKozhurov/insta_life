@@ -5,10 +5,10 @@ import { useState } from 'react'
 import { inter } from '@/application'
 import { Flag } from '@/shared/ui'
 import { action } from '@storybook/addon-actions'
-import russianFlag from 'public/flags/russianFlag.png'
-import ukFlag from 'public/flags/ukFlag.png'
 
-import { Option, Select, SelectProps } from './Select'
+import { Select, SelectOptions, SelectProps } from './Select'
+import en from '/public/flags/en.png'
+import ru from '/public/flags/ru.png'
 
 const meta = {
   component: Select,
@@ -19,22 +19,22 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const options: Option[] = [
+const options: SelectOptions[] = [
   { className: inter.className, title: 'Russian', value: 'russian' },
   { className: inter.className, title: 'English', value: 'english' },
   { className: inter.className, title: 'Spanish', value: 'spanish' },
 ]
 
-const optionsWithIcons: Option[] = [
+const optionsWithIcons: SelectOptions[] = [
   {
     className: inter.className,
-    icon: <Flag size={2} src={russianFlag} />,
+    icon: <Flag size={2} src={ru} />,
     title: 'Russian',
     value: 'russian',
   },
   {
     className: inter.className,
-    icon: <Flag size={2} src={ukFlag} />,
+    icon: <Flag size={2} src={en} />,
     title: 'English',
     value: 'english',
   },

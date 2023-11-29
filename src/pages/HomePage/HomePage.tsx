@@ -1,13 +1,17 @@
 import { ReactElement } from 'react'
 
 import { RootLayout } from '@/pages'
-import { HeadMeta } from '@/shared'
+import { HeadMeta } from '@/shared/config'
+import { useTranslation } from '@/shared/lib'
 
 export const HomePage = () => {
+  const t = useTranslation()
+
   return (
     <>
       <HeadMeta title={'Main page'} />
-      <span>Home page</span>
+      <h1>Home page</h1>
+      <h2>{t.homePage.test}</h2>
     </>
   )
 }
