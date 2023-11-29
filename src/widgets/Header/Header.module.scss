@@ -1,3 +1,5 @@
+@use 'src/shared/styles/mixins' as mixin;
+
 .header {
   display: flex;
   align-items: center;
@@ -6,4 +8,19 @@
   height: 6rem;
 
   border-bottom: solid 1px var(--color-dark-300);
+}
+
+.headerContainer {
+  @include mixin.container;
+  @include mixin.flex($align: center, $justify: space-between);
+}
+
+.headerDashboard {
+  @include mixin.flex($align: center);
+}
+
+.authLinks {
+  @include mixin.flex($align: center, $gap: 5rem);
+
+  margin-left: 6.2rem;
 }

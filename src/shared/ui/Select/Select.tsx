@@ -34,7 +34,7 @@ export const Select = forwardRef<ElementRef<typeof RadixSelect.Root>, SelectProp
 
     return (
       <>
-        <label className={classNames.label}>{label}</label>
+        {label && <label className={classNames.label}>{label}</label>}
         <RadixSelect.Root {...restProps}>
           <RadixSelect.Trigger aria-label={'Select'} className={classNames.trigger} ref={ref}>
             <RadixSelect.Value placeholder={placeholder} />

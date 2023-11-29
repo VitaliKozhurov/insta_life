@@ -83,3 +83,11 @@
   font-style: $style;
   line-height: $height;
 }
+
+@mixin container {
+  width: 100%;
+  max-width: 118rem;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
