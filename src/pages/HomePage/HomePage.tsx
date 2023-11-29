@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-import { SignUpForm } from '@/features/registration'
+import { SignUpForm } from '@/features'
 import { RootLayout } from '@/pages'
 import { HeadMeta } from '@/shared/config'
 import { useTranslation } from '@/shared/lib'
