@@ -1,0 +1,24 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.form {
+  @include mixin.flex($direction: column);
+}
+
+.formInput {
+  &:not(:last-child) {
+    margin-bottom: 2.4rem;
+  }
+
+  &:last-child {
+    margin-bottom: 1.2rem;
+  }
+
+  &.formInputWithError {
+    margin-bottom: 0;
+  }
+}
+
+.forgotText {
+  margin-bottom: 2.4rem;
+  text-align: right;
+}
