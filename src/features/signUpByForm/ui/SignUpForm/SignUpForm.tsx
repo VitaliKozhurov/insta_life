@@ -1,6 +1,7 @@
 import { ControlledCheckbox, ControlledInput } from '@/shared/controlledUI'
 import { ButtonVariant, TypographyVariant } from '@/shared/types'
 import { Button, Typography } from '@/shared/ui'
+import clsx from 'clsx'
 import Link from 'next/link'
 
 import s from './SignUpForm.module.scss'
@@ -8,21 +9,52 @@ import s from './SignUpForm.module.scss'
 import { SignUpFormValuesType, useSignUpForm } from '../../lib'
 
 export const SignUpForm = () => {
-  const { control, handleSubmit } = useSignUpForm()
+  const {
+    control,
+    formState: { errors },
+    getFieldState,
+    handleSubmit,
+  } = useSignUpForm()
+  const checkboxState = getFieldState('policyAgreement')
 
+  console.log(checkboxState)
   const classNames = {
     checkboxWrapper: s.checkboxWrapper,
+    form: s.form,
+    formInput(error?: string) {
+      return clsx(s.formInput, error && s.formInputWithError)
+    },
   }
+
   const onSubmitHandler = (data: SignUpFormValuesType) => {
     console.log(data)
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)}>
-      <ControlledInput control={control} label={'Username'} name={'username'} />
-      <ControlledInput control={control} label={'Email'} name={'email'} />
-      <ControlledInput control={control} label={'Password'} name={'password'} type={'password'} />
+    <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
       <ControlledInput
+        className={classNames.formInput(errors.username?.message)}
+        control={control}
+        label={'Username'}
+        name={'username'}
+      />
+      <ControlledInput
+        className={classNames.formInput(errors.email?.message)}
+        control={control}
+        label={'Email'}
+        name={'email'}
+      />
+      <ControlledInput
+        autoComplete={'new-password'}
+        className={classNames.formInput(errors.password?.message)}
+        control={control}
+        label={'Password'}
+        name={'password'}
+        type={'password'}
+      />
+      <ControlledInput
+        autoComplete={'new-password'}
+        className={classNames.formInput(errors.passwordConfirmation?.message)}
         control={control}
         label={'Password confirmation'}
         name={'passwordConfirmation'}

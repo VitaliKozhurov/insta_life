@@ -33,5 +33,6 @@ export const useSignUpForm = () =>
       policyAgreement: false,
       username: '',
     },
+    mode: 'onBlur',
     resolver: zodResolver(signUpSchema),
   })
