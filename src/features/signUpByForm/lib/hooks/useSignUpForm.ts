@@ -6,19 +6,30 @@ import { z } from 'zod'
 
 const signUpSchema = z
   .object({
-    email: z.string().email({ message: 'email' }).trim(),
-    password: z.string().min(3, '3').max(20, '20').regex(PASSWORD_PATTERN, 'regex').trim(),
-    passwordConfirmation: z
+    email: z
       .string()
-      .min(3, '3')
-      .max(20, '20')
-      .regex(PASSWORD_PATTERN, 'regex')
+      .email({ message: 'The email must match the format example@example.com' })
       .trim(),
-    policyAgreement: z.boolean().optional(),
-    username: z.string().min(3, '3').max(30, '30').regex(USERNAME_PATTERN, 'regex').trim(),
+    password: z
+      .string()
+      .min(6, 'Minimum number of characters 6')
+      .max(20, 'Maximum number of characters 20')
+      .regex(
+        PASSWORD_PATTERN,
+        'Password must contain 0-9, a-z, A-Z, ! " # $ % & \' () * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~'
+      )
+      .trim(),
+    passwordConfirmation: z.string().trim(),
+    policyAgreement: z.boolean(),
+    username: z
+      .string()
+      .min(6, 'Minimum number of characters 6')
+      .max(30, 'Maximum number of characters 30')
+      .regex(USERNAME_PATTERN, 'regex')
+      .trim(),
   })
   .refine(data => data.password === data.passwordConfirmation, {
-    message: 'Those passwords didn’t match. Try again.',
+    message: 'Password must match',
     path: ['passwordConfirmation'],
   })
 
@@ -33,6 +44,6 @@ export const useSignUpForm = () =>
       policyAgreement: false,
       username: '',
     },
-    mode: 'onBlur',
+    mode: 'onTouched',
     resolver: zodResolver(signUpSchema),
   })

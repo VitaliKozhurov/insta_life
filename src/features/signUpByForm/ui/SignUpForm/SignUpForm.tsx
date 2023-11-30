@@ -11,13 +11,12 @@ import { SignUpFormValuesType, useSignUpForm } from '../../lib'
 export const SignUpForm = () => {
   const {
     control,
-    formState: { errors },
-    getFieldState,
+    formState: { errors, isValid },
     handleSubmit,
+    reset,
+    watch,
   } = useSignUpForm()
-  const checkboxState = getFieldState('policyAgreement')
 
-  console.log(checkboxState)
   const classNames = {
     checkboxWrapper: s.checkboxWrapper,
     form: s.form,
@@ -28,7 +27,9 @@ export const SignUpForm = () => {
 
   const onSubmitHandler = (data: SignUpFormValuesType) => {
     console.log(data)
+    reset()
   }
+  const isDisabledButton = !isValid || !watch('policyAgreement')
 
   return (
     <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
@@ -45,7 +46,7 @@ export const SignUpForm = () => {
         name={'email'}
       />
       <ControlledInput
-        autoComplete={'new-password'}
+        autoComplete={'off'}
         className={classNames.formInput(errors.password?.message)}
         control={control}
         label={'Password'}
@@ -53,7 +54,7 @@ export const SignUpForm = () => {
         type={'password'}
       />
       <ControlledInput
-        autoComplete={'new-password'}
+        autoComplete={'off'}
         className={classNames.formInput(errors.passwordConfirmation?.message)}
         control={control}
         label={'Password confirmation'}
@@ -73,7 +74,7 @@ export const SignUpForm = () => {
           </Typography>
         </Typography>
       </div>
-      <Button fullWidth variant={ButtonVariant.PRIMARY}>
+      <Button disabled={isDisabledButton} fullWidth variant={ButtonVariant.PRIMARY}>
         Sign Up
       </Button>
     </form>
