@@ -9,15 +9,18 @@ import s from './SignUpForm.module.scss'
 
 import { SignUpFormValuesType, useSignUpForm } from '../../lib'
 
-type Props = { t: LocalesType['signUpPage']['form'] }
-export const SignUpForm = ({ t }: Props) => {
+type Props = {
+  formErrors: LocalesType['signUpPage']['formErrors']
+  formText: LocalesType['signUpPage']['form']
+}
+export const SignUpForm = ({ formErrors, formText }: Props) => {
   const {
     control,
     formState: { errors, isValid },
     handleSubmit,
     reset,
     watch,
-  } = useSignUpForm()
+  } = useSignUpForm(formErrors)
 
   const classNames = {
     checkboxWrapper: s.checkboxWrapper,
@@ -38,20 +41,20 @@ export const SignUpForm = ({ t }: Props) => {
       <ControlledInput
         className={classNames.formInput(errors.username?.message)}
         control={control}
-        label={t.userNameInputLabel}
+        label={formText.userNameInputLabel}
         name={'username'}
       />
       <ControlledInput
         className={classNames.formInput(errors.email?.message)}
         control={control}
-        label={t.emailInputLabel}
+        label={formText.emailInputLabel}
         name={'email'}
       />
       <ControlledInput
         autoComplete={'off'}
         className={classNames.formInput(errors.password?.message)}
         control={control}
-        label={t.passwordInputLabel}
+        label={formText.passwordInputLabel}
         name={'password'}
         type={'password'}
       />
@@ -59,7 +62,7 @@ export const SignUpForm = ({ t }: Props) => {
         autoComplete={'off'}
         className={classNames.formInput(errors.passwordConfirmation?.message)}
         control={control}
-        label={t.passwordConfirmationInputLabel}
+        label={formText.passwordConfirmationInputLabel}
         name={'passwordConfirmation'}
         type={'password'}
       />
@@ -87,12 +90,12 @@ export const SignUpForm = ({ t }: Props) => {
                 </Typography>
               ),
             }}
-            text={t.policyAgreement}
+            text={formText.policyAgreement}
           />
         </Typography>
       </div>
       <Button disabled={isDisabledButton} fullWidth variant={ButtonVariant.PRIMARY}>
-        {t.signInBtn}
+        {formText.signInBtn}
       </Button>
     </form>
   )

@@ -10,6 +10,7 @@ import s from './SignUp.module.scss'
 export const SignUp = () => {
   const { text } = useTranslation()
   const t = text.signUpPage
+
   const classNames = {
     card: s.formCard,
     formTitle: s.formTitle,
@@ -30,7 +31,7 @@ export const SignUp = () => {
           <GitHubIcon />
         </Link>
       </div>
-      <SignUpForm t={t.form} />
+      <SignUpForm formErrors={t.formErrors} formText={t.form} />
       <Typography className={classNames.questionText} variant={TypographyVariant.Regular_16}>
         {t.questionAboutAccount}
       </Typography>
