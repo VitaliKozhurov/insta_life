@@ -1,41 +1,39 @@
 import { useForm } from 'react-hook-form'
 
 import { PASSWORD_PATTERN, USERNAME_PATTERN } from '@/shared/constants'
+import { LocalesType } from '@/shared/locales'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-const signUpSchema = z
-  .object({
-    email: z
-      .string()
-      .email({ message: 'The email must match the format example@example.com' })
-      .trim(),
-    password: z
-      .string()
-      .min(6, 'Minimum number of characters 6')
-      .max(20, 'Maximum number of characters 20')
-      .regex(
-        PASSWORD_PATTERN,
-        'Password must contain 0-9, a-z, A-Z, ! " # $ % & \' () * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~'
-      )
-      .trim(),
-    passwordConfirmation: z.string().trim(),
-    policyAgreement: z.boolean(),
-    username: z
-      .string()
-      .min(6, 'Minimum number of characters 6')
-      .max(30, 'Maximum number of characters 30')
-      .regex(USERNAME_PATTERN, 'regex')
-      .trim(),
-  })
-  .refine(data => data.password === data.passwordConfirmation, {
-    message: 'Password must match',
-    path: ['passwordConfirmation'],
-  })
+type Props = LocalesType['signUpPage']['formErrors']
 
-export type SignUpFormValuesType = z.infer<typeof signUpSchema>
+const signUpSchema = (t: Props) =>
+  z
+    .object({
+      email: z.string().email({ message: t.emailVerification }).trim(),
+      password: z
+        .string()
+        .min(6, t.minPasswordLength)
+        .max(20, t.maxPasswordLength)
+        .regex(PASSWORD_PATTERN, t.passwordVerification)
+        .trim(),
+      passwordConfirmation: z.string().trim(),
+      policyAgreement: z.boolean(),
+      username: z
+        .string()
+        .min(6, t.minUserNameLength)
+        .max(30, t.maxUserNameLength)
+        .regex(USERNAME_PATTERN, t.userNameVerification)
+        .trim(),
+    })
+    .refine(data => data.password === data.passwordConfirmation, {
+      message: t.confirmPassword,
+      path: ['passwordConfirmation'],
+    })
 
-export const useSignUpForm = () =>
+export type SignUpFormValuesType = z.infer<ReturnType<typeof signUpSchema>>
+
+export const useSignUpForm = (t: Props) =>
   useForm<SignUpFormValuesType>({
     defaultValues: {
       email: '',
@@ -45,5 +43,5 @@ export const useSignUpForm = () =>
       username: '',
     },
     mode: 'onTouched',
-    resolver: zodResolver(signUpSchema),
+    resolver: zodResolver(signUpSchema(t)),
   })
