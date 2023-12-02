@@ -9,6 +9,17 @@ export const en = {
       signInBtn: 'Sign Up',
       userNameInputLabel: 'Username',
     },
+    formErrors: {
+      confirmPassword: 'Password must match',
+      emailVerification: 'The email must match the format example@example.com',
+      maxPasswordLength: 'Maximum number of characters 20',
+      maxUserNameLength: 'Maximum number of characters 30',
+      minPasswordLength: 'Minimum number of characters 6',
+      minUserNameLength: 'Minimum number of characters 6',
+      passwordVerification:
+        'Password must contain 0-9, a-z, A-Z, ! " # $ % & \' () * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~',
+      userNameVerification: 'Username may contain 0-9, a-z A-Z, _, -',
+    },
     questionAboutAccount: 'Do you have an account?',
     signInLink: 'Sign In',
     title: 'Sign Up',
