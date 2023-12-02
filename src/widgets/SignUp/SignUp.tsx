@@ -1,5 +1,6 @@
 import { SignUpForm } from '@/features'
 import { GitHubIcon, GoogleIcon } from '@/shared/assets'
+import { useTranslation } from '@/shared/lib'
 import { ButtonVariant, TypographyVariant } from '@/shared/types'
 import { Button, Card, Typography } from '@/shared/ui'
 import Link from 'next/link'
@@ -7,6 +8,8 @@ import Link from 'next/link'
 import s from './SignUp.module.scss'
 
 export const SignUp = () => {
+  const { text } = useTranslation()
+  const t = text.signUpPage
   const classNames = {
     card: s.formCard,
     formTitle: s.formTitle,
@@ -17,7 +20,7 @@ export const SignUp = () => {
   return (
     <Card className={classNames.card}>
       <Typography as={'h1'} className={classNames.formTitle} variant={TypographyVariant.H1}>
-        Sign Up
+        {t.title}
       </Typography>
       <div className={classNames.providers}>
         <Link href={'https://accounts.google.com/o/oauth2/v2/auth'} target={'_blank'}>
@@ -27,12 +30,12 @@ export const SignUp = () => {
           <GitHubIcon />
         </Link>
       </div>
-      <SignUpForm />
+      <SignUpForm t={t.form} />
       <Typography className={classNames.questionText} variant={TypographyVariant.Regular_16}>
-        Do you have an account?
+        {t.questionAboutAccount}
       </Typography>
       <Button as={Link} href={'sign-in'} variant={ButtonVariant.LINK}>
-        Sign In
+        {t.signInLink}
       </Button>
     </Card>
   )
