@@ -1,6 +1,6 @@
 import { ControlledCheckbox, ControlledInput } from '@/shared/controlledUI'
 import { LocalesType, Trans } from '@/shared/locales'
-import { ButtonVariant, TypographyVariant } from '@/shared/types'
+import { ButtonVariant, Routes, TypographyVariant } from '@/shared/types'
 import { Button, Typography } from '@/shared/ui'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -74,7 +74,7 @@ export const SignUpForm = ({ formErrors, formText }: Props) => {
               1: () => (
                 <Typography
                   as={Link}
-                  href={'/term-of-service'}
+                  href={Routes.TERMS_OF_SERVICE}
                   variant={TypographyVariant.Link_small}
                 >
                   {formText.service}
@@ -83,7 +83,7 @@ export const SignUpForm = ({ formErrors, formText }: Props) => {
               2: () => (
                 <Typography
                   as={Link}
-                  href={'privacy-policy'}
+                  href={Routes.PRIVACY_POLICY}
                   variant={TypographyVariant.Link_small}
                 >
                   {formText.policy}

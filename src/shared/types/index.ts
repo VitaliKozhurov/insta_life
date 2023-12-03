@@ -1,1 +1,1 @@
-export { ButtonVariant, TypographyVariant } from './enums'
+export { ButtonVariant, Routes, TypographyVariant } from './enums'

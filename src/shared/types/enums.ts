@@ -21,3 +21,13 @@ export enum TypographyVariant {
   Small_text = 'small_text',
   Small_text_semi_bold = 'small_text_semi_bold',
 }
+
+export enum Routes {
+  FORGOT_PASSWORD = '/forgot-password',
+  PASSWORD_RECOVERY = '/password-recovery',
+  PRIVACY_POLICY = '/privacy-policy',
+  PROFILE = '/profile',
+  SIGN_IN = '/sign-in',
+  SIGN_UP = '/sign-up',
+  TERMS_OF_SERVICE = '/terms-of-service',
+}

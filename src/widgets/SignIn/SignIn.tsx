@@ -1,7 +1,7 @@
 import { SignInForm } from '@/features'
 import { GitHubIcon, GoogleIcon } from '@/shared/assets'
 import { useTranslation } from '@/shared/lib'
-import { ButtonVariant, TypographyVariant } from '@/shared/types'
+import { ButtonVariant, Routes, TypographyVariant } from '@/shared/types'
 import { Button, Card, Typography } from '@/shared/ui'
 import Link from 'next/link'
 
@@ -35,7 +35,7 @@ export const SignIn = () => {
       <Typography className={classNames.questionText} variant={TypographyVariant.Regular_16}>
         {t.questionAboutAccount}
       </Typography>
-      <Button as={Link} href={'sign-in'} variant={ButtonVariant.LINK}>
+      <Button as={Link} href={Routes.SIGN_UP} variant={ButtonVariant.LINK}>
         {t.signUpLink}
       </Button>
     </Card>

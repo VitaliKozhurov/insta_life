@@ -1,6 +1,6 @@
 import { ControlledInput } from '@/shared/controlledUI'
 import { LocalesType } from '@/shared/locales'
-import { ButtonVariant, TypographyVariant } from '@/shared/types'
+import { ButtonVariant, Routes, TypographyVariant } from '@/shared/types'
 import { Button, Typography } from '@/shared/ui'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -54,7 +54,7 @@ export const SignInForm = ({ formErrors, formText }: Props) => {
       <Typography
         as={Link}
         className={classNames.forgotText}
-        href={'forgot-password'}
+        href={Routes.FORGOT_PASSWORD}
         variant={TypographyVariant.Regular_14}
       >
         {formText.questionAboutPassword}
