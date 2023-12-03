@@ -1,19 +1,17 @@
 import { ReactElement } from 'react'
 
-import { SignInForm } from '@/features'
 import { RootLayout } from '@/pages'
 import { HeadMeta } from '@/shared/config'
 import { useTranslation } from '@/shared/lib'
 
 export const HomePage = () => {
-  const t = useTranslation()
+  const { text } = useTranslation()
 
   return (
     <>
       <HeadMeta title={'Main page'} />
       <h1>Home page</h1>
-      <h2>{t.homePage.test}</h2>
-      <SignInForm />
+      <h2>{text.homePage.test}</h2>
     </>
   )
 }
