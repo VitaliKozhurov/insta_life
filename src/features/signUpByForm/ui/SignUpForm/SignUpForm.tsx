@@ -95,7 +95,7 @@ export const SignUpForm = ({ formErrors, formText }: Props) => {
         </Typography>
       </div>
       <Button disabled={isDisabledButton} fullWidth variant={ButtonVariant.PRIMARY}>
-        {formText.signInBtn}
+        {formText.signUpBtn}
       </Button>
     </form>
   )

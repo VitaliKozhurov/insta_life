@@ -4,13 +4,31 @@ export const ru: LocalesType = {
   homePage: {
     test: 'Тестовое сообщение',
   },
+  signInPage: {
+    form: {
+      emailInputLabel: 'Электронная почта',
+      passwordInputLabel: 'Пароль',
+      questionAboutPassword: 'Забыли пароль?',
+      signInBtn: 'Войти',
+    },
+    formErrors: {
+      emailVerification: 'Электронная почта должна быть в формате example@example.com',
+      maxPasswordLength: 'Максимальное количество символов 20',
+      minPasswordLength: 'Минимальное количество символов 6',
+      passwordVerification:
+        'Пароль должен содержать 0-9, a-z, A-Z, ! " # $ % & \' () * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~',
+    },
+    questionAboutAccount: 'У Вас нет аккаунта?',
+    signUpLink: 'Регистрация',
+    title: 'Войти',
+  },
   signUpPage: {
     form: {
       emailInputLabel: 'Электронная почта',
       passwordConfirmationInputLabel: 'Подтверждение пароля',
       passwordInputLabel: 'Пароль',
       policyAgreement: 'Я согласен с <1>Terms of Service</1> и <2>Privacy Policy</2>',
-      signInBtn: 'Регистрация',
+      signUpBtn: 'Регистрация',
       userNameInputLabel: 'Имя пользователя',
     },
     formErrors: {

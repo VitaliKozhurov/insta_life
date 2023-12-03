@@ -1,12 +1,30 @@
 export const en = {
   homePage: { test: 'Test message' },
+  signInPage: {
+    form: {
+      emailInputLabel: 'Email',
+      passwordInputLabel: 'Password',
+      questionAboutPassword: 'Forgot Password?',
+      signInBtn: 'Sign Ip',
+    },
+    formErrors: {
+      emailVerification: 'The email must match the format example@example.com',
+      maxPasswordLength: 'Maximum number of characters 20',
+      minPasswordLength: 'Minimum number of characters 6',
+      passwordVerification:
+        'Password must contain 0-9, a-z, A-Z, ! " # $ % & \' () * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~',
+    },
+    questionAboutAccount: 'Don’t have an account?',
+    signUpLink: 'Sign Up',
+    title: 'Sign In',
+  },
   signUpPage: {
     form: {
       emailInputLabel: 'Email',
       passwordConfirmationInputLabel: 'Password confirmation',
       passwordInputLabel: 'Password',
       policyAgreement: 'I agree to the <1>Terms of Service<1> and <2>Privacy Policy<2>',
-      signInBtn: 'Sign Up',
+      signUpBtn: 'Sign Up',
       userNameInputLabel: 'Username',
     },
     formErrors: {
