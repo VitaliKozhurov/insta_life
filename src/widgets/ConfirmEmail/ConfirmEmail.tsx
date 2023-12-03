@@ -28,7 +28,12 @@ export const ConfirmEmail = () => {
         Sign In
       </Button>
       <div className={classNames.imageWrapper}>
-        <Image alt={'Email confirmed'} src={successEmailConfirmation} />
+        <Image
+          alt={'Email confirmed'}
+          priority
+          src={successEmailConfirmation}
+          style={{ height: '100%', objectFit: 'cover', width: '100%' }}
+        />
       </div>
     </section>
   )
