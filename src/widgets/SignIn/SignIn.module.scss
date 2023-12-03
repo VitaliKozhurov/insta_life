@@ -1,0 +1,22 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.formCard {
+  @include mixin.flex($align: center, $justify: center, $direction: column);
+
+  width: 38rem;
+  margin: 0 auto;
+}
+
+.formTitle {
+  margin-bottom: 1.2rem;
+}
+
+.providers {
+  @include mixin.flex($gap: 6rem);
+
+  margin-bottom: 2.4rem;
+}
+
+.questionText {
+  margin-top: 1.8rem;
+}
