@@ -1,4 +1,9 @@
 export const en = {
+  emailConfirmation: {
+    signInLink: 'Sign In',
+    text: 'Your email has been confirmed',
+    title: 'Congratulations!',
+  },
   homePage: { test: 'Test message' },
   signInPage: {
     form: {

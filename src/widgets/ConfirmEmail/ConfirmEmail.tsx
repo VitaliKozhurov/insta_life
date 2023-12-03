@@ -1,3 +1,4 @@
+import { useTranslation } from '@/shared/lib'
 import { Routes, TypographyVariant } from '@/shared/types'
 import { Button, Typography } from '@/shared/ui'
 import Image from 'next/image'
@@ -8,6 +9,8 @@ import s from './ConfirmEmail.module.scss'
 import successEmailConfirmation from '/public/confirm_email.png'
 
 export const ConfirmEmail = () => {
+  const { text } = useTranslation()
+  const t = text.emailConfirmation
   const classNames = {
     imageWrapper: s.imageWrapper,
     link: s.link,
@@ -19,13 +22,13 @@ export const ConfirmEmail = () => {
   return (
     <section className={classNames.root}>
       <Typography as={'h1'} className={classNames.title} variant={TypographyVariant.H1}>
-        Congratulations!
+        {t.title}
       </Typography>
       <Typography className={classNames.text} variant={TypographyVariant.Regular_16}>
-        Your email has been confirmed
+        {t.text}
       </Typography>
       <Button as={Link} className={classNames.link} href={Routes.SIGN_IN}>
-        Sign In
+        {t.signInLink}
       </Button>
       <div className={classNames.imageWrapper}>
         <Image

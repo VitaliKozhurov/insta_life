@@ -1,6 +1,11 @@
 import { LocalesType } from './en'
 
 export const ru: LocalesType = {
+  emailConfirmation: {
+    signInLink: 'Войти',
+    text: 'Ваша электронная почта была подтверждена',
+    title: 'Поздравляем!',
+  },
   homePage: {
     test: 'Тестовое сообщение',
   },
