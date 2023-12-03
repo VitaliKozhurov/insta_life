@@ -91,3 +91,7 @@
   margin: 0 auto;
   padding: 0 1rem;
 }
+
+@mixin main {
+  min-height: calc(100vh - 6rem);
+}

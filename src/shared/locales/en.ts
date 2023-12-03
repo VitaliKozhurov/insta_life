@@ -29,7 +29,7 @@ export const en = {
       passwordConfirmationInputLabel: 'Password confirmation',
       passwordInputLabel: 'Password',
       policy: 'Privacy policy',
-      policyAgreement: 'I agree to the <1>Terms of Service<1> and <2>Privacy Policy<2>',
+      policyAgreement: 'I agree to the <1>Terms of Service</1> and <2>Privacy Policy</2>',
       service: 'Terms of Service',
       signUpBtn: 'Sign Up',
       userNameInputLabel: 'Username',
