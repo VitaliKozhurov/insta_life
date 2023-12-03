@@ -23,8 +23,12 @@
 }
 
 .checkboxWrapper {
-  @include mixin.flex($gap: 1rem);
+  @include mixin.flex($gap: 1rem, $align: center);
 
   margin-bottom: 2.2rem;
   padding-left: 0.9rem;
+
+  & > span {
+    text-align: justify;
+  }
 }

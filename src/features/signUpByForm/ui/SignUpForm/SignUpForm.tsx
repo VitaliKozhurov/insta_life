@@ -77,7 +77,7 @@ export const SignUpForm = ({ formErrors, formText }: Props) => {
                   href={'/term-of-service'}
                   variant={TypographyVariant.Link_small}
                 >
-                  Terms of Service
+                  {formText.service}
                 </Typography>
               ),
               2: () => (
@@ -86,7 +86,7 @@ export const SignUpForm = ({ formErrors, formText }: Props) => {
                   href={'privacy-policy'}
                   variant={TypographyVariant.Link_small}
                 >
-                  Privacy Policy
+                  {formText.policy}
                 </Typography>
               ),
             }}
