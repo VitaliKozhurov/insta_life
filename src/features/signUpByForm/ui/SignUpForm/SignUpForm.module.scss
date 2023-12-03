@@ -3,15 +3,17 @@
 .form {
   @include mixin.flex($direction: column);
 
+  width: 100%;
+
   .formInput {
     margin-bottom: 2.4rem;
 
-    &:nth-child(4){
+    &:nth-child(4) {
       margin-bottom: 2rem;
     }
 
-     &.formInputWithError {
-        margin-bottom: 0;
+    &.formInputWithError {
+      margin-bottom: 0;
 
       &:nth-child(4) {
         margin-bottom: 2rem;
