@@ -3,11 +3,11 @@ import { ReactElement } from 'react'
 import { RootLayout } from '@/pages'
 import { HeadMeta } from '@/shared/config'
 import { useTranslation } from '@/shared/lib'
-import { SignUp } from '@/widgets'
+import { SignIn } from '@/widgets'
 
-import s from './SignUpPage.module.scss'
+import s from './SignInPage.module.scss'
 
-export const SignUpPage = () => {
+export const SignInPage = () => {
   const { text } = useTranslation()
   const classNames = {
     main: s.main,
@@ -15,14 +15,14 @@ export const SignUpPage = () => {
 
   return (
     <>
-      <HeadMeta title={text.pageTitle.signUp} />
+      <HeadMeta title={text.pageTitle.signIn} />
       <main className={classNames.main}>
-        <SignUp />
+        <SignIn />
       </main>
     </>
   )
 }
 
-SignUpPage.getLayout = (page: ReactElement) => {
+SignInPage.getLayout = (page: ReactElement) => {
   return <RootLayout>{page}</RootLayout>
 }

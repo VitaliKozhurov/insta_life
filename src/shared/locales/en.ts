@@ -5,6 +5,10 @@ export const en = {
     title: 'Congratulations!',
   },
   homePage: { test: 'Test message' },
+  pageTitle: {
+    signIn: 'Sign In',
+    signUp: 'Sign Up',
+  },
   signInPage: {
     form: {
       emailInputLabel: 'Email',

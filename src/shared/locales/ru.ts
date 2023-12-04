@@ -9,6 +9,10 @@ export const ru: LocalesType = {
   homePage: {
     test: 'Тестовое сообщение',
   },
+  pageTitle: {
+    signIn: 'Войти',
+    signUp: 'Регистрация',
+  },
   signInPage: {
     form: {
       emailInputLabel: 'Электронная почта',
