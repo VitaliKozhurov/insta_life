@@ -1,4 +1,20 @@
 export const en = {
+  createNewPasswordPage: {
+    form: {
+      createNewPasswordBtn: 'Create new password',
+      instructionAboutPasswordLength: 'Your password must be between 6 and 20 characters',
+      newPasswordInputLabel: 'New Password',
+      passwordConfirmationInputLabel: 'Password confirmation',
+    },
+    formErrors: {
+      confirmPassword: 'Password must match',
+      maxPasswordLength: 'Maximum number of characters 20',
+      minPasswordLength: 'Minimum number of characters 6',
+      passwordVerification:
+        'Password must contain 0-9, a-z, A-Z, ! " # $ % & \' () * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~',
+    },
+    title: 'Create New Password',
+  },
   emailConfirmation: {
     signInLink: 'Sign In',
     text: 'Your email has been confirmed',
@@ -20,7 +36,7 @@ export const en = {
       sendLinkText:
         'The link has been sent by email. \nIf you don’t receive an email send link again',
     },
-    formError: { emailVerification: 'The email must match the format example@example.com' },
+    formErrors: { emailVerification: 'The email must match the format example@example.com' },
     title: 'Forgot Password',
   },
   header: {

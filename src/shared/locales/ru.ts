@@ -1,6 +1,22 @@
 import { LocalesType } from './en'
 
 export const ru: LocalesType = {
+  createNewPasswordPage: {
+    form: {
+      createNewPasswordBtn: 'Создать новый пароль',
+      instructionAboutPasswordLength: 'Ваш пароль должен содержать от 6 до 20 символов',
+      newPasswordInputLabel: 'Новый пароль',
+      passwordConfirmationInputLabel: 'Подтверждение пароля',
+    },
+    formErrors: {
+      confirmPassword: 'Пароли должны совпадать',
+      maxPasswordLength: 'Максимальное количество символов 20',
+      minPasswordLength: 'Минимальное количество символов 6',
+      passwordVerification:
+        'Пароль должен содержать 0-9, a-z, A-Z, ! " # $ % & \' () * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~',
+    },
+    title: 'Создать новый пароль',
+  },
   emailConfirmation: {
     signInLink: 'Войти',
     text: 'Ваша электронная почта была подтверждена',
@@ -21,7 +37,9 @@ export const ru: LocalesType = {
       link: 'Вернуться к входу',
       sendLinkText: `Ссылка была отправлена по электронной почте. \nЕсли вы не получили письмо, отправьте ссылку еще раз`,
     },
-    formError: { emailVerification: 'Электронная почта должна быть в формате example@example.com' },
+    formErrors: {
+      emailVerification: 'Электронная почта должна быть в формате example@example.com',
+    },
     title: 'Забыли пароль',
   },
   header: {

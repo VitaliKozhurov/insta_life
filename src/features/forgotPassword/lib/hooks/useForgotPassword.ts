@@ -4,7 +4,7 @@ import { LocalesType } from '@/shared/locales'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-type Props = LocalesType['forgotPasswordPage']['formError']
+type Props = LocalesType['forgotPasswordPage']['formErrors']
 
 const forgotPasswordSchema = (t: Props) =>
   z.object({
