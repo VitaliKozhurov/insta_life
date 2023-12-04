@@ -32,7 +32,7 @@ const signUpSchema = (t: Props) =>
 
 export type SignUpFormValuesType = z.infer<ReturnType<typeof signUpSchema>>
 
-export const useSignUpForm = (t: Props) =>
+export const useSignUp = (t: Props) =>
   useForm<SignUpFormValuesType>({
     defaultValues: {
       email: '',

@@ -14,7 +14,7 @@ import Link from 'next/link'
 
 import s from './SignUpForm.module.scss'
 
-import { SignUpFormValuesType, useSignUpForm } from '../../lib'
+import { SignUpFormValuesType, useSignUp } from '../../lib'
 
 export const SignUpForm = () => {
   const {
@@ -26,7 +26,7 @@ export const SignUpForm = () => {
     handleSubmit,
     reset,
     watch,
-  } = useSignUpForm(t.formErrors)
+  } = useSignUp(t.formErrors)
 
   const classNames = {
     checkboxWrapper: s.checkboxWrapper,

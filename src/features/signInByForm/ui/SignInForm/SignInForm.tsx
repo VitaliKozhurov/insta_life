@@ -12,7 +12,7 @@ import Link from 'next/link'
 
 import s from './SignInForm.module.scss'
 
-import { SignInFormValuesType, useSignInForm } from '../../lib'
+import { SignInFormValuesType, useSignIn } from '../../lib'
 
 export const SignInForm = () => {
   const {
@@ -23,7 +23,7 @@ export const SignInForm = () => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useSignInForm(t.formErrors)
+  } = useSignIn(t.formErrors)
 
   const classNames = {
     forgotText: s.forgotText,
