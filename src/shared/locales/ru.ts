@@ -24,6 +24,10 @@ export const ru: LocalesType = {
     formError: { emailVerification: 'Электронная почта должна быть в формате example@example.com' },
     title: 'Забыли пароль',
   },
+  header: {
+    signInLink: 'Войти',
+    signUpLink: 'Зарегестрироваться',
+  },
   homePage: {
     test: 'Тестовое сообщение',
   },

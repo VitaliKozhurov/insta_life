@@ -23,6 +23,10 @@ export const en = {
     formError: { emailVerification: 'The email must match the format example@example.com' },
     title: 'Forgot Password',
   },
+  header: {
+    signInLink: 'Log in',
+    signUpLink: 'Sign up',
+  },
   homePage: { test: 'Test message' },
   pageTitle: {
     signIn: 'Sign In',

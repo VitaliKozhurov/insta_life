@@ -1,17 +1,9 @@
-import { ButtonVariant, TypographyVariant } from '@/shared/types'
-import { Button, Flag, Select, SelectOptions, Typography } from '@/shared/ui'
+import { getLanguageOptions, useTranslation } from '@/shared/lib'
+import { ButtonVariant, Routes, TypographyVariant } from '@/shared/types'
+import { Button, Select, SelectOptions, Typography } from '@/shared/ui'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 import s from './Header.module.scss'
-
-import en from '/public/flags/en.png'
-import ru from '/public/flags/ru.png'
-
-const languageOptions: SelectOptions[] = [
-  { icon: <Flag size={2} src={ru} />, title: 'Russian', value: 'ru' },
-  { icon: <Flag size={2} src={en} />, title: 'English', value: 'en' },
-]
 
 type Props = {
   isLoggedIn: boolean
@@ -19,8 +11,13 @@ type Props = {
 }
 
 export const Header = ({ isLoggedIn, options }: Props) => {
-  const { asPath, locale, pathname, push, query } = useRouter()
+  const {
+    router,
+    text: { header: t },
+  } = useTranslation()
+  const { asPath, locale, pathname, push, query } = router
 
+  const languagesOptions = getLanguageOptions(locale)
   const changeAppLanguageHandler = (newLocale: string) => {
     push({ pathname, query }, asPath, { locale: newLocale })
   }
@@ -31,7 +28,7 @@ export const Header = ({ isLoggedIn, options }: Props) => {
     headerContainer: s.headerContainer,
     headerDashboard: s.headerDashboard,
   }
-  const localeValue = locale || (options && options[0].value) || languageOptions[0].value
+  const localeValue = locale || (options && options[0].value) || languagesOptions[0].value
 
   return (
     <header className={classNames.header}>
@@ -42,16 +39,16 @@ export const Header = ({ isLoggedIn, options }: Props) => {
         <div className={classNames.headerDashboard}>
           <Select
             onValueChange={changeAppLanguageHandler}
-            options={options || languageOptions}
+            options={options || languagesOptions}
             value={localeValue}
           />
           {!isLoggedIn && (
             <div className={classNames.authLinks}>
-              <Button as={Link} href={'/sign-in'} variant={ButtonVariant.LINK}>
-                Log in
+              <Button as={Link} href={Routes.SIGN_IN} variant={ButtonVariant.LINK}>
+                {t.signInLink}
               </Button>
-              <Button as={Link} href={'/sign-up'} variant={ButtonVariant.PRIMARY}>
-                Sign up
+              <Button as={Link} href={Routes.SIGN_UP} variant={ButtonVariant.PRIMARY}>
+                {t.signUpLink}
               </Button>
             </div>
           )}
