@@ -9,6 +9,20 @@ export const en = {
     text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
     title: 'Email verification link expired',
   },
+  forgotPasswordPage: {
+    form: {
+      buttonTextAfterSendLink: 'Send Link Again',
+      buttonTextBeforeSendLink: 'Send Link',
+      checkForRobot: 'I’m not a robot',
+      emailInputLabel: 'Email',
+      instructionText: 'Enter your email address and we will send you further instructions ',
+      link: 'Back to Sign In',
+      sendLinkText:
+        'The link has been sent by email. \nIf you don’t receive an email send link again',
+    },
+    formError: { emailVerification: 'The email must match the format example@example.com' },
+    title: 'Forgot Password',
+  },
   homePage: { test: 'Test message' },
   pageTitle: {
     signIn: 'Sign In',
