@@ -23,8 +23,8 @@ export enum TypographyVariant {
 }
 
 export enum Routes {
+  CREATE_NEW_PASSWORD = '/create-new-password',
   FORGOT_PASSWORD = '/forgot-password',
-  PASSWORD_RECOVERY = '/password-recovery',
   PRIVACY_POLICY = '/privacy-policy',
   PROFILE = '/profile',
   SIGN_IN = '/sign-in',

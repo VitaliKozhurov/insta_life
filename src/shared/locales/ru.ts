@@ -33,8 +33,8 @@ export const ru: LocalesType = {
       buttonTextBeforeSendLink: 'Отправить ссылку',
       checkForRobot: 'Я не робот',
       emailInputLabel: 'Электронная почта',
-      instructionText: 'Введите свой адрес электронной почты и мы вышлем вам дальнейшие инструкции',
-      link: 'Вернуться к входу',
+      instructionText: 'Введите свой адрес электронной почты и мы вышлем Вам дальнейшие инструкции',
+      link: 'Вернуться для входа в систему',
       sendLinkText: `Ссылка была отправлена по электронной почте. \nЕсли вы не получили письмо, отправьте ссылку еще раз`,
     },
     formErrors: {
@@ -50,6 +50,8 @@ export const ru: LocalesType = {
     test: 'Тестовое сообщение',
   },
   pageTitle: {
+    createNewPassword: 'Создание нового пароля',
+    forgotPassword: 'Забыли пароль',
     signIn: 'Войти',
     signUp: 'Регистрация',
   },

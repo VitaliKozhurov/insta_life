@@ -45,6 +45,8 @@ export const en = {
   },
   homePage: { test: 'Test message' },
   pageTitle: {
+    createNewPassword: 'Create New Password',
+    forgotPassword: 'Forgot Password',
     signIn: 'Sign In',
     signUp: 'Sign Up',
   },

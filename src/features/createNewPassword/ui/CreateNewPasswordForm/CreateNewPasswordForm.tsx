@@ -11,7 +11,7 @@ export const CreateNewPasswordForm = () => {
   } = useTranslation()
   const {
     control,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
     reset,
   } = useCreateNewPassword(t.formErrors)
@@ -35,17 +35,21 @@ export const CreateNewPasswordForm = () => {
         control={control}
         label={t.form.newPasswordInputLabel}
         name={'newPassword'}
+        type={'password'}
       />
       <ControlledInput
         className={classNames.formInput(errors.passwordConfirmation?.message)}
         control={control}
         label={t.form.passwordConfirmationInputLabel}
         name={'passwordConfirmation'}
+        type={'password'}
       />
       <Typography className={classNames.instructionText} variant={TypographyVariant.Regular_14}>
         {t.form.instructionAboutPasswordLength}
       </Typography>
-      <Button type={'submit'}>{t.form.createNewPasswordBtn}</Button>
+      <Button disabled={!isValid} type={'submit'}>
+        {t.form.createNewPasswordBtn}
+      </Button>
     </form>
   )
 }
