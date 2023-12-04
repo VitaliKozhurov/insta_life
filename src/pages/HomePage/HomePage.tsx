@@ -1,8 +1,7 @@
 import { ReactElement } from 'react'
 
 import { RootLayout } from '@/pages'
-import { HeadMeta } from '@/shared/config'
-import { useTranslation } from '@/shared/lib'
+import { HeadMeta, useTranslation } from '@/shared'
 
 export const HomePage = () => {
   const { text } = useTranslation()

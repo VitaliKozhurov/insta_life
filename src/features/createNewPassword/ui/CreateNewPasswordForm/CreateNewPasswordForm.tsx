@@ -1,9 +1,6 @@
-import { ControlledInput } from '@/shared/controlledUI'
-import { useTranslation } from '@/shared/lib'
-import { TypographyVariant } from '@/shared/types'
-import { Button, Typography } from '@/shared/ui'
+import { Button, ControlledInput, Typography, TypographyVariant, useTranslation } from '@/shared'
 
-import { useCreateNewPassword } from '../lib'
+import { useCreateNewPassword } from '../../lib'
 
 export const CreateNewPasswordForm = () => {
   const {

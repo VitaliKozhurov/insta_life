@@ -1,7 +1,5 @@
 import { ForgotPasswordForm } from '@/features'
-import { useTranslation } from '@/shared/lib'
-import { TypographyVariant } from '@/shared/types'
-import { Card, Typography } from '@/shared/ui'
+import { Card, Typography, TypographyVariant, useTranslation } from '@/shared'
 
 import s from './ForgotPassword.module.scss'
 export const ForgotPassword = () => {

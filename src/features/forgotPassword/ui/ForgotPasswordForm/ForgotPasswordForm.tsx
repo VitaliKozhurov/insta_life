@@ -1,10 +1,16 @@
 import { useState } from 'react'
 
-import { RecaptchaIcon } from '@/shared/assets'
-import { ControlledCheckbox, ControlledInput } from '@/shared/controlledUI'
-import { useTranslation } from '@/shared/lib'
-import { ButtonVariant, Routes, TypographyVariant } from '@/shared/types'
-import { Button, Typography } from '@/shared/ui'
+import {
+  Button,
+  ButtonVariant,
+  ControlledCheckbox,
+  ControlledInput,
+  RecaptchaIcon,
+  Routes,
+  Typography,
+  TypographyVariant,
+  useTranslation,
+} from '@/shared'
 import clsx from 'clsx'
 import Link from 'next/link'
 
@@ -21,7 +27,7 @@ export const ForgotPasswordForm = () => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForgotPasswordForm(text.forgotPasswordPage.formError)
+  } = useForgotPasswordForm(text.forgotPasswordPage.formErrors)
 
   const classNames = {
     form: s.form,

@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form'
 
-import { PASSWORD_PATTERN } from '@/shared/constants'
-import { LocalesType } from '@/shared/locales'
+import { LocalesType, PASSWORD_PATTERN } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 

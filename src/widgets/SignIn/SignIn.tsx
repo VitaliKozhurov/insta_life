@@ -1,8 +1,15 @@
 import { SignInForm } from '@/features'
-import { GitHubIcon, GoogleIcon } from '@/shared/assets'
-import { useTranslation } from '@/shared/lib'
-import { ButtonVariant, Routes, TypographyVariant } from '@/shared/types'
-import { Button, Card, Typography } from '@/shared/ui'
+import {
+  Button,
+  ButtonVariant,
+  Card,
+  GitHubIcon,
+  GoogleIcon,
+  Routes,
+  Typography,
+  TypographyVariant,
+  useTranslation,
+} from '@/shared'
 import Link from 'next/link'
 
 import s from './SignIn.module.scss'

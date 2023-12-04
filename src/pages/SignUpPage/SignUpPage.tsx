@@ -1,8 +1,7 @@
 import { ReactElement } from 'react'
 
 import { RootLayout } from '@/pages'
-import { HeadMeta } from '@/shared/config'
-import { useTranslation } from '@/shared/lib'
+import { HeadMeta, useTranslation } from '@/shared'
 import { SignUp } from '@/widgets'
 
 import s from './SignUpPage.module.scss'

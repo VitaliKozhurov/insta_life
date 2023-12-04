@@ -1,6 +1,14 @@
-import { getLanguageOptions, useTranslation } from '@/shared/lib'
-import { ButtonVariant, Routes, TypographyVariant } from '@/shared/types'
-import { Button, Select, SelectOptions, Typography } from '@/shared/ui'
+import {
+  Button,
+  ButtonVariant,
+  Routes,
+  Select,
+  SelectOptions,
+  Typography,
+  TypographyVariant,
+  getLanguageOptions,
+  useTranslation,
+} from '@/shared'
 import Link from 'next/link'
 
 import s from './Header.module.scss'

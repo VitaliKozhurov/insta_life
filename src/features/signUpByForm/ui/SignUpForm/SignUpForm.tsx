@@ -1,8 +1,14 @@
-import { ControlledCheckbox, ControlledInput } from '@/shared/controlledUI'
-import { useTranslation } from '@/shared/lib'
-import { Trans } from '@/shared/locales'
-import { ButtonVariant, Routes, TypographyVariant } from '@/shared/types'
-import { Button, Typography } from '@/shared/ui'
+import {
+  Button,
+  ButtonVariant,
+  ControlledCheckbox,
+  ControlledInput,
+  Routes,
+  Trans,
+  Typography,
+  TypographyVariant,
+  useTranslation,
+} from '@/shared'
 import clsx from 'clsx'
 import Link from 'next/link'
 

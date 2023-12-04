@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 
-import { LocalesType } from '@/shared/locales'
+import { LocalesType } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 

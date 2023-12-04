@@ -1,6 +1,4 @@
-import { useTranslation } from '@/shared/lib'
-import { Routes, TypographyVariant } from '@/shared/types'
-import { Button, Typography } from '@/shared/ui'
+import { Button, Routes, Typography, TypographyVariant, useTranslation } from '@/shared'
 import Image from 'next/image'
 import Link from 'next/link'
 
