@@ -1,5 +1,5 @@
 import { ControlledInput } from '@/shared/controlledUI'
-import { LocalesType } from '@/shared/locales'
+import { useTranslation } from '@/shared/lib'
 import { ButtonVariant, Routes, TypographyVariant } from '@/shared/types'
 import { Button, Typography } from '@/shared/ui'
 import clsx from 'clsx'
@@ -9,18 +9,16 @@ import s from './SignInForm.module.scss'
 
 import { SignInFormValuesType, useSignInForm } from '../../lib'
 
-type Props = {
-  formErrors: LocalesType['signInPage']['formErrors']
-  formText: LocalesType['signInPage']['form']
-}
-
-export const SignInForm = ({ formErrors, formText }: Props) => {
+export const SignInForm = () => {
+  const {
+    text: { signInPage: t },
+  } = useTranslation()
   const {
     control,
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useSignInForm(formErrors)
+  } = useSignInForm(t.formErrors)
 
   const classNames = {
     forgotText: s.forgotText,
@@ -40,14 +38,14 @@ export const SignInForm = ({ formErrors, formText }: Props) => {
       <ControlledInput
         className={classNames.formInput(errors.email?.message)}
         control={control}
-        label={formText.emailInputLabel}
+        label={t.form.emailInputLabel}
         name={'email'}
       />
       <ControlledInput
         autoComplete={'off'}
         className={classNames.formInput(errors.password?.message)}
         control={control}
-        label={formText.passwordInputLabel}
+        label={t.form.passwordInputLabel}
         name={'password'}
         type={'password'}
       />
@@ -57,10 +55,10 @@ export const SignInForm = ({ formErrors, formText }: Props) => {
         href={Routes.FORGOT_PASSWORD}
         variant={TypographyVariant.Regular_14}
       >
-        {formText.questionAboutPassword}
+        {t.form.questionAboutPassword}
       </Typography>
       <Button disabled={!isValid} fullWidth variant={ButtonVariant.PRIMARY}>
-        {formText.signInBtn}
+        {t.form.signInBtn}
       </Button>
     </form>
   )

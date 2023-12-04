@@ -31,7 +31,7 @@ export const SignIn = () => {
           <GitHubIcon />
         </Link>
       </div>
-      <SignInForm formErrors={t.formErrors} formText={t.form} />
+      <SignInForm />
       <Typography className={classNames.questionText} variant={TypographyVariant.Regular_16}>
         {t.questionAboutAccount}
       </Typography>

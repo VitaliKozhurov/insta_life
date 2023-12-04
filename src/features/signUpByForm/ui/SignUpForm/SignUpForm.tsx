@@ -1,5 +1,6 @@
 import { ControlledCheckbox, ControlledInput } from '@/shared/controlledUI'
-import { LocalesType, Trans } from '@/shared/locales'
+import { useTranslation } from '@/shared/lib'
+import { Trans } from '@/shared/locales'
 import { ButtonVariant, Routes, TypographyVariant } from '@/shared/types'
 import { Button, Typography } from '@/shared/ui'
 import clsx from 'clsx'
@@ -9,18 +10,17 @@ import s from './SignUpForm.module.scss'
 
 import { SignUpFormValuesType, useSignUpForm } from '../../lib'
 
-type Props = {
-  formErrors: LocalesType['signUpPage']['formErrors']
-  formText: LocalesType['signUpPage']['form']
-}
-export const SignUpForm = ({ formErrors, formText }: Props) => {
+export const SignUpForm = () => {
+  const {
+    text: { signUpPage: t },
+  } = useTranslation()
   const {
     control,
     formState: { errors, isValid },
     handleSubmit,
     reset,
     watch,
-  } = useSignUpForm(formErrors)
+  } = useSignUpForm(t.formErrors)
 
   const classNames = {
     checkboxWrapper: s.checkboxWrapper,
@@ -41,20 +41,20 @@ export const SignUpForm = ({ formErrors, formText }: Props) => {
       <ControlledInput
         className={classNames.formInput(errors.username?.message)}
         control={control}
-        label={formText.userNameInputLabel}
+        label={t.form.userNameInputLabel}
         name={'username'}
       />
       <ControlledInput
         className={classNames.formInput(errors.email?.message)}
         control={control}
-        label={formText.emailInputLabel}
+        label={t.form.emailInputLabel}
         name={'email'}
       />
       <ControlledInput
         autoComplete={'off'}
         className={classNames.formInput(errors.password?.message)}
         control={control}
-        label={formText.passwordInputLabel}
+        label={t.form.passwordInputLabel}
         name={'password'}
         type={'password'}
       />
@@ -62,7 +62,7 @@ export const SignUpForm = ({ formErrors, formText }: Props) => {
         autoComplete={'off'}
         className={classNames.formInput(errors.passwordConfirmation?.message)}
         control={control}
-        label={formText.passwordConfirmationInputLabel}
+        label={t.form.passwordConfirmationInputLabel}
         name={'passwordConfirmation'}
         type={'password'}
       />
@@ -77,7 +77,7 @@ export const SignUpForm = ({ formErrors, formText }: Props) => {
                   href={Routes.TERMS_OF_SERVICE}
                   variant={TypographyVariant.Link_small}
                 >
-                  {formText.service}
+                  {t.form.service}
                 </Typography>
               ),
               2: () => (
@@ -86,16 +86,16 @@ export const SignUpForm = ({ formErrors, formText }: Props) => {
                   href={Routes.PRIVACY_POLICY}
                   variant={TypographyVariant.Link_small}
                 >
-                  {formText.policy}
+                  {t.form.policy}
                 </Typography>
               ),
             }}
-            text={formText.policyAgreement}
+            text={t.form.policyAgreement}
           />
         </Typography>
       </div>
       <Button disabled={isDisabledButton} fullWidth variant={ButtonVariant.PRIMARY}>
-        {formText.signUpBtn}
+        {t.form.signUpBtn}
       </Button>
     </form>
   )
