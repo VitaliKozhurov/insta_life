@@ -4,6 +4,11 @@ export const en = {
     text: 'Your email has been confirmed',
     title: 'Congratulations!',
   },
+  expiredLink: {
+    resendActionButton: 'Resend verification link',
+    text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
+    title: 'Email verification link expired',
+  },
   homePage: { test: 'Test message' },
   pageTitle: {
     signIn: 'Sign In',

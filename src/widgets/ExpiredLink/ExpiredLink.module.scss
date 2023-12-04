@@ -1,0 +1,26 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.root {
+  @include mixin.flex($align: center, $justify: center, $direction: column);
+
+  .title {
+    max-width: 32rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .text {
+    max-width: 32rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .resendButton {
+    margin-bottom: 3rem;
+  }
+
+  .imageWrapper {
+    width: 47.4rem;
+    height: 35.2rem;
+  }
+}
