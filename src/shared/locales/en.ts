@@ -44,6 +44,13 @@ export const en = {
     signUpLink: 'Sign up',
   },
   homePage: { test: 'Test message' },
+  modals: {
+    modalOnEmail: {
+      button: 'OK',
+      instructionText: (email: string) => `We have sent a link to confirm your email to ${email}`,
+      title: 'Email sent',
+    },
+  },
   pageTitle: {
     createNewPassword: 'Create New Password',
     forgotPassword: 'Forgot Password',

@@ -49,6 +49,14 @@ export const ru: LocalesType = {
   homePage: {
     test: 'Тестовое сообщение',
   },
+  modals: {
+    modalOnEmail: {
+      button: 'Хорошо',
+      instructionText: (email: string) =>
+        `Мы отправили ссылку для подтверждения вашей электронной почты по адресу ${email}`,
+      title: 'Письмо отправлено',
+    },
+  },
   pageTitle: {
     createNewPassword: 'Создание нового пароля',
     forgotPassword: 'Забыли пароль',
