@@ -16,7 +16,11 @@ import s from './SignUpForm.module.scss'
 
 import { SignUpFormValuesType, useSignUp } from '../../lib'
 
-export const SignUpForm = () => {
+type Props = {
+  onSendFormData: (email: string) => void
+}
+
+export const SignUpForm = ({ onSendFormData }: Props) => {
   const {
     text: { signUpPage: t },
   } = useTranslation()
@@ -38,6 +42,7 @@ export const SignUpForm = () => {
 
   const onSubmitHandler = (data: SignUpFormValuesType) => {
     console.log(data)
+    onSendFormData(data.email)
     reset()
   }
   const isDisabledButton = !isValid || !watch('policyAgreement')
