@@ -100,12 +100,3 @@ export const DropDownNotification: Story = {
     trigger: <BellIcon />,
   },
 }
-
-/*
-export const Default: Story = {
-  args: {
-    children,
-    className: inter.className,
-    trigger: <BellIcon size={2} />,
-  },
-}*/
