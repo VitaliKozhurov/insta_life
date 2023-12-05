@@ -1,5 +1,6 @@
 export { BellIcon } from './BellIcon'
 export { CheckBoxIcon } from './CheckBoxIcon'
+export { CloseIcon } from './CloseIcon'
 export { ClosedEyeIcon } from './ClosedEyeIcon'
 export { FavoritesIcon } from './FavoritesIcon'
 export { FilledBellIcon } from './FilledBellIcon'
