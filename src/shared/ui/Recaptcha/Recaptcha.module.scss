@@ -1,7 +1,19 @@
 @use 'src/shared/styles/mixins' as mixin;
 
 .root {
-  @include mixin.flex($justify: center, $align: center);
+  @include mixin.flex($direction: column, $justify: center, $align: center);
 
   width: 100%;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid transparent;
+}
+
+.error {
+  border: solid 1px #f00;
+}
+
+.errorText {
+  margin-right: auto;
+  font-size: 1rem;
+  color: #f00;
 }
