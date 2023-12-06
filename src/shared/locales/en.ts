@@ -57,6 +57,9 @@ export const en = {
     signIn: 'Sign In',
     signUp: 'Sign Up',
   },
+  recaptcha: {
+    errorText: 'Please verify that you are not a robot',
+  },
   signInPage: {
     form: {
       emailInputLabel: 'Email',

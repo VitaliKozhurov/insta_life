@@ -63,6 +63,9 @@ export const ru: LocalesType = {
     signIn: 'Войти',
     signUp: 'Регистрация',
   },
+  recaptcha: {
+    errorText: 'Пожалуйста, подтвердите, что вы не робот',
+  },
   signInPage: {
     form: {
       emailInputLabel: 'Электронная почта',
