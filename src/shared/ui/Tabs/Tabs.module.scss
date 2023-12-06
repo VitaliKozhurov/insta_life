@@ -1,0 +1,11 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.root {
+  width: 100%;
+
+  .list {
+    @include mixin.flex;
+
+    height: 3.6rem;
+  }
+}
