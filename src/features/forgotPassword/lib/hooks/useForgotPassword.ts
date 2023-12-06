@@ -9,7 +9,6 @@ type Props = LocalesType['forgotPasswordPage']['formErrors']
 const forgotPasswordSchema = (t: Props) =>
   z.object({
     email: z.string().email({ message: t.emailVerification }).trim(),
-    recaptcha: z.literal(true),
   })
 
 export type ForgotPasswordFormValuesType = z.infer<ReturnType<typeof forgotPasswordSchema>>
