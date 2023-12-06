@@ -3,14 +3,13 @@ import { useState } from 'react'
 import {
   Button,
   ButtonVariant,
-  ControlledCheckbox,
   ControlledInput,
-  RecaptchaIcon,
   Routes,
   Typography,
   TypographyVariant,
   useTranslation,
 } from '@/shared'
+import { Recaptcha } from '@/shared/ui/Recaptcha/Recaptcha'
 import clsx from 'clsx'
 import Link from 'next/link'
 
@@ -20,6 +19,7 @@ import { ForgotPasswordFormValuesType, useForgotPasswordForm } from '../../lib'
 
 export const ForgotPasswordForm = () => {
   const [isLinkWasSend, setIsLinkWasSend] = useState(false)
+  const [recaptchaToken, setRecaptchaToken] = useState<null | string>(null)
   const { text } = useTranslation()
   const t = text.forgotPasswordPage.form
   const {
@@ -37,14 +37,19 @@ export const ForgotPasswordForm = () => {
     instructionText: s.instructionText,
     instructionTextAfterSendLink: s.instructionTextAfterSendLink,
     link: s.link,
-    recaptchaWrapper: s.recaptchaWrapper,
     sendActionButton: s.sendActionButton,
   }
 
   const onSubmitHandler = (data: ForgotPasswordFormValuesType) => {
-    console.log(data)
+    const newData = { ...data, token: recaptchaToken }
+
+    console.log(newData)
     setIsLinkWasSend(true)
     reset()
+  }
+
+  const onRecaptchaVerify = (token: null | string) => {
+    setRecaptchaToken(token)
   }
 
   return (
@@ -66,7 +71,11 @@ export const ForgotPasswordForm = () => {
           {t.sendLinkText}
         </Typography>
       )}
-      <Button className={classNames.sendActionButton} disabled={!isValid} type={'submit'}>
+      <Button
+        className={classNames.sendActionButton}
+        disabled={!isValid || !recaptchaToken}
+        type={'submit'}
+      >
         {!isLinkWasSend && t.buttonTextBeforeSendLink}
         {isLinkWasSend && t.buttonTextAfterSendLink}
       </Button>
@@ -78,12 +87,7 @@ export const ForgotPasswordForm = () => {
       >
         {t.link}
       </Button>
-      {!isLinkWasSend && (
-        <div className={classNames.recaptchaWrapper}>
-          <ControlledCheckbox control={control} label={t.checkForRobot} name={'recaptcha'} />
-          <RecaptchaIcon />
-        </div>
-      )}
+      {!isLinkWasSend && <Recaptcha onRecaptchaChange={onRecaptchaVerify} />}
     </form>
   )
 }
