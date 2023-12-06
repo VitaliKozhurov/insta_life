@@ -85,9 +85,21 @@ devDependencies:
   '@types/react-dom':
     specifier: ^18
     version: 18.0.0
+  '@types/react-google-recaptcha':
+    specifier: ^2.1.8
+    version: 2.1.8
   eslint-plugin-storybook:
     specifier: ^0.6.15
     version: 0.6.15(eslint@8.54.0)(typescript@5.0.2)
+  install:
+    specifier: ^0.13.0
+    version: 0.13.0
+  pnpm:
+    specifier: ^8.11.0
+    version: 8.11.0
+  react-google-recaptcha:
+    specifier: ^3.1.0
+    version: 3.1.0(react@18.0.0)
   sass:
     specifier: ^1.69.5
     version: 1.69.5
@@ -4554,6 +4566,12 @@ packages:
     dependencies:
       '@types/react': 18.0.0
 
+  /@types/react-google-recaptcha@2.1.8:
+    resolution: {integrity: sha512-nYI3ZDoteZ0g4FYusyKWqz7AZqRdu70R3wDkosCcN0peb2WLn57i0Alm4IPiCRIx59yTUVPTiOELZH08gV1wXA==}
+    dependencies:
+      '@types/react': 18.0.0
+    dev: true
+
   /@types/react@18.0.0:
     resolution: {integrity: sha512-7+K7zEQYu7NzOwQGLR91KwWXXDzmTFODRVizJyIALf6RfLv2GDpqpknX64pvRVILXCpXi7O/pua8NGk44dLvJw==}
     dependencies:
@@ -7906,6 +7924,11 @@ packages:
     resolution: {integrity: sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==}
     dev: true
 
+  /install@0.13.0:
+    resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
+    engines: {node: '>= 0.10'}
+    dev: true
+
   /internal-slot@1.0.6:
     resolution: {integrity: sha512-Xj6dv+PsbtwyPpEflsejS+oIZxmMlV44zAhG479uYu89MsjcYOhCFnNyKrkJrihbsiasQyY0afoCl/9BLR65bg==}
     engines: {node: '>= 0.4'}
@@ -9497,6 +9520,12 @@ packages:
       - typescript
     dev: true
 
+  /pnpm@8.11.0:
+    resolution: {integrity: sha512-nfh8FsmNsntOBR14fmfyIH7EfoCcywe/e17ErNzRYTNVg5o40LkAFEkj1qcFdwC3TSoMyxVYvrJBZHoSBqmnqw==}
+    engines: {node: '>=16.14'}
+    hasBin: true
+    dev: true
+
   /polished@4.2.2:
     resolution: {integrity: sha512-Sz2Lkdxz6F2Pgnpi9U5Ng/WdWAUZxmHrNPoVlm3aAemxoy2Qy7LGjQg4uf8qKelDAUW94F4np3iH2YPf2qefcQ==}
     engines: {node: '>=10'}
@@ -9836,6 +9865,16 @@ packages:
       unpipe: 1.0.0
     dev: true
 
+  /react-async-script@1.2.0(react@18.0.0):
+    resolution: {integrity: sha512-bCpkbm9JiAuMGhkqoAiC0lLkb40DJ0HOEJIku+9JDjxX3Rcs+ztEOG13wbrOskt3n2DTrjshhaQ/iay+SnGg5Q==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      prop-types: 15.8.1
+      react: 18.0.0
+    dev: true
+
   /react-colorful@5.6.1(react-dom@18.0.0)(react@18.0.0):
     resolution: {integrity: sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==}
     peerDependencies:
@@ -9893,6 +9932,16 @@ packages:
       react: 18.0.0
       react-dom: 18.0.0(react@18.0.0)
       react-is: 18.1.0
+    dev: true
+
+  /react-google-recaptcha@3.1.0(react@18.0.0):
+    resolution: {integrity: sha512-cYW2/DWas8nEKZGD7SCu9BSuVz8iOcOLHChHyi7upUuVhkpkhYG/6N3KDiTQ3XAiZ2UAZkfvYKMfAHOzBOcGEg==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.0.0
+      react-async-script: 1.2.0(react@18.0.0)
     dev: true
 
   /react-hook-form@7.48.2(react@18.0.0):

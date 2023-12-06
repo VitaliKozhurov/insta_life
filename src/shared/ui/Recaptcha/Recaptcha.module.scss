@@ -1,0 +1,7 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.root {
+  @include mixin.flex($justify: center, $align: center);
+
+  width: 100%;
+}
