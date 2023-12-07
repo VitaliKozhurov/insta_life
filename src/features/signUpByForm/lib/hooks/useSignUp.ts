@@ -16,7 +16,7 @@ const signUpSchema = (t: Props) =>
         .max(20, t.maxPasswordLength)
         .regex(PASSWORD_PATTERN, t.passwordVerification)
         .trim(),
-      passwordConfirmation: z.string().trim(),
+      passwordConfirm: z.string().trim(),
       policyAgreement: z.boolean(),
       username: z
         .string()
@@ -25,7 +25,7 @@ const signUpSchema = (t: Props) =>
         .regex(USERNAME_PATTERN, t.userNameVerification)
         .trim(),
     })
-    .refine(data => data.password === data.passwordConfirmation, {
+    .refine(data => data.password === data.passwordConfirm, {
       message: t.confirmPassword,
       path: ['passwordConfirmation'],
     })
@@ -37,7 +37,7 @@ export const useSignUp = (t: Props) =>
     defaultValues: {
       email: '',
       password: '',
-      passwordConfirmation: '',
+      passwordConfirm: '',
       policyAgreement: false,
       username: '',
     },
