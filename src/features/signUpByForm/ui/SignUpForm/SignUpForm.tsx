@@ -14,6 +14,7 @@ import Link from 'next/link'
 
 import s from './SignUpForm.module.scss'
 
+import { useSignUpMutation } from '../../api'
 import { SignUpFormValuesType, useSignUp } from '../../lib'
 
 type Props = {
@@ -21,6 +22,8 @@ type Props = {
 }
 
 export const SignUpForm = ({ onSendFormData }: Props) => {
+  const [signUpHandler, { isLoading }] = useSignUpMutation()
+
   const {
     text: { signUpPage: t },
   } = useTranslation()
@@ -41,9 +44,14 @@ export const SignUpForm = ({ onSendFormData }: Props) => {
   }
 
   const onSubmitHandler = (data: SignUpFormValuesType) => {
-    console.log(data)
-    onSendFormData(data.email)
-    reset()
+    signUpHandler(data)
+      .unwrap()
+      .then(data => {
+        console.log(data)
+        onSendFormData(data.email)
+        reset()
+      })
+      .catch(error => console.log(error))
   }
   const isDisabledButton = !isValid || !watch('policyAgreement')
 
@@ -71,10 +79,10 @@ export const SignUpForm = ({ onSendFormData }: Props) => {
       />
       <ControlledInput
         autoComplete={'off'}
-        className={classNames.formInput(errors.passwordConfirmation?.message)}
+        className={classNames.formInput(errors.passwordConfirm?.message)}
         control={control}
         label={t.form.passwordConfirmationInputLabel}
-        name={'passwordConfirmation'}
+        name={'passwordConfirm'}
         type={'password'}
       />
       <div className={classNames.checkboxWrapper}>

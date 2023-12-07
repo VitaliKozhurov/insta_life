@@ -1,5 +1,6 @@
 import { ReactElement, ReactNode } from 'react'
 
+import { ReduxProvider } from '@/shared'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 
@@ -14,5 +15,5 @@ type AppPropsWithLayout = AppProps & {
 export const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? (page => page)
 
-  return getLayout(<Component {...pageProps} />)
+  return <ReduxProvider>{getLayout(<Component {...pageProps} />)}</ReduxProvider>
 }
