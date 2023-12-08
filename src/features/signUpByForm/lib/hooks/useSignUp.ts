@@ -27,7 +27,7 @@ const signUpSchema = (t: Props) =>
     })
     .refine(data => data.password === data.passwordConfirm, {
       message: t.confirmPassword,
-      path: ['passwordConfirmation'],
+      path: ['passwordConfirm'],
     })
 
 export type SignUpFormValuesType = z.infer<ReturnType<typeof signUpSchema>>

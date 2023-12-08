@@ -7,6 +7,7 @@ import {
   Trans,
   Typography,
   TypographyVariant,
+  onRequestErrorHandler,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -32,6 +33,8 @@ export const SignUpForm = ({ onSendFormData }: Props) => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
+    setError,
+    trigger,
     watch,
   } = useSignUp(t.formErrors)
 
@@ -47,11 +50,10 @@ export const SignUpForm = ({ onSendFormData }: Props) => {
     signUpHandler(data)
       .unwrap()
       .then(data => {
-        console.log(data)
         onSendFormData(data.email)
         reset()
       })
-      .catch(error => console.log(error))
+      .catch(error => onRequestErrorHandler(error, setError))
   }
   const isDisabledButton = !isValid || !watch('policyAgreement')
 
@@ -83,6 +85,7 @@ export const SignUpForm = ({ onSendFormData }: Props) => {
         control={control}
         label={t.form.passwordConfirmationInputLabel}
         name={'passwordConfirm'}
+        onChangeValue={() => trigger('passwordConfirm')}
         type={'password'}
       />
       <div className={classNames.checkboxWrapper}>
