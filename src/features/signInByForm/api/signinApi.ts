@@ -11,7 +11,7 @@ export type SignInResponseType = {
 
 const signInApi = baseApi.injectEndpoints({
   endpoints: build => ({
-    signUp: build.mutation<SignInResponseType, SignInRequestType>({
+    signIn: build.mutation<SignInResponseType, SignInRequestType>({
       query: body => ({
         body,
         method: 'POST',
@@ -21,4 +21,4 @@ const signInApi = baseApi.injectEndpoints({
   }),
 })
 
-export const { useSignUpMutation } = signInApi
+export const { useSignInMutation } = signInApi

@@ -5,6 +5,7 @@ import {
   Routes,
   Typography,
   TypographyVariant,
+  onRequestErrorHandler,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -12,17 +13,20 @@ import Link from 'next/link'
 
 import s from './SignInForm.module.scss'
 
+import { useSignInMutation } from '../../api'
 import { SignInFormValuesType, useSignIn } from '../../lib'
 
 export const SignInForm = () => {
+  const [signInHandler, { isLoading }] = useSignInMutation()
   const {
+    router,
     text: { signInPage: t },
   } = useTranslation()
   const {
     control,
     formState: { errors, isValid },
     handleSubmit,
-    reset,
+    setError,
   } = useSignIn(t.formErrors)
 
   const classNames = {
@@ -34,8 +38,13 @@ export const SignInForm = () => {
   }
 
   const onSubmitHandler = (data: SignInFormValuesType) => {
-    console.log(data)
-    reset()
+    signInHandler(data)
+      .unwrap()
+      .then(data => {
+        console.log(data)
+        router.push(Routes.PROFILE)
+      })
+      .catch(error => onRequestErrorHandler(error, setError))
   }
 
   return (
