@@ -66,6 +66,9 @@ export const ru: LocalesType = {
   recaptcha: {
     errorText: 'Пожалуйста, подтвердите, что вы не робот',
   },
+  registrationConfirmationPage: {
+    title: 'Подтверждение регистрации',
+  },
   signInPage: {
     form: {
       emailInputLabel: 'Электронная почта',

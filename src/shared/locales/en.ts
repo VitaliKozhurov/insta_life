@@ -60,6 +60,9 @@ export const en = {
   recaptcha: {
     errorText: 'Please verify that you are not a robot',
   },
+  registrationConfirmationPage: {
+    title: 'Registration confirmation',
+  },
   signInPage: {
     form: {
       emailInputLabel: 'Email',
