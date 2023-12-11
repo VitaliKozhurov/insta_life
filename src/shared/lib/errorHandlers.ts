@@ -1,4 +1,4 @@
-import { FieldError } from 'react-hook-form'
+import { ErrorOption } from 'react-hook-form'
 
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
@@ -45,7 +45,7 @@ const isFetchError = (error: unknown): error is { error: string; status: 'FETCH_
 
 export const onRequestErrorHandler = <T>(
   error: unknown,
-  setError: (name: T, error: FieldError) => void
+  setError: (name: T, error: ErrorOption) => void
 ) => {
   if (isFetchBaseQueryError(error) && error.data) {
     if (isUserDataValidationError(error.data)) {
