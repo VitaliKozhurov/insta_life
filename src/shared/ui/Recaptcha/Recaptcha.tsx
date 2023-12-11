@@ -7,10 +7,10 @@ import clsx from 'clsx'
 import s from './Recaptcha.module.scss'
 
 type Props = {
-  onRecaptchaChange: (token: Nullable<string>) => void
+  onRecaptchaVerify: (value: boolean) => void
 }
 
-export const Recaptcha = ({ onRecaptchaChange }: Props) => {
+export const Recaptcha = ({ onRecaptchaVerify }: Props) => {
   const [error, setError] = useState(false)
   const {
     router: { locale },
@@ -21,12 +21,17 @@ export const Recaptcha = ({ onRecaptchaChange }: Props) => {
   const onChangeHandler = (token: Nullable<string>) => {
     if (token) {
       setError(false)
-      onRecaptchaChange(token)
+      onRecaptchaVerify(true)
     }
   }
 
   const onErrorHandler = () => {
     setError(true)
+    onRecaptchaVerify(false)
+  }
+
+  const onExpiredHandler = () => {
+    onRecaptchaVerify(false)
   }
 
   return (
@@ -35,6 +40,7 @@ export const Recaptcha = ({ onRecaptchaChange }: Props) => {
         hl={recaptchaLocale}
         onChange={onChangeHandler}
         onErrored={onErrorHandler}
+        onExpired={onExpiredHandler}
         sitekey={`${process.env.NEXT_PUBLIC_SITE_KEY as string}`}
         size={'normal'}
         theme={'dark'}
