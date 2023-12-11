@@ -37,11 +37,10 @@ export const SignInForm = () => {
     },
   }
 
-  const onSubmitHandler = (data: SignInFormValuesType) => {
-    signInHandler(data)
+  const onSubmitHandler = (formData: SignInFormValuesType) => {
+    signInHandler(formData)
       .unwrap()
       .then(data => {
-        console.log(data)
         router.push(Routes.PROFILE)
       })
       .catch(error => onRequestErrorHandler(error, setError))

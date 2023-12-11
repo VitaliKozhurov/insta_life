@@ -46,11 +46,11 @@ export const SignUpForm = ({ onSendFormData }: Props) => {
     },
   }
 
-  const onSubmitHandler = (data: SignUpFormValuesType) => {
-    signUpHandler(data)
+  const onSubmitHandler = (formData: SignUpFormValuesType) => {
+    signUpHandler(formData)
       .unwrap()
       .then(data => {
-        onSendFormData(data.email)
+        onSendFormData(formData.email)
         reset()
       })
       .catch(error => onRequestErrorHandler(error, setError))

@@ -4,17 +4,19 @@ import {
   Button,
   ButtonVariant,
   ControlledInput,
+  Recaptcha,
   Routes,
   Typography,
   TypographyVariant,
+  onRequestErrorHandler,
   useTranslation,
 } from '@/shared'
-import { Recaptcha } from '@/shared/ui/Recaptcha/Recaptcha'
 import clsx from 'clsx'
 import Link from 'next/link'
 
 import s from './ForgotPasswordForm.module.scss'
 
+import { useForgotPasswordMutation } from '../../api'
 import { ForgotPasswordFormValuesType, useForgotPasswordForm } from '../../lib'
 
 type Props = {
@@ -22,6 +24,7 @@ type Props = {
 }
 
 export const ForgotPasswordForm = ({ onSendFormData }: Props) => {
+  const [forgotPasswordHandler, { isLoading }] = useForgotPasswordMutation()
   const [isLinkWasSend, setIsLinkWasSend] = useState(false)
   const [isRecaptchaVerified, setRecaptchaVerified] = useState(false)
   const { text } = useTranslation()
@@ -31,6 +34,7 @@ export const ForgotPasswordForm = ({ onSendFormData }: Props) => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
+    setError,
   } = useForgotPasswordForm(text.forgotPasswordPage.formErrors)
 
   const classNames = {
@@ -44,10 +48,15 @@ export const ForgotPasswordForm = ({ onSendFormData }: Props) => {
     sendActionButton: s.sendActionButton,
   }
 
-  const onSubmitHandler = (data: ForgotPasswordFormValuesType) => {
-    onSendFormData(data.email)
-    setIsLinkWasSend(true)
-    reset()
+  const onSubmitHandler = (formData: ForgotPasswordFormValuesType) => {
+    forgotPasswordHandler(formData)
+      .unwrap()
+      .then(data => {
+        onSendFormData(formData.email)
+        setIsLinkWasSend(true)
+        reset()
+      })
+      .catch(error => onRequestErrorHandler(error, setError))
   }
 
   const onRecaptchaVerify = (value: boolean) => {
