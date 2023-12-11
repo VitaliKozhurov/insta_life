@@ -1,6 +1,7 @@
 import {
   Button,
   ControlledInput,
+  Routes,
   Typography,
   TypographyVariant,
   onRequestErrorHandler,
@@ -19,13 +20,13 @@ export const CreateNewPasswordForm = () => {
   const { query } = useRouter()
   const { code } = query
   const {
+    router,
     text: { createNewPasswordPage: t },
   } = useTranslation()
   const {
     control,
     formState: { errors, isValid },
     handleSubmit,
-    reset,
     setError,
   } = useCreateNewPassword(t.formErrors)
   const classNames = {
@@ -42,7 +43,7 @@ export const CreateNewPasswordForm = () => {
 
     createNewPasswordHandler(requestData)
       .unwrap()
-      .then(data => reset())
+      .then(data => router.push(Routes.SIGN_IN))
       .catch(error => onRequestErrorHandler(error, setError))
   }
 
