@@ -17,9 +17,13 @@ import s from './ForgotPasswordForm.module.scss'
 
 import { ForgotPasswordFormValuesType, useForgotPasswordForm } from '../../lib'
 
-export const ForgotPasswordForm = () => {
+type Props = {
+  onSendFormData: (email: string) => void
+}
+
+export const ForgotPasswordForm = ({ onSendFormData }: Props) => {
   const [isLinkWasSend, setIsLinkWasSend] = useState(false)
-  const [recaptchaToken, setRecaptchaToken] = useState<null | string>(null)
+  const [isRecaptchaVerified, setRecaptchaVerified] = useState(false)
   const { text } = useTranslation()
   const t = text.forgotPasswordPage.form
   const {
@@ -41,15 +45,13 @@ export const ForgotPasswordForm = () => {
   }
 
   const onSubmitHandler = (data: ForgotPasswordFormValuesType) => {
-    const newData = { ...data, token: recaptchaToken }
-
-    console.log(newData)
+    onSendFormData(data.email)
     setIsLinkWasSend(true)
     reset()
   }
 
-  const onRecaptchaVerify = (token: null | string) => {
-    setRecaptchaToken(token)
+  const onRecaptchaVerify = (value: boolean) => {
+    setRecaptchaVerified(value)
   }
 
   return (
@@ -73,7 +75,7 @@ export const ForgotPasswordForm = () => {
       )}
       <Button
         className={classNames.sendActionButton}
-        disabled={!isValid || !recaptchaToken}
+        disabled={!isValid || !isRecaptchaVerified}
         type={'submit'}
       >
         {!isLinkWasSend && t.buttonTextBeforeSendLink}
@@ -87,7 +89,7 @@ export const ForgotPasswordForm = () => {
       >
         {t.link}
       </Button>
-      {!isLinkWasSend && <Recaptcha onRecaptchaChange={onRecaptchaVerify} />}
+      {!isLinkWasSend && <Recaptcha onRecaptchaVerify={onRecaptchaVerify} />}
     </form>
   )
 }
