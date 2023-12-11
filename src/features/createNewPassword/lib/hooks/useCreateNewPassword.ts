@@ -9,7 +9,7 @@ type Props = LocalesType['createNewPasswordPage']['formErrors']
 const createNewPasswordSchema = (t: Props) =>
   z
     .object({
-      newPassword: z
+      password: z
         .string()
         .min(6, t.minPasswordLength)
         .max(20, t.maxPasswordLength)
@@ -17,7 +17,7 @@ const createNewPasswordSchema = (t: Props) =>
         .trim(),
       passwordConfirmation: z.string().trim(),
     })
-    .refine(data => data.newPassword === data.passwordConfirmation, {
+    .refine(data => data.password === data.passwordConfirmation, {
       message: t.confirmPassword,
       path: ['passwordConfirmation'],
     })
@@ -27,7 +27,7 @@ export type CreateNewPasswordValuesType = z.infer<ReturnType<typeof createNewPas
 export const useCreateNewPassword = (t: Props) =>
   useForm<CreateNewPasswordValuesType>({
     defaultValues: {
-      newPassword: '',
+      password: '',
       passwordConfirmation: '',
     },
     mode: 'onTouched',

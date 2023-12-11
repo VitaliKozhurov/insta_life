@@ -1,0 +1,1 @@
+export { useCreateNewPasswordMutation } from './createNewPasswordApi'

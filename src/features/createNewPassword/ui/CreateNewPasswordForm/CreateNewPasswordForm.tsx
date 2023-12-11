@@ -1,11 +1,23 @@
-import { Button, ControlledInput, Typography, TypographyVariant, useTranslation } from '@/shared'
+import {
+  Button,
+  ControlledInput,
+  Typography,
+  TypographyVariant,
+  onRequestErrorHandler,
+  useTranslation,
+} from '@/shared'
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 
 import s from './CreateNewPasswordForm.module.scss'
 
+import { useCreateNewPasswordMutation } from '../../api'
 import { CreateNewPasswordValuesType, useCreateNewPassword } from '../../lib'
 
 export const CreateNewPasswordForm = () => {
+  const [createNewPasswordHandler] = useCreateNewPasswordMutation()
+  const { query } = useRouter()
+  const { code } = query
   const {
     text: { createNewPasswordPage: t },
   } = useTranslation()
@@ -14,6 +26,7 @@ export const CreateNewPasswordForm = () => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
+    setError,
   } = useCreateNewPassword(t.formErrors)
   const classNames = {
     form: s.form,
@@ -23,18 +36,23 @@ export const CreateNewPasswordForm = () => {
     instructionText: s.instructionText,
   }
 
-  const onSubmitHandler = (data: CreateNewPasswordValuesType) => {
-    console.log(data)
-    reset()
+  const onSubmitHandler = (formData: CreateNewPasswordValuesType) => {
+    const recoveryCode = Array.isArray(code) ? code[0] : code
+    const requestData = { ...formData, recoveryCode: recoveryCode || '' }
+
+    createNewPasswordHandler(requestData)
+      .unwrap()
+      .then(data => reset())
+      .catch(error => onRequestErrorHandler(error, setError))
   }
 
   return (
     <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
       <ControlledInput
-        className={classNames.formInput(errors.newPassword?.message)}
+        className={classNames.formInput(errors.password?.message)}
         control={control}
         label={t.form.newPasswordInputLabel}
-        name={'newPassword'}
+        name={'password'}
         type={'password'}
       />
       <ControlledInput
