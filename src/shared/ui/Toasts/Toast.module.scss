@@ -6,13 +6,13 @@
 }
 
 .success {
-  background-color: var(--color-success-900);
-  border: solid 1px var(--color-success-500);
+  background-color: var(--color-success-900) !important;
+  border: solid 1px var(--color-success-500) !important;
 }
 
 .error {
-  background-color: var(--color-danger-900);
-  border: solid 1px var(--color-danger-500);
+  background-color: var(--color-danger-900) !important;
+  border: solid 1px var(--color-danger-500) !important;
 }
 
 .body {
