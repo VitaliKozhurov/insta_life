@@ -1,0 +1,53 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.container {
+  padding: 1.2rem 2.4rem;
+  border-radius: 2px;
+}
+
+.success {
+  background-color: var(--color-success-900);
+  border: solid 1px var(--color-success-500);
+}
+
+.error {
+  background-color: var(--color-danger-900);
+  border: solid 1px var(--color-danger-500);
+}
+
+.body {
+  padding: 0;
+
+  div {
+    @include mixin.flex($align: center, $justify: space-between);
+  }
+}
+
+.text {
+  width: 100%;
+  margin: 0;
+
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  color: var(--color-light-100);
+  text-align: left;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.closeBtn {
+  @include mixin.flex($align: center, $justify: space-between);
+
+  cursor: pointer;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--color-light-100);
+
+  background-color: transparent;
+  border: none;
+}
