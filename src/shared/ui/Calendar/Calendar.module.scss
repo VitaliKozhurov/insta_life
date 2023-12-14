@@ -1,0 +1,77 @@
+.root {
+  display: inline-block;
+
+  /* width: 30rem; */
+  padding: 1.6rem 2.4rem;
+
+  background: var(--color-dark-500);
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.head {
+  margin-bottom: 1.2rem;
+
+  .head_row {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .head_cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 3.6rem;
+    height: 3.6rem;
+
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    color: var(--color-light-900);
+    text-align: center;
+  }
+}
+
+.tbody {
+  width: 100%;
+
+  .row {
+    display: flex;
+    justify-content: space-around;
+
+    .cell {
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 3.6rem;
+      height: 3.6rem;
+
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: var(--color-light-100);
+    }
+
+    .cell:nth-last-child(-n + 2):not(.day_outside),
+    .cell:nth-last-child(-n + 2):not(.day_today) {
+      color: var(--color-danger-300);
+    }
+
+    .day_outside {
+      color: var(--color-light-900);
+    }
+
+    .day_today {
+      color: var(--color-accent-500);
+    }
+  }
+}
