@@ -1,3 +1,5 @@
+export { ArrowLeftIcon } from './ArrowLeftIcon'
+export { ArrowRightIcon } from './ArrowRightIcon'
 export { BellIcon } from './BellIcon'
 export { CheckBoxIcon } from './CheckBoxIcon'
 export { CloseIcon } from './CloseIcon'
