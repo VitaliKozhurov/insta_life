@@ -5,15 +5,16 @@ import clsx from 'clsx'
 
 import s from './Calendar.module.scss'
 
+import { CalendarHeader } from './CalendarHeader'
+
 type Props = {
-  mode: 'multiple' | 'range' | 'single'
+  mode: 'range' | 'single'
 }
 
 export const Calendar = ({ mode }: Props) => {
   const [selected, setSelected] = useState<Date>()
   const [range, setRange] = useState<DateRange | undefined>()
 
-  console.log(range)
   const classNames: ClassNames = {
     cell: s.cell,
     day: s.day,
@@ -36,6 +37,7 @@ export const Calendar = ({ mode }: Props) => {
     return (
       <DayPicker
         classNames={classNames}
+        components={{ Caption: CalendarHeader }}
         mode={'range'}
         onSelect={setRange}
         selected={range}
@@ -48,6 +50,7 @@ export const Calendar = ({ mode }: Props) => {
   return (
     <DayPicker
       classNames={classNames}
+      components={{ Caption: CalendarHeader }}
       mode={'single'}
       onSelect={setSelected}
       selected={selected}

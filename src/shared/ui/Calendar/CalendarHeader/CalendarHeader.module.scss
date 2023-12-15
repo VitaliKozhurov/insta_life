@@ -1,0 +1,19 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.root {
+  @include mixin.flex($justify: space-between, $align: center);
+
+  .title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 2.4rem;
+    color: var(--color-light-100);
+  }
+
+  .controls {
+    @include mixin.flex($align: center);
+  }
+
+  .control {
+  }
+}
