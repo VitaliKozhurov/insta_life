@@ -1,7 +1,6 @@
 .root {
   display: inline-block;
 
-  /* width: 30rem; */
   padding: 1.6rem 2.4rem;
 
   background: var(--color-dark-500);
@@ -74,6 +73,14 @@
       border-radius: 50%;
 
       transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--color-accent-700);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-accent-300);
+      }
     }
 
     .day_outside {
@@ -92,6 +99,22 @@
         color: var(--color-accent-100);
         background-color: var(--color-accent-700);
       }
+    }
+
+    .day.day_selected {
+      color: var(--color-light-100);
+      background-color: var(--color-accent-900);
+    }
+
+    .day_today.day_selected {
+      font-weight: 700;
+      color: var(--color-light-100);
+      background-color: var(--color-accent-900);
+    }
+
+    .cell:nth-last-child(-n + 2) .day_selected {
+      color: var(--color-danger-300);
+      background-color: var(--color-accent-900);
     }
   }
 }
