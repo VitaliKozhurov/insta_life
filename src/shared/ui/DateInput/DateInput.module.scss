@@ -1,7 +1,8 @@
 @use 'src/shared/styles/mixins' as mixin;
 
 .root {
-  /*  width: 30rem; */
+  width: 16rem;
+
   .label {
     font-size: 1.4rem;
     font-weight: 400;
@@ -13,11 +14,26 @@
     @include mixin.flex($align: center);
 
     padding: 0.6rem 1.2rem;
+
+    background-color: transparent;
     border: 1px solid var(--color-dark-300);
     border-radius: 2px;
 
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--color-dark-500);
+    }
+
+    &:focus-visible {
+      border: 1px solid var(--color-accent-700);
+      outline: 1px solid var(--color-accent-700);
+    }
+
     .dateInput {
       all: unset;
+
+      cursor: default;
 
       width: 100%;
 
@@ -30,16 +46,53 @@
       &::placeholder {
         color: var(--color-light-100);
       }
+
+      &:disabled {
+        color: var(--color-light-900);
+      }
+
+      &:disabled::placeholder {
+        color: var(--color-light-900);
+      }
+    }
+
+    .dateInput.dateInputWithError {
+      color: var(--color-danger-500);
+
+      &::placeholder {
+        color: var(--color-danger-500);
+      }
     }
 
     .calendar {
       cursor: pointer;
       background-color: transparent;
       border: none;
+
+      &:disabled {
+        cursor: auto;
+      }
     }
+  }
+
+  .error {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    color: var(--color-danger-500);
   }
 }
 
-.disabledLabel {
+.label.disabledLabel {
   color: var(--color-dark-100);
+}
+
+.inputWrapper.wrapperWithError {
+  color: var(--color-danger-500);
+  border: 1px solid var(--color-danger-500);
+}
+
+.inputWrapper.disabledWrapper {
+  &:hover {
+    background-color: transparent;
+  }
 }
