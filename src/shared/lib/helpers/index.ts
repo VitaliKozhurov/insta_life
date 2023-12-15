@@ -1,0 +1,1 @@
+export { firstLetterUppercaseTransform } from './firstLetterUppercaseTransform'
