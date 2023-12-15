@@ -1,0 +1,45 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.root {
+  /*  width: 30rem; */
+  .label {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    color: var(--color-light-900);
+  }
+
+  .inputWrapper {
+    @include mixin.flex($align: center);
+
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--color-dark-300);
+    border-radius: 2px;
+
+    .dateInput {
+      all: unset;
+
+      width: 100%;
+
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: var(--color-light-100);
+
+      caret-color: transparent;
+
+      &::placeholder {
+        color: var(--color-light-100);
+      }
+    }
+
+    .calendar {
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
+
+.disabledLabel {
+  color: var(--color-dark-100);
+}
