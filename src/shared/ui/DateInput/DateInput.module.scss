@@ -13,6 +13,7 @@
   .inputWrapper {
     @include mixin.flex($align: center);
 
+    height: 3.6rem;
     padding: 0.6rem 1.2rem;
 
     background-color: transparent;
@@ -65,7 +66,10 @@
     }
 
     .calendar {
+      @include mixin.flex;
+
       cursor: pointer;
+      padding: 0;
       background-color: transparent;
       border: none;
 
@@ -80,6 +84,10 @@
     line-height: 1.6rem;
     color: var(--color-danger-500);
   }
+}
+
+.rangeMode {
+  width: 26.5rem;
 }
 
 .label.disabledLabel {

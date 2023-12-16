@@ -8,10 +8,11 @@ import s from './DateInput.module.scss'
 type Props = {
   error?: string
   label?: string
+  mode?: 'range' | 'single'
 } & ComponentPropsWithoutRef<'input'>
 
 export const DateInput = forwardRef<ElementRef<'input'>, Props>(
-  ({ disabled, error, label, placeholder, ...restProps }: Props) => {
+  ({ className, disabled, error, label, mode = 'single', placeholder, ...restProps }: Props) => {
     const classNames = {
       calendar: s.calendar,
       dateInput: clsx(s.dateInput, error && s.dateInputWithError),
@@ -22,8 +23,9 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
         disabled && s.disabledWrapper
       ),
       label: clsx(s.label, disabled && s.disabledLabel),
-      root: s.root,
+      root: clsx(s.root, mode === 'range' && s.rangeMode, className),
     }
+    const datePlaceholder = mode === 'single' ? placeholder : placeholder + ' - ' + placeholder
 
     return (
       <div className={classNames.root}>
@@ -32,7 +34,7 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
           <input
             className={classNames.dateInput}
             disabled={disabled}
-            placeholder={placeholder}
+            placeholder={datePlaceholder}
             {...restProps}
           />
           <button className={classNames.calendar} disabled={disabled}>
