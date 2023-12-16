@@ -12,7 +12,10 @@ type Props = {
 } & ComponentPropsWithoutRef<'input'>
 
 export const DateInput = forwardRef<ElementRef<'input'>, Props>(
-  ({ className, disabled, error, label, mode = 'single', placeholder, ...restProps }: Props) => {
+  (
+    { className, disabled, error, label, mode = 'single', placeholder, ...restProps }: Props,
+    ref
+  ) => {
     const classNames = {
       calendar: s.calendar,
       dateInput: clsx(s.dateInput, error && s.dateInputWithError),
@@ -35,6 +38,8 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
             className={classNames.dateInput}
             disabled={disabled}
             placeholder={datePlaceholder}
+            readOnly
+            ref={ref}
             {...restProps}
           />
           <button className={classNames.calendar} disabled={disabled}>
