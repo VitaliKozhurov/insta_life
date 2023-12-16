@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { ClassNames, DateRange, DayPicker } from 'react-day-picker'
 
 import clsx from 'clsx'
@@ -10,14 +9,17 @@ import s from './Calendar.module.scss'
 import { CalendarHeader } from './CalendarHeader'
 
 type Props = {
+  className?: string
   mode: 'range' | 'single'
+  range?: DateRange | undefined
+  selected?: Date | undefined
+  setRange?: (daysRange: DateRange | undefined) => void
+  setSelected?: (day: Date | undefined) => void
 }
 
-export const Calendar = ({ mode }: Props) => {
+export const Calendar = ({ className, mode, range, selected, setRange, setSelected }: Props) => {
   const { locale } = useRouter()
   const currentLocale = locale === 'ru' ? ru : enUS
-  const [selected, setSelected] = useState<Date>()
-  const [range, setRange] = useState<DateRange | undefined>()
 
   const classNames: ClassNames = {
     cell: s.cell,
@@ -31,7 +33,7 @@ export const Calendar = ({ mode }: Props) => {
     head: s.head,
     head_cell: s.head_cell,
     head_row: s.head_row,
-    root: s.root,
+    root: clsx(s.root, className),
     row: s.row,
     table: s.table,
     tbody: s.tbody,
