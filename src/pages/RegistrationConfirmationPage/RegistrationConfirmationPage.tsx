@@ -1,6 +1,9 @@
 import { ReactElement, useEffect } from 'react'
 
-import { useRegistrationConfirmationMutation } from '@/features'
+import {
+  useRegistrationConfirmationMutation,
+  useRegistrationEmailResendingMutation,
+} from '@/features'
 import { RootLayout } from '@/pages'
 import { HeadMeta, useTranslation } from '@/shared'
 import { ConfirmEmail, ExpiredLink } from '@/widgets'
@@ -14,6 +17,7 @@ export const RegistrationConfirmationPage = () => {
   const { code } = query
   const [confirmRegistrationHandler, { isLoading, isSuccess }] =
     useRegistrationConfirmationMutation()
+  const [resendLinkHandler] = useRegistrationEmailResendingMutation()
 
   useEffect(() => {
     const confirmCode = Array.isArray(code) ? code[0] : code
@@ -31,12 +35,18 @@ export const RegistrationConfirmationPage = () => {
     return <h1>Loading...</h1>
   }
 
+  const onResendLink = () => {
+    const confirmCode = Array.isArray(code) ? code[0] : code
+
+    resendLinkHandler({ code: confirmCode || '' })
+  }
+
   return (
     <>
       <HeadMeta title={text.registrationConfirmationPage.title} />
       <main className={classNames.main}>
         {isSuccess && <ConfirmEmail />}
-        {!isSuccess && <ExpiredLink />}
+        {!isSuccess && <ExpiredLink onResendLink={onResendLink} />}
       </main>
     </>
   )

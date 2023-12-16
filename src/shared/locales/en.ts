@@ -68,7 +68,7 @@ export const en = {
       emailInputLabel: 'Email',
       passwordInputLabel: 'Password',
       questionAboutPassword: 'Forgot Password?',
-      signInBtn: 'Sign Ip',
+      signInBtn: 'Sign In',
     },
     formErrors: {
       emailVerification: 'The email must match the format example@example.com',

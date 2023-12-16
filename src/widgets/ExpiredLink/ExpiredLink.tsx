@@ -1,12 +1,15 @@
-import { Button, Routes, Typography, TypographyVariant, useTranslation } from '@/shared'
+import { Button, Typography, TypographyVariant, useTranslation } from '@/shared'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import s from './ExpiredLink.module.scss'
 
 import expiredVerificationLink from '/public/expired_time.png'
 
-export const ExpiredLink = () => {
+type Props = {
+  onResendLink: () => void
+}
+
+export const ExpiredLink = ({ onResendLink }: Props) => {
   const { text } = useTranslation()
   const t = text.expiredLink
   const classNames = {
@@ -25,7 +28,7 @@ export const ExpiredLink = () => {
       <Typography className={classNames.text} variant={TypographyVariant.Regular_16}>
         {t.text}
       </Typography>
-      <Button as={Link} className={classNames.resendButton} href={Routes.SIGN_IN}>
+      <Button className={classNames.resendButton} onClick={onResendLink}>
         {t.resendActionButton}
       </Button>
       <div className={classNames.imageWrapper}>
