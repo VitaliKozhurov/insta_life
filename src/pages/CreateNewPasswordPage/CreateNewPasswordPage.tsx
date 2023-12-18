@@ -2,7 +2,7 @@ import { ReactElement, useState } from 'react'
 
 import { ModalOnEmail, usePasswordRecoveryResendingMutation } from '@/features'
 import { RootLayout } from '@/pages'
-import { HeadMeta, useTranslation } from '@/shared'
+import { HeadMeta, checkConfirmationCodeError, useTranslation } from '@/shared'
 import { CreateNewPassword, ExpiredLink } from '@/widgets'
 import { useRouter } from 'next/router'
 
@@ -25,6 +25,9 @@ export const CreateNewPasswordPage = () => {
     resendLinkHandler({ code: confirmCode || '' })
       .unwrap()
       .then(() => setOpen(true))
+      .catch(error => {
+        checkConfirmationCodeError(error)
+      })
   }
 
   return (

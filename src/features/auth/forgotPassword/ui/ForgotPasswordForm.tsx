@@ -51,7 +51,7 @@ export const ForgotPasswordForm = ({ onSendFormData }: Props) => {
   const onSubmitHandler = (formData: ForgotPasswordFormValuesType) => {
     forgotPasswordHandler(formData)
       .unwrap()
-      .then(data => {
+      .then(() => {
         onSendFormData(formData.email)
         setIsLinkWasSend(true)
         reset()

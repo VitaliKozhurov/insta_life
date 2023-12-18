@@ -48,7 +48,7 @@ export const CreateNewPasswordForm = ({ setIsErrorFetch }: Props) => {
 
     createNewPasswordHandler(requestData)
       .unwrap()
-      .then(data => router.push(Routes.SIGN_IN))
+      .then(() => router.push(Routes.SIGN_IN))
       .catch(error => {
         if (checkRecoveryCodeError(error)) {
           setIsErrorFetch(true)
