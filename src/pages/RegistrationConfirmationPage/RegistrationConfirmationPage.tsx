@@ -12,12 +12,12 @@ import { useRouter } from 'next/router'
 import s from './RegistrationConfirmation.module.scss'
 
 export const RegistrationConfirmationPage = () => {
-  const { text } = useTranslation()
-  const { query } = useRouter()
-  const { code } = query
   const [confirmRegistrationHandler, { isLoading, isSuccess }] =
     useRegistrationConfirmationMutation()
   const [resendLinkHandler] = useRegistrationEmailResendingMutation()
+  const { text } = useTranslation()
+  const { query } = useRouter()
+  const { code } = query
 
   useEffect(() => {
     const confirmCode = Array.isArray(code) ? code[0] : code

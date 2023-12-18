@@ -4,6 +4,7 @@ import {
   Routes,
   Typography,
   TypographyVariant,
+  checkRecoveryCodeError,
   onRequestErrorHandler,
   useTranslation,
 } from '@/shared'
@@ -15,7 +16,11 @@ import s from './CreateNewPasswordForm.module.scss'
 import { useCreateNewPasswordMutation } from '../../api'
 import { CreateNewPasswordValuesType, useCreateNewPassword } from '../../lib'
 
-export const CreateNewPasswordForm = () => {
+type Props = {
+  setIsErrorFetch: (value: boolean) => void
+}
+
+export const CreateNewPasswordForm = ({ setIsErrorFetch }: Props) => {
   const [createNewPasswordHandler] = useCreateNewPasswordMutation()
   const { query } = useRouter()
   const { code } = query
@@ -44,7 +49,13 @@ export const CreateNewPasswordForm = () => {
     createNewPasswordHandler(requestData)
       .unwrap()
       .then(data => router.push(Routes.SIGN_IN))
-      .catch(error => onRequestErrorHandler(error, setError))
+      .catch(error => {
+        if (checkRecoveryCodeError(error)) {
+          setIsErrorFetch(true)
+        } else {
+          onRequestErrorHandler(error, setError)
+        }
+      })
   }
 
   return (

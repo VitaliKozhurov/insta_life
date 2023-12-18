@@ -72,3 +72,17 @@ export const onRequestErrorHandler = <T>(
     getToast({ text: error.error, variant: 'error', withClose: true })
   }
 }
+
+export const checkRecoveryCodeError = (error: unknown) => {
+  if (isFetchBaseQueryError(error)) {
+    if (isUserDataValidationError(error.data)) {
+      const isRecoveryCodeError = error.data.message.find(e => e.field === 'recoveryCode')
+
+      if (isRecoveryCodeError) {
+        return true
+      }
+    }
+  }
+
+  return false
+}

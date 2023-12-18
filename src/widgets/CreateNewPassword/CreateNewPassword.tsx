@@ -2,7 +2,12 @@ import { CreateNewPasswordForm } from '@/features'
 import { Card, Typography, TypographyVariant, useTranslation } from '@/shared'
 
 import s from './CreateNewPassword.module.scss'
-export const CreateNewPassword = () => {
+
+type Props = {
+  setIsErrorFetch: (value: boolean) => void
+}
+
+export const CreateNewPassword = ({ setIsErrorFetch }: Props) => {
   const {
     text: { createNewPasswordPage: t },
   } = useTranslation()
@@ -17,7 +22,7 @@ export const CreateNewPassword = () => {
       <Typography as={'h1'} className={classNames.title} variant={TypographyVariant.H1}>
         {t.title}
       </Typography>
-      <CreateNewPasswordForm />
+      <CreateNewPasswordForm setIsErrorFetch={setIsErrorFetch} />
     </Card>
   )
 }

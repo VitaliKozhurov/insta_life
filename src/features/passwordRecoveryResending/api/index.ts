@@ -1,0 +1,1 @@
+export { usePasswordRecoveryResendingMutation } from './passwordRecoveryResending'
