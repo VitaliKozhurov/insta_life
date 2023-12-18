@@ -1,16 +1,17 @@
 import { ReactElement, useState } from 'react'
 
-import { usePasswordRecoveryResendingMutation } from '@/features'
+import { ModalOnEmail, usePasswordRecoveryResendingMutation } from '@/features'
 import { RootLayout } from '@/pages'
-import { HeadMeta, Modal, Routes, useTranslation } from '@/shared'
+import { HeadMeta, useTranslation } from '@/shared'
 import { CreateNewPassword, ExpiredLink } from '@/widgets'
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 import s from './CreateNewPassword.module.scss'
 
 export const CreateNewPasswordPage = () => {
   const [resendLinkHandler] = usePasswordRecoveryResendingMutation()
   const [isErrorFetch, setIsErrorFetch] = useState(false)
+  const [open, setOpen] = useState(false)
   const { text } = useTranslation()
   const router = useRouter()
   const { code } = router.query
@@ -22,13 +23,15 @@ export const CreateNewPasswordPage = () => {
     const confirmCode = Array.isArray(code) ? code[0] : code
 
     resendLinkHandler({ code: confirmCode || '' })
+      .unwrap()
+      .then(() => setOpen(true))
   }
 
   return (
     <>
       <HeadMeta title={text.pageTitle.createNewPassword} />
       <main className={classNames.main}>
-        <Modal onOpenChange={} open={} title={} />
+        <ModalOnEmail onOpenChange={setOpen} open={open} />
         {!isErrorFetch && <CreateNewPassword setIsErrorFetch={setIsErrorFetch} />}
         {isErrorFetch && <ExpiredLink onResendLink={onResendLink} />}
       </main>

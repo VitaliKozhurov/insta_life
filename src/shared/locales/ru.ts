@@ -52,8 +52,10 @@ export const ru: LocalesType = {
   modals: {
     modalOnEmail: {
       button: 'Хорошо',
-      instructionText: (email: string) =>
-        `Мы отправили ссылку для подтверждения вашей электронной почты по адресу ${email}`,
+      instructionText: (email?: string) =>
+        `Мы отправили ссылку для подтверждения вашей электронной почты ` + email
+          ? `по адресу ${email}`
+          : '',
       title: 'Письмо отправлено',
     },
   },

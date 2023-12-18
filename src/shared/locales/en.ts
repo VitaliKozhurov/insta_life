@@ -47,7 +47,8 @@ export const en = {
   modals: {
     modalOnEmail: {
       button: 'OK',
-      instructionText: (email: string) => `We have sent a link to confirm your email to ${email}`,
+      instructionText: (email?: string) =>
+        `We have sent a link to confirm your email ` + email ? `to ${email}` : '',
       title: 'Email sent',
     },
   },
