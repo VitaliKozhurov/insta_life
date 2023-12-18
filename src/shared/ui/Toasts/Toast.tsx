@@ -13,7 +13,6 @@ type Props = {
 export const Toast = ({ text, toastId, withClose }: Props) => {
   const onCloseHandler = () => toast.dismiss(toastId)
 
-  console.log(toastId)
   const classNames = {
     closeBtn: s.closeBtn,
     text: clsx(s.text, !withClose && s.centerText),
@@ -42,7 +41,7 @@ export const getToast = ({ className, text, variant, withClose = true }: GetToas
   const toastId = Date.parse(Date())
 
   toast(<Toast text={text} toastId={toastId} withClose={withClose} />, {
-    autoClose: !withClose && 5000,
+    autoClose: 5000,
     bodyClassName: s.body,
     className: clsx(s.container, s[variant], className),
     closeButton: false,
