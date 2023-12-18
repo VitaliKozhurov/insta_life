@@ -1,0 +1,1 @@
+export { useRegistrationEmailResendingMutation } from './registrationEmailResending'
