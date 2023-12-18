@@ -5,7 +5,7 @@ import {
   useRegistrationEmailResendingMutation,
 } from '@/features'
 import { RootLayout } from '@/pages'
-import { HeadMeta, useTranslation } from '@/shared'
+import { HeadMeta, checkConfirmationCodeError, getToast, useTranslation } from '@/shared'
 import { ConfirmEmail, ExpiredLink } from '@/widgets'
 import { useRouter } from 'next/router'
 
@@ -39,6 +39,17 @@ export const RegistrationConfirmationPage = () => {
     const confirmCode = Array.isArray(code) ? code[0] : code
 
     resendLinkHandler({ code: confirmCode || '' })
+      .unwrap()
+      .then(() =>
+        getToast({
+          text: 'New link has been sent to your email!',
+          variant: 'success',
+          withClose: true,
+        })
+      )
+      .catch(error => {
+        checkConfirmationCodeError(error)
+      })
   }
 
   return (

@@ -87,3 +87,31 @@ export const checkRecoveryCodeError = (error: unknown) => {
 
   return false
 }
+
+export const checkConfirmationCodeError = (error: unknown) => {
+  if (isFetchBaseQueryError(error)) {
+    if (isArrayOfErrors(error.data)) {
+      const codeError = error.data.message.find(e => e.field === 'code')
+
+      if (codeError) {
+        getToast({ text: codeError?.message, variant: 'error', withClose: true })
+      }
+    }
+
+    if (isErrorWithMessageInData(error.data)) {
+      if (error.status === 404) {
+        getToast({
+          text: 'The link you followed may be outdated or incorrect',
+          variant: 'error',
+          withClose: true,
+        })
+      } else {
+        getToast({ text: error.data.message, variant: 'error', withClose: true })
+      }
+    }
+
+    if (isFetchError(error)) {
+      getToast({ text: error.error, variant: 'error', withClose: true })
+    }
+  }
+}
