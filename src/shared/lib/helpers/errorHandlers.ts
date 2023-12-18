@@ -7,7 +7,18 @@ const isFetchBaseQueryError = (error: unknown): error is FetchBaseQueryError => 
   return typeof error === 'object' && error != null && 'status' in error
 }
 
-const isUserDataValidationError = (
+const isFetchError = (error: unknown): error is { error: string; status: 'FETCH_ERROR' } => {
+  return (
+    typeof error === 'object' &&
+    error != null &&
+    'status' in error &&
+    error.status === 'FETCH_ERROR' &&
+    'error' in error &&
+    typeof error.error === 'string'
+  )
+}
+
+const isArrayOfErrors = (
   data: unknown
 ): data is {
   message: {
@@ -33,28 +44,18 @@ const isErrorWithMessageInData = (data: unknown): data is { message: string } =>
   )
 }
 
-const isFetchError = (error: unknown): error is { error: string; status: 'FETCH_ERROR' } => {
-  return (
-    typeof error === 'object' &&
-    error != null &&
-    'status' in error &&
-    error.status === 'FETCH_ERROR' &&
-    'error' in error &&
-    typeof error.error === 'string'
-  )
-}
-
-export const onRequestErrorHandler = <T>(
+export const onAuthErrorsHandler = <T>(
   error: unknown,
   setError: (name: T, error: ErrorOption) => void,
   fieldName?: T
 ) => {
-  if (isFetchBaseQueryError(error) && error.data) {
-    if (isUserDataValidationError(error.data)) {
+  if (isFetchBaseQueryError(error)) {
+    if (isArrayOfErrors(error.data)) {
       error.data.message.forEach(item =>
         setError(item.field as T, { message: item.message, type: 'validationError' })
       )
-    } else if (isErrorWithMessageInData(error.data)) {
+    }
+    if (isErrorWithMessageInData(error.data)) {
       if (error.status === 401 && fieldName) {
         setError(fieldName, { message: error.data.message, type: 'validationError' })
       } else if (error.status === 404) {
@@ -75,7 +76,7 @@ export const onRequestErrorHandler = <T>(
 
 export const checkRecoveryCodeError = (error: unknown) => {
   if (isFetchBaseQueryError(error)) {
-    if (isUserDataValidationError(error.data)) {
+    if (isArrayOfErrors(error.data)) {
       const isRecoveryCodeError = error.data.message.find(e => e.field === 'recoveryCode')
 
       if (isRecoveryCodeError) {

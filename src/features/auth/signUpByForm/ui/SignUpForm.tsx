@@ -7,7 +7,7 @@ import {
   Trans,
   Typography,
   TypographyVariant,
-  onRequestErrorHandler,
+  onAuthErrorsHandler,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -53,7 +53,7 @@ export const SignUpForm = ({ onSendFormData }: Props) => {
         onSendFormData(formData.email)
         reset()
       })
-      .catch(error => onRequestErrorHandler(error, setError))
+      .catch(error => onAuthErrorsHandler(error, setError))
   }
   const isDisabledButton = !isValid || !watch('policyAgreement')
 

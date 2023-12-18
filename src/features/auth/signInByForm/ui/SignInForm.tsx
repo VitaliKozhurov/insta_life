@@ -5,7 +5,7 @@ import {
   Routes,
   Typography,
   TypographyVariant,
-  onRequestErrorHandler,
+  onAuthErrorsHandler,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -43,7 +43,7 @@ export const SignInForm = () => {
       .then(() => {
         router.push(Routes.PROFILE)
       })
-      .catch(error => onRequestErrorHandler(error, setError, 'password'))
+      .catch(error => onAuthErrorsHandler(error, setError, 'password'))
   }
 
   return (

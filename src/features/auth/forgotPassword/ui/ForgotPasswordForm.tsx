@@ -8,7 +8,7 @@ import {
   Routes,
   Typography,
   TypographyVariant,
-  onRequestErrorHandler,
+  onAuthErrorsHandler,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -56,7 +56,7 @@ export const ForgotPasswordForm = ({ onSendFormData }: Props) => {
         setIsLinkWasSend(true)
         reset()
       })
-      .catch(error => onRequestErrorHandler(error, setError))
+      .catch(error => onAuthErrorsHandler(error, setError))
   }
 
   const onRecaptchaVerify = (value: boolean) => {
