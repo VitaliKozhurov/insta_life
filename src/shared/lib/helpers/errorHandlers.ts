@@ -55,16 +55,20 @@ export const onRequestErrorHandler = <T>(
         setError(item.field as T, { message: item.message, type: 'validationError' })
       )
     } else if (isErrorWithMessageInData(error.data)) {
-      /*  alert(error.data.message)*/
       if (error.status === 401 && fieldName) {
         setError(fieldName, { message: error.data.message, type: 'validationError' })
+      } else if (error.status === 404) {
+        getToast({
+          text: 'The link you followed may be outdated or incorrect',
+          variant: 'error',
+          withClose: true,
+        })
       } else {
         getToast({ text: error.data.message, variant: 'error', withClose: true })
       }
     }
   }
   if (isFetchError(error)) {
-    /* alert(error.error)*/
     getToast({ text: error.error, variant: 'error', withClose: true })
   }
 }
