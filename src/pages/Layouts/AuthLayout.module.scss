@@ -9,7 +9,7 @@
 
 
 .navBar {
-  position: fixed;
+  position: sticky;
   z-index: 1;
   top: 6rem;
 
@@ -23,6 +23,7 @@
 
 .main {
   width: 100%;
-  margin-top: 6rem;
+  margin-top: 6.5rem;
   margin-left: 16rem;
+  padding: 2.4rem;
 }

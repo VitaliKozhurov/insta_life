@@ -3,21 +3,21 @@ import { useGoogleLogin } from '@react-oauth/google'
 import { useLazyLoginByGoogleQuery } from '../api'
 
 export const useLoginByGoogle = () => {
-  const [login, result] = useLazyLoginByGoogleQuery()
+  /*  const [login, result] = useLazyLoginByGoogleQuery()*/
 
   return useGoogleLogin({
     flow: 'auth-code',
     onError: err => console.log(err),
-    onSuccess: loginCode => {
-      console.log(loginCode)
-      login({ code: loginCode.code })
+    onSuccess: response => {
+      alert('Hello')
+      /*  login({ code: response.code })
         .unwrap()
         .then(data => {
           console.log('data login ', data)
-          console.log('result login ', result)
         })
-        .catch(error => alert(JSON.stringify(error)))
+        .catch(error => alert(JSON.stringify(error)))*/
     },
-    redirect_uri: 'http://localhost:3000/api/v1/auth/google',
+    redirect_uri: 'http://localhost:3000/auth/google',
+    ux_mode: 'redirect',
   })
 }

@@ -1,8 +1,9 @@
 @use 'src/shared/styles/mixins' as mixin;
 
 .header {
-  position: fixed;
+  position: sticky;
   z-index: 100;
+  top: 0;
 
   display: flex;
   align-items: center;
