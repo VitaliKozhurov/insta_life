@@ -8,9 +8,9 @@ export const useLoginByGoogle = () => {
   return useGoogleLogin({
     flow: 'auth-code',
     onError: err => console.log(err),
-    onSuccess: code => {
-      console.log(code)
-      login(code)
+    onSuccess: loginCode => {
+      console.log(loginCode)
+      login({ code: loginCode.code })
         .unwrap()
         .then(data => {
           console.log('data login ', data)

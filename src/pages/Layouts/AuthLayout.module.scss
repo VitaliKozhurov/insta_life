@@ -2,6 +2,27 @@
 
 .root {
   @include mixin.flex;
+  @include mixin.container;
 
-  min-height: 100vh;
+  position: relative;
+}
+
+
+.navBar {
+  position: fixed;
+  z-index: 1;
+  top: 6rem;
+
+  overflow-x: hidden;
+
+  width: 16rem;
+  height: 100%;
+  padding-top: 7.2rem;
+
+}
+
+.main {
+  width: 100%;
+  margin-top: 6rem;
+  margin-left: 16rem;
 }

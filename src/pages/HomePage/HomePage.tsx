@@ -10,6 +10,21 @@ export const HomePage = () => {
     <>
       <HeadMeta title={'Profile'} />
       <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
       <h2>{text.homePage.test}</h2>
     </>
   )

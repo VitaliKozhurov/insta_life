@@ -6,8 +6,8 @@ type Props = { children: ReactNode }
 export const AuthLayout = ({ children }: Props) => {
   return (
     <div className={s.root}>
-      <nav>NavBar</nav>
-      <main>{children}</main>
+      <nav className={s.navBar}>NavBar</nav>
+      <main className={s.main}>{children}</main>
     </div>
   )
 }
