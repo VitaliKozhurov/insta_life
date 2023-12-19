@@ -18,5 +18,6 @@ export const useLoginByGoogle = () => {
         })
         .catch(error => alert(JSON.stringify(error)))
     },
+    redirect_uri: 'http://localhost:3000/api/v1/auth/google',
   })
 }
