@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { ModalOnEmail, SignUpForm } from '@/features'
+import { ModalOnEmail, SignUpForm, useLoginByGoogle } from '@/features'
 import {
   Button,
   ButtonVariant,
@@ -17,6 +17,7 @@ import Link from 'next/link'
 import s from './SignUp.module.scss'
 
 export const SignUp = () => {
+  const loginByGoogle = useLoginByGoogle()
   const [email, setEmail] = useState('')
   const [open, setOpen] = useState(false)
   const { text } = useTranslation()
@@ -41,9 +42,9 @@ export const SignUp = () => {
           {t.title}
         </Typography>
         <div className={classNames.providers}>
-          <Link href={'https://accounts.google.com/o/oauth2/v2/auth'} target={'_blank'}>
+          <button onClick={() => loginByGoogle()}>
             <GoogleIcon />
-          </Link>
+          </button>
           <Link href={'https://github.com/login/oauth/authorize'} target={'_blank'}>
             <GitHubIcon />
           </Link>

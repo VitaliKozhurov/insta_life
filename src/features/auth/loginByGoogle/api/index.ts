@@ -1,1 +1,1 @@
-export { useLoginByGoogleQuery } from './loginByGoogle'
+export { useLazyLoginByGoogleQuery } from './loginByGoogle'
