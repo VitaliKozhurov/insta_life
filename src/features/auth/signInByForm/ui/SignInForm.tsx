@@ -41,7 +41,7 @@ export const SignInForm = () => {
     signInHandler(formData)
       .unwrap()
       .then(() => {
-        router.push(Routes.PROFILE)
+        router.push(Routes.MAIN)
       })
       .catch(error => onAuthErrorsHandler(error, setError, 'password'))
   }

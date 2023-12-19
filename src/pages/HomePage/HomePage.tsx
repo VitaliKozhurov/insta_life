@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-import { RootLayout } from '@/pages'
+import { AuthLayout, RootLayout } from '@/pages'
 import { HeadMeta, useTranslation } from '@/shared'
 
 export const HomePage = () => {
@@ -8,7 +8,7 @@ export const HomePage = () => {
 
   return (
     <>
-      <HeadMeta title={'Main page'} />
+      <HeadMeta title={'Profile'} />
       <h1>Home page</h1>
       <h2>{text.homePage.test}</h2>
     </>
@@ -16,5 +16,9 @@ export const HomePage = () => {
 }
 
 HomePage.getLayout = (page: ReactElement) => {
-  return <RootLayout>{page}</RootLayout>
+  return (
+    <RootLayout>
+      <AuthLayout>{page}</AuthLayout>
+    </RootLayout>
+  )
 }
