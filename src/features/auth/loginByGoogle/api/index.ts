@@ -1,0 +1,1 @@
+export { useLoginByGoogleQuery } from './loginByGoogle'

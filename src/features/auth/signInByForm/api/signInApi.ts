@@ -6,7 +6,7 @@ export type SignInRequestType = {
 }
 
 export type SignInResponseType = {
-  token: string
+  accessToken: string
 }
 
 const signInApi = baseApi.injectEndpoints({
