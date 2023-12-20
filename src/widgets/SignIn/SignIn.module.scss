@@ -15,6 +15,12 @@
   @include mixin.flex($gap: 6rem);
 
   margin-bottom: 2.4rem;
+
+  & button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
 }
 
 .questionText {
