@@ -2,6 +2,7 @@ export {
   checkConfirmationCodeError,
   checkRecoveryCodeError,
   onAuthErrorsHandler,
+  onGoogleOauthErrorHandler,
 } from './errorHandlers'
 export { firstLetterUppercaseTransform } from './firstLetterUppercaseTransform'
 export { getFromLocalStorage } from './getFromLocalStorage'

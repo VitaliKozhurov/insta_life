@@ -115,3 +115,25 @@ export const checkConfirmationCodeError = (error: unknown) => {
     }
   }
 }
+
+export const onGoogleOauthErrorHandler = (error: unknown) => {
+  if (isFetchBaseQueryError(error)) {
+    if (isErrorWithMessageInData(error.data)) {
+      if (error.status === 404) {
+        getToast({
+          text: 'The link you followed may be outdated or incorrect',
+          variant: 'error',
+          withClose: true,
+        })
+      } else {
+        getToast({ text: error.data.message, variant: 'error', withClose: true })
+      }
+    }
+  } else {
+    getToast({
+      text: 'Authentication Error. Please try again later.',
+      variant: 'error',
+      withClose: true,
+    })
+  }
+}

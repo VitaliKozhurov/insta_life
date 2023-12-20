@@ -20,4 +20,4 @@ const loginByGoogleApi = baseApi.injectEndpoints({
   }),
 })
 
-export const { useLazyLoginByGoogleQuery, useLoginByGoogleQuery } = loginByGoogleApi
+export const { useLoginByGoogleQuery } = loginByGoogleApi

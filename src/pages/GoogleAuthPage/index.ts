@@ -1,0 +1,1 @@
+export { GoogleAuthPage } from './GoogleAuthPage'
