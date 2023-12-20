@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import { useLoginByGoogleQuery } from '@/features'
-import { Routes, getToast, onGoogleOauthErrorHandler, saveToLocalStorage } from '@/shared'
+import { Loader, Routes, getToast, onGoogleOauthErrorHandler, saveToLocalStorage } from '@/shared'
 import { useRouter } from 'next/router'
 
 export const GoogleAuthPage = () => {
@@ -22,7 +22,7 @@ export const GoogleAuthPage = () => {
   }, [data?.accessToken, error])
 
   if (isLoading) {
-    return <h1>Loading...</h1>
+    return <Loader />
   }
 
   return null
