@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
+import { inter } from '@/application'
 import { VerticalArrowIcon } from '@/shared/assets'
 import * as RadixSelect from '@radix-ui/react-select'
 import clsx from 'clsx'
@@ -26,7 +27,7 @@ export type SelectProps = {
 export const Select = forwardRef<ElementRef<typeof RadixSelect.Root>, SelectProps>(
   ({ className, fullWidth, label, options, placeholder, ...restProps }, ref) => {
     const classNames = {
-      content: s.content,
+      content: clsx(s.content, inter.className),
       icon: s.icon,
       label: s.label,
       trigger: clsx(s.trigger, className),
