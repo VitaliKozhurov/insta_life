@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
-import { ModalOnEmail, SignUpForm, useLoginByGoogle } from '@/features'
+import { ModalOnEmail, SignUpForm } from '@/features'
 import {
   Button,
   ButtonVariant,
   Card,
+  GOOGLE_URL,
   GitHubIcon,
   GoogleIcon,
   Routes,
@@ -17,7 +18,6 @@ import Link from 'next/link'
 import s from './SignUp.module.scss'
 
 export const SignUp = () => {
-  const loginByGoogle = useLoginByGoogle()
   const [email, setEmail] = useState('')
   const [open, setOpen] = useState(false)
   const { text } = useTranslation()
@@ -33,6 +33,9 @@ export const SignUp = () => {
     setEmail(email)
     setOpen(true)
   }
+  const loginByGoogle = () => {
+    window.location.assign(GOOGLE_URL)
+  }
 
   return (
     <>
@@ -42,7 +45,7 @@ export const SignUp = () => {
           {t.title}
         </Typography>
         <div className={classNames.providers}>
-          <button onClick={() => loginByGoogle()}>
+          <button onClick={loginByGoogle}>
             <GoogleIcon />
           </button>
           <Link href={'https://github.com/login/oauth/authorize'} target={'_blank'}>

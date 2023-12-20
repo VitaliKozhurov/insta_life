@@ -3,6 +3,7 @@ import {
   Button,
   ButtonVariant,
   Card,
+  GOOGLE_URL,
   GitHubIcon,
   GoogleIcon,
   Routes,
@@ -24,6 +25,9 @@ export const SignIn = () => {
     providers: s.providers,
     questionText: s.questionText,
   }
+  const loginByGoogle = () => {
+    window.location.assign(GOOGLE_URL)
+  }
 
   return (
     <Card className={classNames.card}>
@@ -31,9 +35,9 @@ export const SignIn = () => {
         {t.title}
       </Typography>
       <div className={classNames.providers}>
-        <Link href={'https://accounts.google.com/o/oauth2/v2/auth'} target={'_blank'}>
+        <button onClick={loginByGoogle}>
           <GoogleIcon />
-        </Link>
+        </button>
         <Link href={'https://github.com/login/oauth/authorize'} target={'_blank'}>
           <GitHubIcon />
         </Link>

@@ -22,9 +22,7 @@ export const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
     <>
       <ToastContainer position={'bottom-left'} />
-      <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID || ''}>
-        <ReduxProvider>{getLayout(<Component {...pageProps} />)}</ReduxProvider>
-      </GoogleOAuthProvider>
+      <ReduxProvider>{getLayout(<Component {...pageProps} />)}</ReduxProvider>
     </>
   )
 }
