@@ -1,0 +1,36 @@
+import { ReactNode } from 'react'
+
+import clsx from 'clsx'
+import Link from 'next/link'
+
+import s from './NavBar.module.scss'
+type Props = {
+  activeIcon?: ReactNode
+  children: string
+  defaultIcon: ReactNode
+  disabled?: boolean
+  isActive: boolean
+  linkUrl: string
+}
+
+export const NavBarLink = ({
+  activeIcon,
+  children,
+  defaultIcon,
+  disabled,
+  isActive,
+  linkUrl,
+}: Props) => {
+  const linkIcon = isActive ? activeIcon || defaultIcon : defaultIcon
+  const classNames = {
+    link: clsx(s.link, disabled && s.disabledLink, isActive && s.activeLink),
+    title: clsx(s.title, disabled && s.disabledTitle, isActive && s.activeTitle),
+  }
+
+  return (
+    <Link className={classNames.link} href={linkUrl}>
+      {linkIcon}
+      <span className={classNames.title}>{children}</span>
+    </Link>
+  )
+}
