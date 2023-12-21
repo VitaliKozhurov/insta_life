@@ -52,6 +52,16 @@ export const en = {
       title: 'Email sent',
     },
   },
+  navBar: {
+    chat: 'Messenger',
+    create: 'Create',
+    favorites: 'Favorites',
+    home: 'Home',
+    logOut: 'Log Out',
+    profile: 'My Profile',
+    search: 'Search',
+    statistics: 'Statistics',
+  },
   pageTitle: {
     createNewPassword: 'Create New Password',
     forgotPassword: 'Forgot Password',

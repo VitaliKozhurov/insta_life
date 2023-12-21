@@ -59,6 +59,16 @@ export const ru: LocalesType = {
       title: 'Письмо отправлено',
     },
   },
+  navBar: {
+    chat: 'Месенджер',
+    create: 'Создать',
+    favorites: 'Избранное',
+    home: 'Главная',
+    logOut: 'Выйти',
+    profile: 'Мой профиль',
+    search: 'Поиск',
+    statistics: 'Статистика',
+  },
   pageTitle: {
     createNewPassword: 'Создание нового пароля',
     forgotPassword: 'Забыли пароль',
