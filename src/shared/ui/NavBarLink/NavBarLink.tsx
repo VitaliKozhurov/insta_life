@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 
-import s from './NavBar.module.scss'
+import s from './NavBarLink.module.scss'
 type Props = {
   activeIcon?: ReactNode
   children: string
