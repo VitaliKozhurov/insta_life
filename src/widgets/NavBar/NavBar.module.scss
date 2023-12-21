@@ -1,0 +1,19 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.root {
+  @include mixin.flex($direction: column, $gap: 18rem);
+
+  height: 100%;
+}
+
+.nav {
+  @include mixin.flex($direction: column);
+
+  a:not(:last-child) {
+    margin-bottom: 2.4rem;
+  }
+
+  a:nth-child(5) {
+    margin-bottom: 6rem;
+  }
+}
