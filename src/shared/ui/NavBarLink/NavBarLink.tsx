@@ -7,6 +7,7 @@ import s from './NavBar.module.scss'
 type Props = {
   activeIcon?: ReactNode
   children: string
+  className?: string
   defaultIcon: ReactNode
   disabled?: boolean
   isActive: boolean
@@ -16,6 +17,7 @@ type Props = {
 export const NavBarLink = ({
   activeIcon,
   children,
+  className,
   defaultIcon,
   disabled,
   isActive,
@@ -23,7 +25,7 @@ export const NavBarLink = ({
 }: Props) => {
   const linkIcon = isActive ? activeIcon || defaultIcon : defaultIcon
   const classNames = {
-    link: clsx(s.link, disabled && s.disabledLink, isActive && s.activeLink),
+    link: clsx(s.link, disabled && s.disabledLink, isActive && s.activeLink, className),
     title: clsx(s.title, disabled && s.disabledTitle, isActive && s.activeTitle),
   }
 
