@@ -26,7 +26,7 @@ export const NavBarLink = ({
   const linkIcon = isActive ? activeIcon || defaultIcon : defaultIcon
   const classNames = {
     link: clsx(s.link, disabled && s.disabledLink, isActive && s.activeLink, className),
-    title: clsx(s.title, disabled && s.disabledTitle, isActive && s.activeTitle),
+    title: clsx(s.title),
   }
 
   return (

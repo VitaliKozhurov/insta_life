@@ -7,7 +7,17 @@
   color: var(--color-light-100);
   transition: color 0.2s ease;
 
-  &:hover {
+  .title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+    color: var(--color-light-100);
+
+    transition: color 0.2s ease;
+  }
+
+  &:hover,
+  &:hover .title {
     color: var(--color-accent-100);
   }
 
@@ -16,48 +26,25 @@
     outline: 2px solid var(--color-accent-700);
   }
 
-  .title {
-    font-size: 1.4rem;
-    font-weight: 500;
-    line-height: 2.4rem;
-    color: var(--color-light-100);
-
-    transition: color 0.2s ease;
-
+  &.activeLink {
+    &,
+    & .title,
     &:hover {
-      color: var(--color-accent-100);
+      font-weight: 700;
+      color: var(--color-accent-500);
     }
   }
-}
 
-.activeLink {
-  &,
-  &:hover {
-    color: var(--color-accent-500);
-  }
+  &.disabledLink {
+    &,
+    & .title,
+    &:hover {
+      cursor: default;
+      color: var(--color-dark-100);
+    }
 
-  .activeTitle,
-  & .activeTitle:hover {
-    font-weight: 700;
-    color: var(--color-accent-500);
-  }
-}
-
-.disabledLink {
-  cursor: auto;
-
-  &,
-  &:hover {
-    color: var(--color-dark-100);
-  }
-
-  &:focus-visible {
-    outline: none;
-  }
-
-  .disabledTitle,
-  & .disabledTitle:hover {
-    cursor: default;
-    color: var(--color-dark-100);
+    &:focus-visible {
+      outline: none;
+    }
   }
 }

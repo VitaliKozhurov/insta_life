@@ -13,7 +13,7 @@ export const GoogleAuthPage = () => {
   useEffect(() => {
     if (data?.accessToken) {
       saveToLocalStorage('accessToken', data.accessToken)
-      router.push('/')
+      router.push(Routes.HOME)
     }
     if (error) {
       onGoogleOauthErrorHandler(error)
