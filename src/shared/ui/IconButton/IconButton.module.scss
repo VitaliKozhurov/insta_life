@@ -1,0 +1,26 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.button {
+  @include mixin.flex($align: center, $gap: 1.2rem);
+
+  color: var(--color-light-100);
+  background: transparent;
+  border: none;
+  transition: color 0.2s ease;
+
+  .title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 2.4rem;
+    color: var(--color-light-100);
+
+    transition: color 0.2s ease;
+  }
+
+  &:hover,
+  &:hover .title {
+    cursor: pointer;
+    color: var(--color-accent-100);
+  }
+}
