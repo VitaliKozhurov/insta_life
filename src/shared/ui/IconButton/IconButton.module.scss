@@ -3,9 +3,13 @@
 .button {
   @include mixin.flex($align: center, $gap: 1.2rem);
 
+  padding: 0;
+
   color: var(--color-light-100);
+
   background: transparent;
   border: none;
+
   transition: color 0.2s ease;
 
   .title {
