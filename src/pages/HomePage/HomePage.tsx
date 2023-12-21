@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
 
 import { AuthLayout, RootLayout } from '@/pages'
-import { HeadMeta, useTranslation } from '@/shared'
+import { HeadMeta, Typography, TypographyVariant, useTranslation } from '@/shared'
 
 export const HomePage = () => {
   const { text } = useTranslation()
@@ -9,35 +9,9 @@ export const HomePage = () => {
   return (
     <>
       <HeadMeta title={'Profile'} />
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h1>Home page</h1>
-      <h2>{text.homePage.test}</h2>
+      <Typography as={'h1'} variant={TypographyVariant.Large}>
+        Main page
+      </Typography>
     </>
   )
 }

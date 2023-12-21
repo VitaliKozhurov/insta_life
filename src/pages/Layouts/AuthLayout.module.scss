@@ -7,7 +7,6 @@
   position: relative;
 }
 
-
 .navBar {
   position: sticky;
   z-index: 1;
@@ -15,15 +14,16 @@
 
   overflow-x: hidden;
 
-  width: 16rem;
-  height: 100%;
+  min-width: 16rem;
+  height: calc(100vh - 6rem);
   padding-top: 7.2rem;
 
+  border-right: solid 1px var(--color-dark-300);
 }
 
 .main {
   width: 100%;
-  margin-top: 6.5rem;
-  margin-left: 16rem;
+
+  /*  margin-left: 16rem; */
   padding: 2.4rem;
 }
