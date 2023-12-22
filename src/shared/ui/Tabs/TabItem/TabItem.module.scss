@@ -7,21 +7,25 @@
   user-select: none;
 
   overflow: hidden;
+  flex: 1 1;
 
   padding: 0.6rem 2.4rem;
 
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: 600;
   line-height: 2.4rem;
-  color: var(--color-accent-500);
+  color: var(--color-dark-100);
 
   background-color: transparent;
   border: none;
-  border-bottom: solid 2px var(--color-accent-500);
+  border-bottom: solid 2px var(--color-dark-100);
 
-  transition: background-color 0.2s ease-out;
+  transition:
+    color 0.2s ease-out,
+    background-color 0.2s ease-out;
 
   &:hover {
+    color: var(--color-accent-300);
     background-color: rgba(#234e99, 0.25);
   }
 
@@ -34,7 +38,9 @@
   }
 
   &[data-state='active'] {
+    color: var(--color-accent-500);
     background-color: rgba(#73a5ff, 0.2);
+    border-bottom: solid 2px var(--color-accent-500);
   }
 
   &:focus-visible {
