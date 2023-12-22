@@ -75,6 +75,14 @@ export const ru: LocalesType = {
     signIn: 'Войти',
     signUp: 'Регистрация',
   },
+  profilePage: {
+    tabSwitcher: {
+      account: 'Управление аккаунтом',
+      devices: 'Устройства',
+      general: 'Общая информация',
+      payments: 'Мои платежи',
+    },
+  },
   recaptcha: {
     errorText: 'Пожалуйста, подтвердите, что вы не робот',
   },

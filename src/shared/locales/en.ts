@@ -68,6 +68,14 @@ export const en = {
     signIn: 'Sign In',
     signUp: 'Sign Up',
   },
+  profilePage: {
+    tabSwitcher: {
+      account: 'Account Managment',
+      devices: 'Devices',
+      general: 'General information',
+      payments: 'My payments',
+    },
+  },
   recaptcha: {
     errorText: 'Please verify that you are not a robot',
   },
