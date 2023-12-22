@@ -1,15 +1,16 @@
-import { ReactElement } from 'react'
+import { ReactElement, useState } from 'react'
 
 import { AuthLayout, RootLayout } from '@/pages'
-import { HeadMeta, Typography, TypographyVariant } from '@/shared'
+import { HeadMeta } from '@/shared'
+import { ProfileInfoSwitcher } from '@/widgets'
 
 export const ProfilePage = () => {
+  const [tabValue, setTabValue] = useState('general')
+
   return (
     <>
       <HeadMeta title={'Profile'} />
-      <Typography as={'h1'} variant={TypographyVariant.Large}>
-        Profile page
-      </Typography>
+      <ProfileInfoSwitcher setTabValue={setTabValue} tabValue={tabValue} />
     </>
   )
 }

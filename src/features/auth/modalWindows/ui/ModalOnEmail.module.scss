@@ -1,7 +1,9 @@
-@use '../../../../shared/styles/mixins' as mixin;
+@use 'src/shared/styles/mixins' as mixin;
 
 .root {
   @include mixin.flex($direction: column);
+
+  padding: 3rem 2.4rem 3.6rem;
 }
 
 .text {

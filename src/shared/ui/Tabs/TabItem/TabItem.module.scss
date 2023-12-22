@@ -39,7 +39,8 @@
 
   &[data-state='active'] {
     color: var(--color-accent-500);
-    background-color: rgba(#73a5ff, 0.2);
+
+    /* background-color: rgba(#73a5ff, 0.2); */
     border-bottom: solid 2px var(--color-accent-500);
   }
 
@@ -50,8 +51,8 @@
 
   &:disabled {
     cursor: auto;
-    color: var(--color-accent-900);
+    color: var(--color-dark-300);
     background-color: transparent;
-    border-bottom: solid 2px var(--color-accent-900);
+    border-bottom: solid 2px var(--color-dark-300);
   }
 }
