@@ -1,0 +1,24 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.root {
+  @include mixin.flex($direction: column);
+
+  .photo {
+    @include mixin.flex($justify: center, $align: center);
+
+    overflow: hidden;
+
+    width: 19.2rem;
+    height: 19.2rem;
+    margin-bottom: 2.4rem;
+
+    background-color: var(--color-dark-500);
+    border-radius: 50%;
+  }
+
+  .button {
+    max-width: 19.2rem;
+    padding: 0.6rem 0;
+    font-size: 1.6rem;
+  }
+}
