@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
+import { inter } from '@/application'
 import { CloseIcon, Typography, TypographyVariant } from '@/shared'
 import * as RadixModal from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
@@ -16,10 +17,9 @@ export type ModalProps = {
 export const Modal = forwardRef<ElementRef<typeof RadixModal.Content>, ModalProps>(
   ({ children, className, onOpenChange, open, title, trigger, ...restProps }, ref) => {
     const classNames = {
-      children: s.children,
       closeIcon: s.closeIcon,
-      content: clsx(s.content, className),
-      header: s.header,
+      content: clsx(s.content, inter.className, className),
+      header: clsx(s.header, inter.className),
       overlay: s.overlay,
     }
 
@@ -38,7 +38,7 @@ export const Modal = forwardRef<ElementRef<typeof RadixModal.Content>, ModalProp
                   <CloseIcon />
                 </RadixModal.Close>
               </header>
-              <div className={classNames.children}>{children}</div>
+              <div>{children}</div>
             </div>
           </RadixModal.Content>
         </RadixModal.Portal>
