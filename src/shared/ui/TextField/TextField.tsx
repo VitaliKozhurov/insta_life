@@ -3,13 +3,24 @@ import { ChangeEvent, ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
 
 import s from './TextField.module.scss'
-export type TextFieldProps = { error: string; label: string } & ComponentPropsWithoutRef<'textarea'>
+export type TextFieldProps = {
+  error?: string
+  fullWidth?: boolean
+  label: string
+} & ComponentPropsWithoutRef<'textarea'>
 
-export const TextField = ({ className, error, label, onChange, ...restProps }: TextFieldProps) => {
+export const TextField = ({
+  className,
+  error,
+  fullWidth,
+  label,
+  onChange,
+  ...restProps
+}: TextFieldProps) => {
   const classNames = {
     error: s.error,
     label: clsx(s.label, restProps.disabled && s.disabledLabel),
-    root: s.root,
+    root: clsx(s.root, fullWidth && s.fullWidth),
     text: clsx(s.text, !!restProps.value && s.active, error && s.withError),
   }
 
