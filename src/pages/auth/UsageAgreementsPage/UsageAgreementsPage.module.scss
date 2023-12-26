@@ -1,0 +1,30 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.main {
+  margin: 3.6rem 0;
+}
+
+.root {
+  @include mixin.container;
+
+  margin: 24px auto;
+}
+
+.redirectLink {
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+.title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.text {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+
+  text-align: center;
+  white-space: pre-wrap;
+}
