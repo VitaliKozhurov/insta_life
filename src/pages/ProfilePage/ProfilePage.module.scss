@@ -1,0 +1,5 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.rootGeneral {
+  @include mixin.flex($gap: 4rem);
+}

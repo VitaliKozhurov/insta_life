@@ -2,15 +2,26 @@ import { ReactElement, useState } from 'react'
 
 import { AuthLayout, RootLayout } from '@/pages'
 import { HeadMeta } from '@/shared'
-import { ProfileInfoSwitcher } from '@/widgets'
+import { AddProfilePhoto, ProfileInfoForm, ProfileInfoSwitcher } from '@/widgets'
+
+import s from './ProfilePage.module.scss'
 
 export const ProfilePage = () => {
   const [tabValue, setTabValue] = useState('general')
+  const classNames = {
+    rootGeneral: s.rootGeneral,
+  }
 
   return (
     <>
       <HeadMeta title={'Profile'} />
       <ProfileInfoSwitcher setTabValue={setTabValue} tabValue={tabValue} />
+      {tabValue === 'general' && (
+        <div className={s.rootGeneral}>
+          <AddProfilePhoto />
+          <ProfileInfoForm />
+        </div>
+      )}
     </>
   )
 }
