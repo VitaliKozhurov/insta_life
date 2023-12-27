@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react'
 
 import { AuthLayout, RootLayout } from '@/pages'
-import { HeadMeta } from '@/shared'
+import { Button, HeadMeta } from '@/shared'
 import { AddProfilePhoto, ProfileInfoForm, ProfileInfoSwitcher } from '@/widgets'
 
 import s from './ProfilePage.module.scss'
@@ -17,10 +17,15 @@ export const ProfilePage = () => {
       <HeadMeta title={'Profile'} />
       <ProfileInfoSwitcher setTabValue={setTabValue} tabValue={tabValue} />
       {tabValue === 'general' && (
-        <div className={s.rootGeneral}>
-          <AddProfilePhoto />
-          <ProfileInfoForm />
-        </div>
+        <>
+          <div className={s.rootGeneral}>
+            <AddProfilePhoto className={s.profilePhoto} />
+            <ProfileInfoForm />
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <Button>Save changes</Button>
+          </div>
+        </>
       )}
     </>
   )

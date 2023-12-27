@@ -2,16 +2,21 @@ import { useState } from 'react'
 
 import { AddingPhotoModal } from '@/features/profile/addPhotoModal/ui/AddingPhotoModal'
 import { Button, ImageIcon } from '@/shared'
+import clsx from 'clsx'
 
 import s from './AddProfilePhoto.module.scss'
 
-export const AddProfilePhoto = () => {
+type Props = {
+  className?: string
+}
+
+export const AddProfilePhoto = ({ className }: Props) => {
   const [open, setOpen] = useState(false)
   const [image, setImage] = useState(null)
   const classNames = {
     button: s.button,
     photo: s.photo,
-    root: s.root,
+    root: clsx(s.root, className),
   }
 
   const openPhotoUploader = () => {
