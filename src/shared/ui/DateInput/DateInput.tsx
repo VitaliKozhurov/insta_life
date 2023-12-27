@@ -7,13 +7,23 @@ import s from './DateInput.module.scss'
 
 type Props = {
   error?: string
+  fullWidth?: boolean
   label?: string
   mode?: 'range' | 'single'
 } & ComponentPropsWithoutRef<'input'>
 
 export const DateInput = forwardRef<ElementRef<'input'>, Props>(
   (
-    { className, disabled, error, label, mode = 'single', placeholder, ...restProps }: Props,
+    {
+      className,
+      disabled,
+      error,
+      fullWidth,
+      label,
+      mode = 'single',
+      placeholder,
+      ...restProps
+    }: Props,
     ref
   ) => {
     const classNames = {
@@ -26,7 +36,7 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
         disabled && s.disabledWrapper
       ),
       label: clsx(s.label, disabled && s.disabledLabel),
-      root: clsx(s.root, mode === 'range' && s.rangeMode, className),
+      root: clsx(s.root, fullWidth && s.fullWidth, mode === 'range' && s.rangeMode, className),
     }
     const datePlaceholder = mode === 'single' ? placeholder : placeholder + ' - ' + placeholder
 

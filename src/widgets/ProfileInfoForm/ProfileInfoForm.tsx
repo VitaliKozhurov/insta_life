@@ -23,7 +23,7 @@ export const ProfileInfoForm = () => {
       <ControlledInput control={control} isRequired label={'Username'} name={'userName'} />
       <ControlledInput control={control} isRequired label={'First Name'} name={'firstName'} />
       <ControlledInput control={control} isRequired label={'Last Name'} name={'lastName'} />
-      <DatePicker mode={'single'} />
+      <DatePicker fullWidth mode={'single'} />
       <div className={s.selectWrapper}>
         <div className={s.select}>
           <ControlledSelect

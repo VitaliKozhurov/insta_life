@@ -9,6 +9,7 @@ import { format } from 'date-fns'
 import s from './DatePicker.module.scss'
 
 type Props = {
+  fullWidth?: boolean
   mode: 'range' | 'single'
 }
 
@@ -30,7 +31,7 @@ const getDateInputValue = (
   return ''
 }
 
-export const DatePicker = ({ mode }: Props) => {
+export const DatePicker = ({ fullWidth, mode }: Props) => {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState<Date>()
   const [range, setRange] = useState<DateRange | undefined>()
@@ -41,7 +42,7 @@ export const DatePicker = ({ mode }: Props) => {
     <RadixDropDown.Root onOpenChange={setOpen} open={open}>
       <RadixDropDown.Trigger asChild>
         <div className={s.trigger}>
-          <DateInput mode={mode} placeholder={'00/00/0000'} value={dateValue} />
+          <DateInput fullWidth mode={mode} placeholder={'00/00/0000'} value={dateValue} />
         </div>
       </RadixDropDown.Trigger>
       <RadixDropDown.Portal>
