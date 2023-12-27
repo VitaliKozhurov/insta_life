@@ -1,4 +1,16 @@
+@use 'src/shared/styles/mixins' as mixin;
+
 .form {
+  @include mixin.flex($direction: column, $gap: 2.4rem);
+
   width: 100%;
   margin-top: 2.4rem;
+
+  .selectWrapper {
+    @include mixin.flex($gap: 2.4rem);
+
+    .select {
+      flex: 1 1 100%;
+    }
+  }
 }
