@@ -61,6 +61,10 @@
   @include mixin.flex($align: center, $gap: 1.2rem);
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 .content {
   z-index: 101;
   width: var(--radix-select-trigger-width);

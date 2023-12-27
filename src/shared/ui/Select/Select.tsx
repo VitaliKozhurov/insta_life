@@ -30,7 +30,7 @@ export const Select = forwardRef<ElementRef<typeof RadixSelect.Root>, SelectProp
       content: clsx(s.content, inter.className),
       icon: s.icon,
       label: s.label,
-      trigger: clsx(s.trigger, className),
+      trigger: clsx(s.trigger, fullWidth && s.fullWidth, className),
     }
 
     return (
