@@ -1,0 +1,12 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.main {
+  @include mixin.flex($direction: column, $justify: center, $align: center, $gap: 3rem);
+
+  margin: 4.8rem auto;
+
+  p {
+    max-width: 80rem;
+    text-align: center;
+  }
+}

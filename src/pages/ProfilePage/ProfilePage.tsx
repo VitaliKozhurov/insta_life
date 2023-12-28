@@ -15,18 +15,20 @@ export const ProfilePage = () => {
   return (
     <>
       <HeadMeta title={'Profile'} />
-      <ProfileInfoSwitcher setTabValue={setTabValue} tabValue={tabValue} />
-      {tabValue === 'general' && (
-        <>
-          <div className={s.rootGeneral}>
-            <AddProfilePhoto className={s.profilePhoto} />
-            <ProfileInfoForm />
-          </div>
-          <div style={{ textAlign: 'right' }}>
-            <Button>Save changes</Button>
-          </div>
-        </>
-      )}
+      <main>
+        <ProfileInfoSwitcher setTabValue={setTabValue} tabValue={tabValue} />
+        {tabValue === 'general' && (
+          <>
+            <div className={s.rootGeneral}>
+              <AddProfilePhoto className={s.profilePhoto} />
+              <ProfileInfoForm />
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <Button>Save changes</Button>
+            </div>
+          </>
+        )}
+      </main>
     </>
   )
 }
