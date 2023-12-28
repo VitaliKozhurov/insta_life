@@ -62,6 +62,10 @@ export const en = {
     search: 'Search',
     statistics: 'Statistics',
   },
+  notFoundPage: {
+    link: 'Go to main page',
+    text: 'Unfortunately, we were unable to find the page you requested. It may have been moved, deleted, or never existed. Please make sure you entered the correct URL and try again.',
+  },
   pageTitle: {
     createNewPassword: 'Create New Password',
     forgotPassword: 'Forgot Password',
