@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 import { NavBar } from '@/widgets'
 
 import s from './AuthLayout.module.scss'
+
 type Props = { children: ReactNode }
 
 export const AuthLayout = ({ children }: Props) => {

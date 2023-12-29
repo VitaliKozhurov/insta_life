@@ -6,6 +6,7 @@ import {
   Typography,
   TypographyVariant,
   onAuthErrorsHandler,
+  saveToLocalStorage,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -40,7 +41,8 @@ export const SignInForm = () => {
   const onSubmitHandler = (formData: SignInFormValuesType) => {
     signInHandler(formData)
       .unwrap()
-      .then(() => {
+      .then(data => {
+        saveToLocalStorage('token', data.accessToken)
         router.push(Routes.HOME)
       })
       .catch(error => onAuthErrorsHandler(error, setError, 'password'))
