@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux'
+
+import { useAppDispatch } from '@/application/store'
+import { authApi } from '@/pages/Layouts/authApi'
 import {
   Button,
   ButtonVariant,
@@ -19,6 +23,8 @@ import { SignInFormValuesType, useSignIn } from '../lib'
 
 export const SignInForm = () => {
   const [signInHandler, { isLoading }] = useSignInMutation()
+  //test
+  const dispatch = useAppDispatch()
   const {
     router,
     text: { signInPage: t },
@@ -43,6 +49,8 @@ export const SignInForm = () => {
       .unwrap()
       .then(data => {
         saveToLocalStorage('token', data.accessToken)
+        // test
+        dispatch(authApi.endpoints?.authMe.initiate())
         router.push(Routes.HOME)
       })
       .catch(error => onAuthErrorsHandler(error, setError, 'password'))
