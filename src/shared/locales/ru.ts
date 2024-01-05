@@ -60,7 +60,7 @@ export const ru: LocalesType = {
     },
   },
   navBar: {
-    chat: 'Месенджер',
+    chat: 'Мессенджер',
     create: 'Создать',
     favorites: 'Избранное',
     home: 'Главная',

@@ -4,6 +4,10 @@
   @include mixin.flex($direction: column, $gap: 18rem);
 
   height: 100%;
+
+  .button {
+    @include mixin.icon-button;
+  }
 }
 
 .nav {
