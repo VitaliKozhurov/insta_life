@@ -1,4 +1,5 @@
 import {
+  Button,
   CreateIcon,
   FavoritesIcon,
   FilledCreateIcon,
@@ -7,10 +8,8 @@ import {
   FilledMessengerIcon,
   FilledUserProfileIcon,
   HomeIcon,
-  IconButton,
   LogOutIcon,
   MessengerIcon,
-  NavBarLink,
   Routes,
   SearchIcon,
   StatisticsIcon,
@@ -18,6 +17,7 @@ import {
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
+import Link from 'next/link'
 
 import s from './NavBar.module.scss'
 
@@ -34,64 +34,73 @@ export const NavBar = ({ className }: Props) => {
   return (
     <div className={clsx(s.root, className)}>
       <nav className={s.nav}>
-        <NavBarLink
-          activeIcon={<FilledHomeIcon />}
-          defaultIcon={<HomeIcon />}
-          isActive={pathname === '/'}
-          linkUrl={Routes.HOME}
+        <Button
+          as={Link}
+          className={clsx(s.button, pathname === Routes.HOME && s.active)}
+          href={Routes.HOME}
         >
+          {pathname === Routes.HOME ? <FilledHomeIcon /> : <HomeIcon />}
           {t.home}
-        </NavBarLink>
-        <NavBarLink
-          activeIcon={<FilledCreateIcon />}
-          defaultIcon={<CreateIcon />}
-          isActive={pathname === '/create'}
-          linkUrl={Routes.CREATE}
+        </Button>
+
+        <Button
+          as={Link}
+          className={clsx(s.button, pathname === Routes.CREATE && s.active)}
+          href={Routes.CREATE}
         >
+          {pathname === Routes.CREATE ? <FilledCreateIcon /> : <CreateIcon />}
           {t.create}
-        </NavBarLink>
-        <NavBarLink
-          activeIcon={<FilledUserProfileIcon />}
-          defaultIcon={<UserProfileIcon />}
-          isActive={pathname === '/profile'}
-          linkUrl={Routes.PROFILE}
+        </Button>
+
+        <Button
+          as={Link}
+          className={clsx(s.button, pathname === Routes.PROFILE && s.active)}
+          href={Routes.PROFILE}
         >
+          {pathname === Routes.PROFILE ? <FilledUserProfileIcon /> : <UserProfileIcon />}
           {t.profile}
-        </NavBarLink>
-        <NavBarLink
-          activeIcon={<FilledMessengerIcon />}
-          defaultIcon={<MessengerIcon />}
-          isActive={pathname === '/chat'}
-          linkUrl={Routes.MESSENGER}
+        </Button>
+
+        <Button
+          as={Link}
+          className={clsx(s.button, pathname === Routes.MESSENGER && s.active)}
+          href={Routes.MESSENGER}
         >
+          {pathname === Routes.MESSENGER ? <FilledMessengerIcon /> : <MessengerIcon />}
           {t.chat}
-        </NavBarLink>
-        <NavBarLink
-          defaultIcon={<SearchIcon />}
-          isActive={pathname === '/search'}
-          linkUrl={Routes.SEARCH}
+        </Button>
+
+        <Button
+          as={Link}
+          className={clsx(s.button, pathname === Routes.SEARCH && s.active)}
+          href={Routes.SEARCH}
         >
+          <SearchIcon />
           {t.search}
-        </NavBarLink>
-        <NavBarLink
-          defaultIcon={<StatisticsIcon />}
-          isActive={pathname === 'statistics'}
-          linkUrl={Routes.STATISTICS}
+        </Button>
+
+        <Button
+          as={Link}
+          className={clsx(s.button, pathname === Routes.STATISTICS && s.active)}
+          href={Routes.STATISTICS}
         >
+          <StatisticsIcon />
           {t.statistics}
-        </NavBarLink>
-        <NavBarLink
-          activeIcon={<FilledFavoritesIcon />}
-          defaultIcon={<FavoritesIcon />}
-          isActive={pathname === 'favorites'}
-          linkUrl={Routes.FAVORITES}
+        </Button>
+
+        <Button
+          as={Link}
+          className={clsx(s.button, pathname === Routes.FAVORITES && s.active)}
+          href={Routes.FAVORITES}
         >
+          {pathname === Routes.MESSENGER ? <FilledFavoritesIcon /> : <FavoritesIcon />}
           {t.favorites}
-        </NavBarLink>
+        </Button>
       </nav>
-      <IconButton icon={<LogOutIcon />} onClick={() => console.log('Logout from app')}>
+      <Button className={clsx(s.button)} onClick={() => console.log('Logout from app')}>
+        <LogOutIcon />
         {t.logOut}
-      </IconButton>
+      </Button>
     </div>
   )
 }
