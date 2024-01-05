@@ -8,11 +8,12 @@
   @include mixin.container;
 
   margin: 24px auto;
-}
 
-.redirectLink {
-  margin-bottom: 24px;
-  font-weight: 400;
+  .redirectLink {
+    @include mixin.icon-button;
+
+    margin-bottom: 24px;
+  }
 }
 
 .title {

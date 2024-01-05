@@ -1,7 +1,7 @@
 import {
-  ArrowLeftIcon,
+  Button,
   HeadMeta,
-  IconButton,
+  PointerLeftIcon,
   Routes,
   Typography,
   TypographyVariant,
@@ -26,13 +26,10 @@ export const UsageAgreementsPage = ({ description, title }: Props) => {
       <HeadMeta title={title} />
       <main className={s.main}>
         <div className={s.root}>
-          <IconButton
-            className={s.redirectLink}
-            icon={<ArrowLeftIcon />}
-            onClick={onClickBackHandler}
-          >
+          <Button className={s.redirectLink} onClick={onClickBackHandler}>
+            <PointerLeftIcon />
             {router.locale === 'en' ? 'Back to Sign Up' : 'Назад к регистрации'}
-          </IconButton>
+          </Button>
           <Typography as={'h1'} className={s.title} variant={TypographyVariant.H1}>
             {title}
           </Typography>
