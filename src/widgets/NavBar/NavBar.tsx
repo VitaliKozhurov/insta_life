@@ -14,6 +14,7 @@ import {
   SearchIcon,
   StatisticsIcon,
   UserProfileIcon,
+  useLogoutMutation,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -26,6 +27,7 @@ type Props = {
 }
 
 export const NavBar = ({ className }: Props) => {
+  const [logoutHandler] = useLogoutMutation()
   const {
     router: { pathname },
     text: { navBar: t },
@@ -97,7 +99,7 @@ export const NavBar = ({ className }: Props) => {
           {t.favorites}
         </Button>
       </nav>
-      <Button className={clsx(s.button)} onClick={() => console.log('Logout from app')}>
+      <Button className={clsx(s.button)} onClick={() => logoutHandler()}>
         <LogOutIcon />
         {t.logOut}
       </Button>
