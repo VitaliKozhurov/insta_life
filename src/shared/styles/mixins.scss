@@ -96,3 +96,27 @@
 @mixin main {
   min-height: calc(100vh - 6rem);
 }
+
+@mixin icon-button {
+  gap: 12px;
+  justify-content: flex-start;
+
+  padding: 0;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  background: transparent;
+
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--color-accent-100);
+    background-color: transparent;
+  }
+
+  &.active {
+    font-weight: 700;
+    color: var(--color-accent-500);
+  }
+}
