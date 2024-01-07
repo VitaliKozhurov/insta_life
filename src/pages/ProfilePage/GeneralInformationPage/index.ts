@@ -1,0 +1,1 @@
+export { GeneralInformationPage } from './GeneralInformationPage'
