@@ -1,8 +1,7 @@
 import { ReactNode } from 'react'
 
 import { inter } from '@/application'
-import { useAuthMeQuery } from '@/pages/Layouts/authApi'
-import { Loader, Routes } from '@/shared'
+import { Loader, Routes, useMeQuery } from '@/shared'
 import { Header } from '@/widgets'
 import { useRouter } from 'next/router'
 
@@ -10,8 +9,8 @@ type Props = { children: ReactNode }
 
 export const RootLayout = ({ children }: Props) => {
   const router = useRouter()
-  // test for private toute
-  const { data, isError, isLoading } = useAuthMeQuery()
+
+  const { data, isError, isLoading } = useMeQuery(undefined, { skip: false })
 
   if (isLoading) {
     return <Loader />
@@ -19,7 +18,7 @@ export const RootLayout = ({ children }: Props) => {
 
   const isAuth = !isError
 
-  console.log(isAuth)
+  console.log(data)
   if (!isAuth && router.pathname !== '/sign-in') {
     router.push(Routes.SIGN_IN)
 
