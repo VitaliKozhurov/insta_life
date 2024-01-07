@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 import { inter } from '@/application'
-import { Loader, Routes, useMeQuery } from '@/shared'
+import { Loader, PRIVATE_ROUTES, Routes, useMeQuery } from '@/shared'
 import { Header } from '@/widgets'
 import { useRouter } from 'next/router'
 
@@ -9,8 +9,8 @@ type Props = { children: ReactNode }
 
 export const RootLayout = ({ children }: Props) => {
   const router = useRouter()
-
-  const { data, isError, isLoading } = useMeQuery(undefined, { skip: false })
+  const path = router.pathname as Routes
+  const { isError, isLoading } = useMeQuery(undefined, { skip: false })
 
   if (isLoading) {
     return <Loader />
@@ -18,14 +18,13 @@ export const RootLayout = ({ children }: Props) => {
 
   const isAuth = !isError
 
-  console.log(data)
-  if (!isAuth && router.pathname !== '/sign-in') {
+  if (!isAuth && PRIVATE_ROUTES.includes(path)) {
     router.push(Routes.SIGN_IN)
 
     return <Loader />
   }
 
-  if (isAuth && router.pathname === '/sign-in') {
+  if (isAuth && !PRIVATE_ROUTES.includes(path)) {
     router.push(Routes.HOME)
 
     return <Loader />
