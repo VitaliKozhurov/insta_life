@@ -1,16 +1,15 @@
 import { useDispatch } from 'react-redux'
 
-import { authApi } from '@/pages/Layouts/authApi'
-import { baseApi } from '@/shared'
+import { baseApi, userApi } from '@/shared'
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
 export const store = configureStore({
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(baseApi.middleware).concat(authApi.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware).concat(userApi.middleware),
   reducer: {
-    [authApi.reducerPath]: authApi.reducer,
     [baseApi.reducerPath]: baseApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
   },
 })
 setupListeners(store.dispatch)
