@@ -9,6 +9,7 @@ import {
   Typography,
   TypographyVariant,
   onAuthErrorsHandler,
+  useForgotPasswordMutation,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -16,7 +17,6 @@ import Link from 'next/link'
 
 import s from './ForgotPasswordForm.module.scss'
 
-import { useForgotPasswordMutation } from '../api'
 import { ForgotPasswordFormValuesType, useForgotPasswordForm } from '../lib'
 
 type Props = {

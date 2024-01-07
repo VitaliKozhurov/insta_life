@@ -6,6 +6,7 @@ import {
   TypographyVariant,
   checkRecoveryCodeError,
   onAuthErrorsHandler,
+  useCreateNewPasswordMutation,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -13,7 +14,6 @@ import { useRouter } from 'next/router'
 
 import s from './CreateNewPasswordForm.module.scss'
 
-import { useCreateNewPasswordMutation } from '../api'
 import { CreateNewPasswordValuesType, useCreateNewPassword } from '../lib'
 
 type Props = {

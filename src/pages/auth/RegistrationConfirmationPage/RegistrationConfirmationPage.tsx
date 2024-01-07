@@ -1,11 +1,14 @@
 import { ReactElement, useEffect } from 'react'
 
+import { RootLayout } from '@/pages'
 import {
+  HeadMeta,
+  checkConfirmationCodeError,
+  getToast,
   useRegistrationConfirmationMutation,
   useRegistrationEmailResendingMutation,
-} from '@/features'
-import { RootLayout } from '@/pages'
-import { HeadMeta, checkConfirmationCodeError, getToast, useTranslation } from '@/shared'
+  useTranslation,
+} from '@/shared'
 import { ConfirmEmail, ExpiredLink } from '@/widgets'
 import { useRouter } from 'next/router'
 

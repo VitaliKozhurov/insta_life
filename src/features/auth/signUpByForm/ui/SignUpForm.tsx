@@ -8,6 +8,7 @@ import {
   Typography,
   TypographyVariant,
   onAuthErrorsHandler,
+  useSignUpMutation,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -15,7 +16,6 @@ import Link from 'next/link'
 
 import s from './SignUpForm.module.scss'
 
-import { useSignUpMutation } from '../api'
 import { SignUpFormValuesType, useSignUp } from '../lib'
 
 type Props = {
@@ -49,7 +49,7 @@ export const SignUpForm = ({ onSendFormData }: Props) => {
   const onSubmitHandler = (formData: SignUpFormValuesType) => {
     signUpHandler(formData)
       .unwrap()
-      .then(data => {
+      .then(() => {
         onSendFormData(formData.email)
         reset()
       })

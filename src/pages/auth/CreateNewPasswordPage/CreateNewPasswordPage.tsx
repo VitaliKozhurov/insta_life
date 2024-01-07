@@ -1,8 +1,13 @@
 import { ReactElement, useState } from 'react'
 
-import { ModalOnEmail, usePasswordRecoveryResendingMutation } from '@/features'
+import { ModalOnEmail } from '@/features'
 import { RootLayout } from '@/pages'
-import { HeadMeta, checkConfirmationCodeError, useTranslation } from '@/shared'
+import {
+  HeadMeta,
+  checkConfirmationCodeError,
+  usePasswordRecoveryResendingMutation,
+  useTranslation,
+} from '@/shared'
 import { CreateNewPassword, ExpiredLink } from '@/widgets'
 import { useRouter } from 'next/router'
 

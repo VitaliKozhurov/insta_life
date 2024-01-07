@@ -1,7 +1,12 @@
 import { useEffect } from 'react'
 
-import { useLoginByGoogleQuery } from '@/features'
-import { Loader, Routes, getToast, onGoogleOauthErrorHandler, saveToLocalStorage } from '@/shared'
+import {
+  Loader,
+  Routes,
+  onGoogleOauthErrorHandler,
+  saveToLocalStorage,
+  useLoginByGoogleQuery,
+} from '@/shared'
 import { useRouter } from 'next/router'
 
 export const GoogleAuthPage = () => {

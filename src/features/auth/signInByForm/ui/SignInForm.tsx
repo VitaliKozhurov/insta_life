@@ -1,5 +1,3 @@
-import { useDispatch } from 'react-redux'
-
 import { useAppDispatch } from '@/application/store'
 import { authApi } from '@/pages/Layouts/authApi'
 import {
@@ -11,6 +9,7 @@ import {
   TypographyVariant,
   onAuthErrorsHandler,
   saveToLocalStorage,
+  useSignInMutation,
   useTranslation,
 } from '@/shared'
 import clsx from 'clsx'
@@ -18,7 +17,6 @@ import Link from 'next/link'
 
 import s from './SignInForm.module.scss'
 
-import { useSignInMutation } from '../api'
 import { SignInFormValuesType, useSignIn } from '../lib'
 
 export const SignInForm = () => {
