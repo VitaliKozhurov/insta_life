@@ -57,7 +57,7 @@ export const NavBar = ({ className }: Props) => {
         <Button
           as={Link}
           className={clsx(s.button, pathname === Routes.PROFILE && s.active)}
-          href={Routes.PROFILE}
+          href={Routes.PROFILE_GENERAL}
         >
           {pathname === Routes.PROFILE ? <FilledUserProfileIcon /> : <UserProfileIcon />}
           {t.profile}
