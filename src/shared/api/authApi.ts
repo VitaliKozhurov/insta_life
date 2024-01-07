@@ -1,4 +1,4 @@
-import { baseApi } from '@/shared'
+import { baseApi } from './baseApi'
 
 type SignInRequestType = {
   email: string
@@ -58,6 +58,7 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
     logout: build.mutation<void, void>({
+      invalidatesTags: ['Me'],
       query: () => ({
         method: 'POST',
         url: 'auth/logout',
@@ -85,6 +86,7 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
     signIn: build.mutation<LoginResponseType, SignInRequestType>({
+      invalidatesTags: ['Me'],
       query: body => ({
         body,
         method: 'POST',
@@ -92,6 +94,7 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
     signUp: build.mutation<SignUpResponseType, SignUpRequestType>({
+      invalidatesTags: ['Me'],
       query: body => ({
         body,
         method: 'POST',
