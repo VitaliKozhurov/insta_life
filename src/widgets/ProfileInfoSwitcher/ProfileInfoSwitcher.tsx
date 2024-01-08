@@ -14,17 +14,17 @@ export const ProfileInfoSwitcher = ({ setTabValue, tabValue }: Props) => {
   } = useTranslation()
   const changeRouteHandler = (value: string) => {
     setTabValue(value)
-    const path = '/profile/' + value
+    const redirectRoute = value.split('/')[2]
 
-    router.push(path)
+    router.push(redirectRoute)
   }
 
   return (
     <Tabs onValueChange={changeRouteHandler} value={tabValue}>
-      <TabItem value={'general'}>{t.general}</TabItem>
-      <TabItem value={'devices'}>{t.devices}</TabItem>
-      <TabItem value={'account-management'}>{t.account}</TabItem>
-      <TabItem value={'my-payments'}>{t.payments}</TabItem>
+      <TabItem value={'/profile/general'}>{t.general}</TabItem>
+      <TabItem value={'/profile/devices'}>{t.devices}</TabItem>
+      <TabItem value={'/profile/account-management'}>{t.account}</TabItem>
+      <TabItem value={'/profile/my-payments'}>{t.payments}</TabItem>
     </Tabs>
   )
 }

@@ -1,11 +1,14 @@
 import { ReactNode, useState } from 'react'
 
 import { ProfileInfoSwitcher } from '@/widgets'
+import { useRouter } from 'next/router'
 
 type Props = { children: ReactNode }
 
 export const ProfilePageLayout = ({ children }: Props) => {
-  const [tabValue, setTabValue] = useState('general')
+  const { pathname } = useRouter()
+
+  const [tabValue, setTabValue] = useState(pathname)
 
   return (
     <>
