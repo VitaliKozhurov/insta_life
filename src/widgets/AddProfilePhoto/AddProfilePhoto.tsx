@@ -24,15 +24,13 @@ export const AddProfilePhoto = ({ className }: Props) => {
     setOpen(true)
   }
 
-  const onSelectPhoto = (photo: File) => {
-    console.log(photo)
-
+  const onSelectPhoto = () => {
     setOpen(false)
   }
 
   return (
     <>
-      <AddingPhotoModal onOpenChange={setOpen} onSelectPhoto={onSelectPhoto} open={open} />
+      <AddingPhotoModal onOpenChange={setOpen} open={open} />
       <div className={classNames.root}>
         <div className={classNames.photo}>{!image && <ImageIcon size={4.8} />}</div>
         <Button className={classNames.button} onClick={openPhotoUploader}>
