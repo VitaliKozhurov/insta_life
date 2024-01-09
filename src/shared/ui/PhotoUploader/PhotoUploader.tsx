@@ -1,4 +1,4 @@
-import { ReactNode, useRef } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { Button, ButtonVariant } from '@/shared'
@@ -8,33 +8,39 @@ import { useUploadFile } from './lib'
 type Props = {
   children: ReactNode
   className?: string
+  onError: (error: string) => void
   onSelectPhoto: (photo: File) => void
 }
 
-export const PhotoUploader = ({ children, className, onSelectPhoto }: Props) => {
+export const PhotoUploader = ({ children, className, onError, onSelectPhoto }: Props) => {
   const {
     control,
-    formState: { defaultValues, errors },
-    getValues,
+    formState: { errors },
+    handleSubmit,
+    watch,
   } = useUploadFile()
-
-  // console.log(getValues('image'))
-  // console.log(errors.image?.message)
-  // console.log(defaultValues)
+  const userProfileImage = watch('image')
+  const inputError = errors.image?.message
   const fileInputRef = useRef<HTMLInputElement | null>(null)
+
+  useEffect(() => {
+    if (userProfileImage && !inputError) {
+      onSelectPhoto(userProfileImage)
+    }
+    if (inputError) {
+      onError(inputError)
+    }
+  }, [userProfileImage, inputError])
+
   const onButtonClickHandler = () => fileInputRef.current?.click()
 
-  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (!e.target.files?.length) {
-  //     return
-  //   }
-  //   const fileUploaded = e.target.files[0]
-  //
-  //   onSelectPhoto(fileUploaded)
-  // }
+  // TODO change data type
+  const onSubmitHandler = (data: any) => {
+    console.log(data)
+  }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmitHandler)}>
       <Button
         className={className}
         onClick={onButtonClickHandler}
@@ -46,10 +52,14 @@ export const PhotoUploader = ({ children, className, onSelectPhoto }: Props) => 
       <Controller
         control={control}
         name={'image'}
-        render={({ field: { name, onChange, value } }) => (
+        render={({ field: { name, onChange } }) => (
           <input
             name={name}
-            onChange={e => onChange(e.target.files?.[0])}
+            onChange={e => {
+              if (!errors.image?.message) {
+                onChange(e.target.files?.[0])
+              }
+            }}
             ref={fileInputRef}
             style={{ display: 'none' }}
             type={'file'}
