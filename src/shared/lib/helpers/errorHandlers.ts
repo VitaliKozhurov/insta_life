@@ -137,3 +137,17 @@ export const onGoogleOauthErrorHandler = (error: unknown) => {
     })
   }
 }
+
+export const onLogoutErrorHandler = (error: unknown) => {
+  if (isFetchBaseQueryError(error)) {
+    if (error.status === 401) {
+      return
+    }
+    if (isErrorWithMessageInData(error.data)) {
+      getToast({ text: error.data.message, variant: 'error', withClose: true })
+    }
+  }
+  if (isFetchError(error)) {
+    getToast({ text: error.error, variant: 'error', withClose: true })
+  }
+}
