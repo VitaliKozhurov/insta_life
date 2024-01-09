@@ -25,19 +25,40 @@
   .photo {
     @include mixin.flex($justify: center, $align: center);
 
+    position: relative;
+
     width: 22.2rem;
     height: 22.8rem;
     margin-bottom: 6rem;
+
     background-color: var(--color-dark-500);
+
+    .image {
+      object-fit: cover;
+    }
   }
 
   .button {
     width: 22rem;
   }
+
+
 }
 
 .withError {
   padding: 0 2.4rem 10.8rem;
+}
+
+.withImage {
+  padding: 2.8rem 3.6rem;
+
+  .photo {
+    width: 34rem;
+    height: 34rem;
+    margin-bottom: 3.6rem;
+    background-color: transparent;
+
+  }
 }
 
 .content {
