@@ -14,6 +14,8 @@ import {
   SearchIcon,
   StatisticsIcon,
   UserProfileIcon,
+  onLogoutErrorHandler,
+  removeFromLocalStorage,
   useLogoutMutation,
   useTranslation,
 } from '@/shared'
@@ -27,11 +29,17 @@ type Props = {
 }
 
 export const NavBar = ({ className }: Props) => {
-  const [logoutHandler] = useLogoutMutation()
+  const [logout] = useLogoutMutation()
   const {
     router: { pathname },
     text: { navBar: t },
   } = useTranslation()
+  const onLogoutHandler = () => {
+    logout()
+      .unwrap()
+      .then(() => removeFromLocalStorage('token'))
+      .catch(err => onLogoutErrorHandler(err))
+  }
 
   return (
     <div className={clsx(s.root, className)}>
@@ -99,7 +107,7 @@ export const NavBar = ({ className }: Props) => {
           {t.favorites}
         </Button>
       </nav>
-      <Button className={clsx(s.button)} onClick={() => logoutHandler()}>
+      <Button className={clsx(s.button)} onClick={onLogoutHandler}>
         <LogOutIcon />
         {t.logOut}
       </Button>
