@@ -2,6 +2,9 @@ import { ReactNode, useEffect, useRef } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { Button, ButtonVariant, Nullable } from '@/shared'
+import clsx from 'clsx'
+
+import s from './PhotoUploader.module.scss'
 
 import { useUploadFile } from './lib'
 
@@ -9,7 +12,7 @@ type Props = {
   children: ReactNode
   className?: string
   onError: (error: Nullable<string>) => void
-  onSelectPhoto: (photo: File) => void
+  onSelectPhoto: (photo: Nullable<File>) => void
 }
 
 export const PhotoUploader = ({ children, className, onError, onSelectPhoto }: Props) => {
@@ -19,17 +22,22 @@ export const PhotoUploader = ({ children, className, onError, onSelectPhoto }: P
     handleSubmit,
     watch,
   } = useUploadFile()
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
   const userProfileImage = watch('image')
   const inputError = errors.image?.message
-  const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const isValidImage = userProfileImage && !inputError
+  const classNames = {
+    form: clsx(s.form, isValidImage && s.validForm, !isValidImage && s.invalidForm),
+  }
 
   useEffect(() => {
-    if (userProfileImage && !inputError) {
+    if (isValidImage) {
       onSelectPhoto(userProfileImage)
       onError(null)
     }
     if (inputError) {
       onError(inputError)
+      onSelectPhoto(null)
     }
   }, [userProfileImage, inputError])
 
@@ -41,26 +49,25 @@ export const PhotoUploader = ({ children, className, onError, onSelectPhoto }: P
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)}>
-      <Button
-        className={className}
-        onClick={onButtonClickHandler}
-        type={'button'}
-        variant={ButtonVariant.PRIMARY}
-      >
-        {children}
-      </Button>
+    <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
+      {isValidImage && <Button>Save</Button>}
+      {!isValidImage && (
+        <Button
+          className={className}
+          onClick={onButtonClickHandler}
+          type={'button'}
+          variant={ButtonVariant.PRIMARY}
+        >
+          {children}
+        </Button>
+      )}
       <Controller
         control={control}
         name={'image'}
         render={({ field: { name, onChange } }) => (
           <input
             name={name}
-            onChange={e => {
-              if (!errors.image?.message) {
-                onChange(e.target.files?.[0])
-              }
-            }}
+            onChange={e => onChange(e.target.files?.[0])}
             ref={fileInputRef}
             style={{ display: 'none' }}
             type={'file'}
