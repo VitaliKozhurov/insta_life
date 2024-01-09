@@ -12,7 +12,8 @@ type Props = {
 
 export const AddProfilePhoto = ({ className }: Props) => {
   const [open, setOpen] = useState(false)
-  const [image, setImage] = useState(null)
+  // TODO add request for image useUserMe
+  const image = false
   const classNames = {
     button: s.button,
     photo: s.photo,
@@ -31,12 +32,7 @@ export const AddProfilePhoto = ({ className }: Props) => {
 
   return (
     <>
-      <AddingPhotoModal
-        error={'Error! Photo size must be less than 10 MB!'}
-        onOpenChange={setOpen}
-        onSelectPhoto={onSelectPhoto}
-        open={open}
-      />
+      <AddingPhotoModal onOpenChange={setOpen} onSelectPhoto={onSelectPhoto} open={open} />
       <div className={classNames.root}>
         <div className={classNames.photo}>{!image && <ImageIcon size={4.8} />}</div>
         <Button className={classNames.button} onClick={openPhotoUploader}>

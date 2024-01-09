@@ -1,14 +1,14 @@
 import { ReactNode, useEffect, useRef } from 'react'
 import { Controller } from 'react-hook-form'
 
-import { Button, ButtonVariant } from '@/shared'
+import { Button, ButtonVariant, Nullable } from '@/shared'
 
 import { useUploadFile } from './lib'
 
 type Props = {
   children: ReactNode
   className?: string
-  onError: (error: string) => void
+  onError: (error: Nullable<string>) => void
   onSelectPhoto: (photo: File) => void
 }
 
@@ -26,6 +26,7 @@ export const PhotoUploader = ({ children, className, onError, onSelectPhoto }: P
   useEffect(() => {
     if (userProfileImage && !inputError) {
       onSelectPhoto(userProfileImage)
+      onError(null)
     }
     if (inputError) {
       onError(inputError)
