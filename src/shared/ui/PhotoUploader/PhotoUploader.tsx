@@ -1,21 +1,29 @@
 import { ReactNode, useEffect, useRef } from 'react'
 import { Controller } from 'react-hook-form'
 
-import { Button, ButtonVariant, Nullable } from '@/shared'
+import { Button, ButtonVariant, Nullable, useUploadAvatarMutation } from '@/shared'
 import clsx from 'clsx'
 
 import s from './PhotoUploader.module.scss'
 
-import { useUploadFile } from './lib'
+import { UploadFileValuesType, useUploadFile } from './lib'
 
 type Props = {
   children: ReactNode
   className?: string
+  croppedImage: Nullable<Blob>
   onError: (error: Nullable<string>) => void
   onSelectPhoto: (photo: Nullable<File>) => void
 }
 
-export const PhotoUploader = ({ children, className, onError, onSelectPhoto }: Props) => {
+export const PhotoUploader = ({
+  children,
+  className,
+  croppedImage,
+  onError,
+  onSelectPhoto,
+}: Props) => {
+  const [uploadAvatar] = useUploadAvatarMutation()
   const {
     control,
     formState: { errors },
@@ -44,8 +52,13 @@ export const PhotoUploader = ({ children, className, onError, onSelectPhoto }: P
   const onButtonClickHandler = () => fileInputRef.current?.click()
 
   // TODO change data type
-  const onSubmitHandler = (data: any) => {
-    console.log(data)
+  const onSubmitHandler = (data: UploadFileValuesType) => {
+    const formData = new FormData()
+
+    formData.append('avatar', croppedImage ? croppedImage : data.image)
+    uploadAvatar(formData)
+      .unwrap()
+      .catch((e: any) => console.log(e))
   }
 
   return (
