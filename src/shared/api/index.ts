@@ -10,4 +10,4 @@ export {
   useSignUpMutation,
 } from './authApi'
 export { baseApi } from './baseApi'
-export { useMeQuery, userApi } from './userApi'
+export { useMeQuery, useUploadAvatarMutation, userApi } from './userApi'

@@ -24,7 +24,15 @@ export const userApi = baseApi.injectEndpoints({
         url: 'user/me',
       }),
     }),
+    uploadAvatar: build.mutation<void, FormData>({
+      invalidatesTags: ['Me'],
+      query: body => ({
+        body,
+        method: 'POST',
+        url: 'user/avatar',
+      }),
+    }),
   }),
 })
 
-export const { useMeQuery } = userApi
+export const { useMeQuery, useUploadAvatarMutation } = userApi
