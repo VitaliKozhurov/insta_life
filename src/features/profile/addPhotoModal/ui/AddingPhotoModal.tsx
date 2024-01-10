@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
 import Cropper, { Area, Point } from 'react-easy-crop'
-import { ReactCrop } from 'react-image-crop'
-// eslint-disable-next-line no-duplicate-imports
-import { type Crop } from 'react-image-crop'
 
 import { ImageIcon, Modal, Nullable, PhotoUploader } from '@/shared'
 import { clsx } from 'clsx'
@@ -55,7 +52,7 @@ export const AddingPhotoModal = ({ onOpenChange, open }: Props) => {
       <div className={classNames.root}>
         {error && <p className={classNames.error}>{error}</p>}
         <div className={classNames.photo}>
-          {imagePreview && <Crop2 imagePreview={imagePreview} />}
+          {imagePreview && <Crop imagePreview={imagePreview} />}
           {!imagePreview && <ImageIcon size={4.8} />}
         </div>
         <PhotoUploader className={classNames.button} onError={setError} onSelectPhoto={setImage}>
@@ -66,45 +63,54 @@ export const AddingPhotoModal = ({ onOpenChange, open }: Props) => {
   )
 }
 
-// const Crop = ({ imagePreview }: any) => {
-//   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
-//   const [zoom, setZoom] = useState(1)
-//   const onCropComplete = (croppedArea: Area, croppedAreaPixels: Area) => {
-//     console.log(croppedArea, croppedAreaPixels)
-//   }
-//
-//   return (
-//     <Cropper
-//       aspect={1}
-//       crop={crop}
-//       cropShape={'round'}
-//       image={imagePreview}
-//       objectFit={'cover'}
-//       onCropChange={setCrop}
-//       onCropComplete={onCropComplete}
-//       onZoomChange={setZoom}
-//       showGrid={false}
-//       style={{ containerStyle: { height: '100%' } }}
-//       zoom={zoom}
-//     />
-//   )
-// }
-
-const Crop2 = ({ imagePreview }: any) => {
-  const [crop, setCrop] = useState<Crop>()
+const Crop = ({ imagePreview }: any) => {
+  const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
+  const [zoom, setZoom] = useState(1)
+  const onCropComplete = (croppedArea: Area, croppedAreaPixels: Area) => {
+    console.log(croppedArea, croppedAreaPixels)
+  }
 
   return (
-    <ReactCrop
+    <Cropper
       aspect={1}
-      circularCrop
       crop={crop}
-      keepSelection
-      minHeight={48}
-      minWidth={48}
-      onChange={c => setCrop(c)}
-      style={{ minHeight: '100%' }}
-    >
-      <img alt={'asd'} src={imagePreview} />
-    </ReactCrop>
+      cropShape={'round'}
+      image={imagePreview}
+      objectFit={'cover'}
+      onCropChange={setCrop}
+      onCropComplete={onCropComplete}
+      onZoomChange={setZoom}
+      showGrid={false}
+      style={{ containerStyle: { border: '1px solid black', height: '100%' } }}
+      zoom={zoom}
+    />
   )
 }
+
+// const Crop2 = ({ imagePreview }: any) => {
+//   const [crop, setCrop] = useState<Crop>({
+//     height: 50,
+//     unit: '%',
+//     width: 50,
+//     x: 25,
+//     y: 25,
+//   })
+//   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
+//
+//   console.log(imagePreview)
+//
+//   return (
+//     <ReactCrop
+//       aspect={1}
+//       circularCrop
+//       crop={crop}
+//       keepSelection
+//       minHeight={48}
+//       minWidth={48}
+//       onChange={c => setCrop(c)}
+//       style={{ minHeight: '100%' }}
+//     >
+//       <img alt={'asd'} src={imagePreview} />
+//     </ReactCrop>
+//   )
+// }
