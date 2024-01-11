@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useRef } from 'react'
 import { Controller } from 'react-hook-form'
 
-import { Button, ButtonVariant, Nullable, useUploadAvatarMutation } from '@/shared'
+import { Button, ButtonVariant, Nullable, useTranslation, useUploadAvatarMutation } from '@/shared'
 import clsx from 'clsx'
 
 import s from './PhotoUploader.module.scss'
@@ -12,58 +12,75 @@ type Props = {
   children: ReactNode
   className?: string
   croppedImage: Nullable<Blob>
-  onError: (error: Nullable<string>) => void
-  onSelectPhoto: (photo: Nullable<File>) => void
+  onPhotoUpload: (photo: Nullable<File>) => void
+  onPhotoUploadError: (error: Nullable<string>) => void
+  onUpdatePhoto: (isOpen: boolean) => void
 }
 
 export const PhotoUploader = ({
   children,
   className,
   croppedImage,
-  onError,
-  onSelectPhoto,
+  onPhotoUpload,
+  onPhotoUploadError,
+  onUpdatePhoto,
 }: Props) => {
+  const {
+    text: {
+      profilePage: {
+        management: {
+          photoUploader: { modal: t },
+        },
+      },
+    },
+  } = useTranslation()
   const [uploadAvatar] = useUploadAvatarMutation()
   const {
     control,
     formState: { errors },
     handleSubmit,
+    resetField,
     watch,
   } = useUploadFile()
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const userProfileImage = watch('image')
   const inputError = errors.image?.message
   const isValidImage = userProfileImage && !inputError
+
   const classNames = {
     form: clsx(s.form, isValidImage && s.validForm, !isValidImage && s.invalidForm),
   }
 
   useEffect(() => {
     if (isValidImage) {
-      onSelectPhoto(userProfileImage)
-      onError(null)
+      onPhotoUpload(userProfileImage)
+      onPhotoUploadError(null)
     }
     if (inputError) {
-      onError(inputError)
-      onSelectPhoto(null)
+      onPhotoUploadError(inputError)
+      onPhotoUpload(null)
     }
   }, [userProfileImage, inputError])
 
   const onButtonClickHandler = () => fileInputRef.current?.click()
 
-  // TODO change data type
   const onSubmitHandler = (data: UploadFileValuesType) => {
     const formData = new FormData()
 
-    formData.append('avatar', croppedImage ? croppedImage : data.image)
+    formData.append('file', croppedImage ? croppedImage : data.image)
     uploadAvatar(formData)
       .unwrap()
+      .then(() => {
+        resetField('image')
+        onUpdatePhoto(false)
+      })
+      // Todo add error handling
       .catch((e: any) => console.log(e))
   }
 
   return (
     <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
-      {isValidImage && <Button>Save</Button>}
+      {isValidImage && <Button>{t.saveButton}</Button>}
       {!isValidImage && (
         <Button
           className={className}
