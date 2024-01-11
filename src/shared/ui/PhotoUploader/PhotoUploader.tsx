@@ -9,6 +9,7 @@ import {
   useTranslation,
   useUploadAvatarMutation,
 } from '@/shared'
+import { DevTool } from '@hookform/devtools'
 import clsx from 'clsx'
 
 import s from './PhotoUploader.module.scss'
@@ -42,16 +43,10 @@ export const PhotoUploader = ({
     },
   } = useTranslation()
   const [uploadAvatar] = useUploadAvatarMutation()
-  const {
-    control,
-    formState: { errors },
-    handleSubmit,
-    resetField,
-    watch,
-  } = useUploadFile()
+  const { control, formState, handleSubmit, resetField, setError, watch } = useUploadFile(t.errors)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const userProfileImage = watch('image')
-  const inputError = errors.image?.message
+  const inputError = formState.errors.image?.message
   const isValidImage = userProfileImage && !inputError
 
   const classNames = {
@@ -66,6 +61,9 @@ export const PhotoUploader = ({
     if (inputError) {
       onPhotoUploadError(inputError)
       onPhotoUpload(null)
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''
+      }
     }
   }, [userProfileImage, inputError])
 
@@ -74,7 +72,7 @@ export const PhotoUploader = ({
   const onSubmitHandler = (data: UploadFileValuesType) => {
     const formData = new FormData()
 
-    formData.append('files', croppedImage ? croppedImage : data.image)
+    formData.append('file', croppedImage ? croppedImage : data.image)
     uploadAvatar(formData)
       .unwrap()
       .then(() => {
@@ -82,38 +80,41 @@ export const PhotoUploader = ({
         onUpdatePhoto(false)
       })
       .catch(e => {
-        resetField('image')
-        onPhotoUpload(null)
-        onUploadPhotoErrorHandler(e, onPhotoUploadError)
+        const errorMessage = onUploadPhotoErrorHandler(e)
+
+        setError('image', { message: errorMessage, type: 'custom' })
       })
   }
 
   return (
-    <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
-      {isValidImage && <Button>{t.saveButton}</Button>}
-      {!isValidImage && (
-        <Button
-          className={className}
-          onClick={onButtonClickHandler}
-          type={'button'}
-          variant={ButtonVariant.PRIMARY}
-        >
-          {children}
-        </Button>
-      )}
-      <Controller
-        control={control}
-        name={'image'}
-        render={({ field: { name, onChange } }) => (
-          <input
-            name={name}
-            onChange={e => onChange(e.target.files?.[0])}
-            ref={fileInputRef}
-            style={{ display: 'none' }}
-            type={'file'}
-          />
+    <>
+      <DevTool control={control} />
+      <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
+        {isValidImage && <Button>{t.saveButton}</Button>}
+        {!isValidImage && (
+          <Button
+            className={className}
+            onClick={onButtonClickHandler}
+            type={'button'}
+            variant={ButtonVariant.PRIMARY}
+          >
+            {children}
+          </Button>
         )}
-      />
-    </form>
+        <Controller
+          control={control}
+          name={'image'}
+          render={({ field: { name, onChange } }) => (
+            <input
+              name={name}
+              onChange={e => onChange(e.target.files?.[0])}
+              ref={fileInputRef}
+              style={{ display: 'none' }}
+              type={'file'}
+            />
+          )}
+        />
+      </form>
+    </>
   )
 }

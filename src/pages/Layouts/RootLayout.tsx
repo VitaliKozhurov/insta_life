@@ -10,7 +10,7 @@ type Props = { children: ReactNode }
 export const RootLayout = ({ children }: Props) => {
   const router = useRouter()
   const path = router.pathname as Routes
-  const { isError, isLoading } = useMeQuery(undefined)
+  const { isError, isLoading } = useMeQuery()
 
   if (isLoading) {
     return <Loader />

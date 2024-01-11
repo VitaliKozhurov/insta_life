@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { AddingPhotoModal } from '@/features/profile/addPhotoModal/ui/AddingPhotoModal'
+import { AddingPhotoModal } from '@/features'
 import { Button, ImageIcon, useMeQuery, useTranslation } from '@/shared'
 import clsx from 'clsx'
 import Image from 'next/image'
