@@ -84,6 +84,16 @@ export const en = {
     title: 'Privacy Policy',
   },
   profilePage: {
+    management: {
+      photoUploader: {
+        addPhotoButton: 'Add a Profile Photo',
+        modal: {
+          saveButton: 'Save',
+          selectPhotoButton: 'Add a Profile Photo',
+          title: 'Select from Computer',
+        },
+      },
+    },
     tabSwitcher: {
       account: 'Account Managment',
       devices: 'Devices',
