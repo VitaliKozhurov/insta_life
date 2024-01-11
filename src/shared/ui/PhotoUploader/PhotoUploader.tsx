@@ -1,7 +1,14 @@
 import { ReactNode, useEffect, useRef } from 'react'
 import { Controller } from 'react-hook-form'
 
-import { Button, ButtonVariant, Nullable, useTranslation, useUploadAvatarMutation } from '@/shared'
+import {
+  Button,
+  ButtonVariant,
+  Nullable,
+  onUploadPhotoErrorHandler,
+  useTranslation,
+  useUploadAvatarMutation,
+} from '@/shared'
 import clsx from 'clsx'
 
 import s from './PhotoUploader.module.scss'
@@ -67,15 +74,18 @@ export const PhotoUploader = ({
   const onSubmitHandler = (data: UploadFileValuesType) => {
     const formData = new FormData()
 
-    formData.append('file', croppedImage ? croppedImage : data.image)
+    formData.append('files', croppedImage ? croppedImage : data.image)
     uploadAvatar(formData)
       .unwrap()
       .then(() => {
         resetField('image')
         onUpdatePhoto(false)
       })
-      // Todo add error handling
-      .catch((e: any) => console.log(e))
+      .catch(e => {
+        resetField('image')
+        onPhotoUpload(null)
+        onUploadPhotoErrorHandler(e, onPhotoUploadError)
+      })
   }
 
   return (

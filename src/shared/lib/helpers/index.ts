@@ -4,6 +4,7 @@ export {
   onAuthErrorsHandler,
   onGoogleOauthErrorHandler,
   onLogoutErrorHandler,
+  onUploadPhotoErrorHandler,
 } from './errorHandlers'
 export { firstLetterUppercaseTransform } from './firstLetterUppercaseTransform'
 export { getCroppedImage } from './getCroppedImage'
