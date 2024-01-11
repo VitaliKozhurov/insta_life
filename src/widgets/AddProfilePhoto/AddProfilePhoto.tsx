@@ -1,16 +1,20 @@
 import { useState } from 'react'
 
 import { AddingPhotoModal } from '@/features/profile/addPhotoModal/ui/AddingPhotoModal'
-import { Button, ImageIcon, useTranslation } from '@/shared'
+import { Button, ImageIcon, useMeQuery, useTranslation } from '@/shared'
 import clsx from 'clsx'
+import Image from 'next/image'
 
 import s from './AddProfilePhoto.module.scss'
 
 type Props = {
+  avatarUrl?: string
   className?: string
 }
 
 export const AddProfilePhoto = ({ className }: Props) => {
+  const { data } = useMeQuery()
+  const avatarUrl = data?.avatarUrl
   const {
     text: {
       profilePage: {
@@ -19,10 +23,10 @@ export const AddProfilePhoto = ({ className }: Props) => {
     },
   } = useTranslation()
   const [open, setOpen] = useState(false)
-  // TODO add request for image useUserMe
-  const image = false
+
   const classNames = {
     button: s.button,
+    image: s.image,
     photo: s.photo,
     root: clsx(s.root, className),
   }
@@ -35,7 +39,19 @@ export const AddProfilePhoto = ({ className }: Props) => {
     <>
       <AddingPhotoModal onOpenChange={setOpen} open={open} />
       <div className={classNames.root}>
-        <div className={classNames.photo}>{!image && <ImageIcon size={4.8} />}</div>
+        <div className={classNames.photo}>
+          {!avatarUrl && <ImageIcon size={4.8} />}
+          {avatarUrl && (
+            <Image
+              alt={'User avatar'}
+              className={classNames.image}
+              height={200}
+              priority
+              src={avatarUrl}
+              width={200}
+            />
+          )}
+        </div>
         <Button className={classNames.button} onClick={openPhotoUploader}>
           {t.addPhotoButton}
         </Button>

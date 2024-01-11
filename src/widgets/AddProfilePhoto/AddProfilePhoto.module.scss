@@ -6,6 +6,8 @@
   .photo {
     @include mixin.flex($justify: center, $align: center);
 
+    position: relative;
+
     overflow: hidden;
 
     width: 19.2rem;
@@ -14,6 +16,10 @@
 
     background-color: var(--color-dark-500);
     border-radius: 50%;
+
+    .image{
+      object-fit: cover;
+    }
   }
 
   .button {
