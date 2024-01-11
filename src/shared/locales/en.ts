@@ -88,6 +88,10 @@ export const en = {
       photoUploader: {
         addPhotoButton: 'Add a Profile Photo',
         modal: {
+          errors: {
+            imageType: 'The photo must have JPEG or PNG format',
+            maxSize: 'The photo size must be less than 10 Mb',
+          },
           saveButton: 'Save',
           selectPhotoButton: 'Add a Profile Photo',
           title: 'Select from Computer',

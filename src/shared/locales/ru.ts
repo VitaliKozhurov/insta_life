@@ -95,6 +95,10 @@ export const ru: LocalesType = {
       photoUploader: {
         addPhotoButton: 'Добавить фотографию профиля',
         modal: {
+          errors: {
+            imageType: 'Фотография должна быть в формате JPEG или PNG',
+            maxSize: 'Размер фото должен быть меньше 10 Мб',
+          },
           saveButton: 'Сохранить',
           selectPhotoButton: 'Добавить фотографию профиля',
           title: 'Выбрать с компьютера',
