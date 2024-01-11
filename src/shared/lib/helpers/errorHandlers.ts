@@ -152,13 +152,15 @@ export const onLogoutErrorHandler = (error: unknown) => {
   }
 }
 
-export const onUploadPhotoErrorHandler = (error: unknown, cb: (value: string) => void) => {
+export const onUploadPhotoErrorHandler = (error: unknown) => {
   if (isFetchBaseQueryError(error)) {
     if (isErrorWithMessageInData(error.data)) {
-      cb(error.data.message)
+      return error.data.message
     }
   }
   if (isFetchError(error)) {
-    getToast({ text: error.error, variant: 'error', withClose: true })
+    return error.error
   }
+
+  return 'Some error occurred'
 }
