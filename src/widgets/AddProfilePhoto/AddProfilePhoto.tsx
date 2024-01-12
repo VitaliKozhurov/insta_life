@@ -22,9 +22,13 @@ type Props = {
 }
 
 export const AddProfilePhoto = ({ className }: Props) => {
-  const { data } = useMeQuery()
+  const { data, fulfilledTimeStamp } = useMeQuery()
   const [deleteAvatar] = useDeleteAvatarMutation()
-  const avatarUrl = data?.avatarUrl
+
+  const avatarUrl = data?.avatarUrl.startsWith('blob')
+    ? `${data?.avatarUrl}`
+    : `${data?.avatarUrl}?${fulfilledTimeStamp}`
+
   const {
     text: {
       profilePage: {
