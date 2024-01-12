@@ -1,6 +1,14 @@
 import { useState } from 'react'
 
-import { Button, ImageIcon, useMeQuery, useTranslation } from '@/shared'
+import {
+  Button,
+  CrossIcon,
+  ImageIcon,
+  onUploadPhotoErrorHandler,
+  useDeleteAvatarMutation,
+  useMeQuery,
+  useTranslation,
+} from '@/shared'
 import clsx from 'clsx'
 import Image from 'next/image'
 
@@ -15,6 +23,7 @@ type Props = {
 
 export const AddProfilePhoto = ({ className }: Props) => {
   const { data } = useMeQuery()
+  const [deleteAvatar] = useDeleteAvatarMutation()
   const avatarUrl = data?.avatarUrl
   const {
     text: {
@@ -27,6 +36,7 @@ export const AddProfilePhoto = ({ className }: Props) => {
 
   const classNames = {
     button: s.button,
+    cross: s.cross,
     image: s.image,
     photo: s.photo,
     root: clsx(s.root, className),
@@ -35,11 +45,22 @@ export const AddProfilePhoto = ({ className }: Props) => {
   const openPhotoUploader = () => {
     setOpen(true)
   }
+  const onRemoveAvatarHandler = () => {
+    deleteAvatar()
+      .unwrap()
+      .then(data => console.log(data))
+      .catch(error => onUploadPhotoErrorHandler(error, true))
+  }
 
   return (
     <>
       <AddingPhotoModal onOpenChange={setOpen} open={open} />
       <div className={classNames.root}>
+        {avatarUrl && (
+          <Button className={classNames.cross} onClick={onRemoveAvatarHandler}>
+            <CrossIcon size={1.6} />
+          </Button>
+        )}
         <div className={classNames.photo}>
           {!avatarUrl && <ImageIcon size={4.8} />}
           {avatarUrl && (

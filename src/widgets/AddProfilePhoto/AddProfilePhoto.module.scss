@@ -3,6 +3,26 @@
 .root {
   @include mixin.flex($direction: column);
 
+  position: relative;
+
+  .cross {
+    @include mixin.flex($justify: center, $align: center);
+
+    position: absolute;
+    z-index: 100;
+    top: 1.8rem;
+    right: 0.6rem;
+
+    box-sizing: content-box;
+    width: 1.6rem;
+    height: 1.6rem;
+    padding: 0;
+
+    background-color: var(--color-danger-500);
+    border: solid 4px var(--color-dark-900);
+    border-radius: 50%;
+  }
+
   .photo {
     @include mixin.flex($justify: center, $align: center);
 
@@ -17,7 +37,7 @@
     background-color: var(--color-dark-500);
     border-radius: 50%;
 
-    .image{
+    .image {
       object-fit: cover;
     }
   }

@@ -19,6 +19,17 @@ export const userApi = baseApi.injectEndpoints({
   endpoints: build => ({
     deleteAvatar: build.mutation<void, void>({
       invalidatesTags: ['Me'],
+      // async onQueryStarted(_, { dispatch, queryFulfilled }) {
+      //   const result = dispatch(userApi.util.updateQueryData('me', _, draft => draft))
+      //
+      //   try {
+      //     const { data: createdPost } = await queryFulfilled
+      //
+      //     // dispatch(userApi.util.invalidateTags(['Me']))
+      //   } catch {
+      //     result.undo()
+      //   }
+      // },
       query: body => ({
         body,
         method: 'DELETE',

@@ -152,15 +152,21 @@ export const onLogoutErrorHandler = (error: unknown) => {
   }
 }
 
-export const onUploadPhotoErrorHandler = (error: unknown) => {
+export const onUploadPhotoErrorHandler = (error: unknown, showToast?: boolean) => {
   if (isFetchBaseQueryError(error)) {
     if (isErrorWithMessageInData(error.data)) {
-      return error.data.message
+      return showToast
+        ? getToast({ text: error.data.message, variant: 'error', withClose: true })
+        : error.data.message
     }
   }
   if (isFetchError(error)) {
-    return error.error
+    return showToast
+      ? getToast({ text: error.error, variant: 'error', withClose: true })
+      : error.error
   }
 
-  return 'Some error occurred'
+  return showToast
+    ? getToast({ text: 'Some error occurred', variant: 'error', withClose: true })
+    : 'Some error occurred'
 }
