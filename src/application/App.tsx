@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode } from 'react'
 import { ToastContainer } from 'react-toastify'
 
+import { AuthProvider } from '@/application'
 import { ReduxProvider } from '@/shared'
-import { GoogleOAuthProvider } from '@react-oauth/google'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 
@@ -22,7 +22,10 @@ export const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
     <>
       <ToastContainer position={'bottom-left'} />
-      <ReduxProvider>{getLayout(<Component {...pageProps} />)}</ReduxProvider>
+
+      <ReduxProvider>
+        <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider>
+      </ReduxProvider>
     </>
   )
 }
