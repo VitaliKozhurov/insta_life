@@ -1,3 +1,5 @@
+import { getFileFromFormData } from '@/shared'
+
 import { baseApi } from './baseApi'
 
 type AuthMeResponseType = {
@@ -45,6 +47,27 @@ export const userApi = baseApi.injectEndpoints({
     }),
     uploadAvatar: build.mutation<void, FormData>({
       invalidatesTags: ['Me'],
+      async onQueryStarted(body: FormData, { dispatch, queryFulfilled }) {
+        let avatarUrl = ''
+        const patchResult = dispatch(
+          userApi.util.updateQueryData('me', undefined, draft => {
+            const avatar = getFileFromFormData(body.get('file'))
+
+            if (avatar) {
+              avatarUrl = URL.createObjectURL(avatar)
+            }
+            draft.avatarUrl = avatarUrl
+          })
+        )
+
+        try {
+          await queryFulfilled
+        } catch {
+          patchResult.undo()
+        } finally {
+          URL.revokeObjectURL(avatarUrl)
+        }
+      },
       query: body => ({
         body,
         method: 'POST',
