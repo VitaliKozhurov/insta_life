@@ -1,3 +1,6 @@
+import { useContext } from 'react'
+
+import { AuthContext } from '@/application'
 import {
   Button,
   ButtonVariant,
@@ -14,11 +17,11 @@ import Link from 'next/link'
 import s from './Header.module.scss'
 
 type Props = {
-  isLoggedIn: boolean
   options?: SelectOptions[]
 }
 
-export const Header = ({ isLoggedIn, options }: Props) => {
+export const Header = ({ options }: Props) => {
+  const { isAuth } = useContext(AuthContext)
   const {
     router,
     text: { header: t },
@@ -50,7 +53,7 @@ export const Header = ({ isLoggedIn, options }: Props) => {
             options={options || languagesOptions}
             value={localeValue}
           />
-          {!isLoggedIn && (
+          {isAuth && (
             <div className={classNames.authLinks}>
               <Button as={Link} href={Routes.SIGN_IN} variant={ButtonVariant.LINK}>
                 {t.signInLink}
