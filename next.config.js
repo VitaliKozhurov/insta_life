@@ -4,7 +4,15 @@ const nextConfig = {
     defaultLocale: 'ru',
     locales: ['en', 'ru'],
   },
-  images: { domains: ['it-incubator.storage.yandexcloud.net'] },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'it-incubator.storage.yandexcloud.net',
+        pathname: '**',
+        protocol: 'https',
+      },
+    ],
+  },
   /* reactStrictMode: true,*/
 }
 

@@ -1,11 +1,12 @@
 import { useState } from 'react'
 
-import { AddingPhotoModal } from '@/features'
 import { Button, ImageIcon, useMeQuery, useTranslation } from '@/shared'
 import clsx from 'clsx'
 import Image from 'next/image'
 
 import s from './AddProfilePhoto.module.scss'
+
+import { AddingPhotoModal } from './AddingPhotoModal'
 
 type Props = {
   avatarUrl?: string

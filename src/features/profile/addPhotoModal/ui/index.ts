@@ -1,1 +1,0 @@
-export { AddingPhotoModal } from './AddingPhotoModal'
