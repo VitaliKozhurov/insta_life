@@ -17,6 +17,14 @@ type AuthMeResponseType = {
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: build => ({
+    deleteAvatar: build.mutation<void, void>({
+      invalidatesTags: ['Me'],
+      query: body => ({
+        body,
+        method: 'DELETE',
+        url: 'user/avatar',
+      }),
+    }),
     me: build.query<AuthMeResponseType, void>({
       providesTags: ['Me'],
       query: () => ({
@@ -35,4 +43,4 @@ export const userApi = baseApi.injectEndpoints({
   }),
 })
 
-export const { useMeQuery, useUploadAvatarMutation } = userApi
+export const { useDeleteAvatarMutation, useMeQuery, useUploadAvatarMutation } = userApi
