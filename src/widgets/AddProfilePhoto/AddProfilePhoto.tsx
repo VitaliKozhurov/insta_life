@@ -25,9 +25,15 @@ export const AddProfilePhoto = ({ className }: Props) => {
   const { data, fulfilledTimeStamp } = useMeQuery()
   const [deleteAvatar] = useDeleteAvatarMutation()
 
-  const avatarUrl = data?.avatarUrl.startsWith('blob')
-    ? `${data?.avatarUrl}`
-    : `${data?.avatarUrl}?${fulfilledTimeStamp}`
+  let avatarUrl
+
+  if (data?.avatarUrl) {
+    avatarUrl = data?.avatarUrl.startsWith('blob')
+      ? `${data?.avatarUrl}`
+      : `${data?.avatarUrl}?${fulfilledTimeStamp}`
+  } else {
+    avatarUrl = data?.avatarUrl
+  }
 
   const {
     text: {
@@ -52,7 +58,6 @@ export const AddProfilePhoto = ({ className }: Props) => {
   const onRemoveAvatarHandler = () => {
     deleteAvatar()
       .unwrap()
-      .then(data => console.log(data))
       .catch(error => onUploadPhotoErrorHandler(error, true))
   }
 

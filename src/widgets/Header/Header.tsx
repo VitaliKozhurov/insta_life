@@ -53,7 +53,7 @@ export const Header = ({ options }: Props) => {
             options={options || languagesOptions}
             value={localeValue}
           />
-          {isAuth && (
+          {!isAuth && (
             <div className={classNames.authLinks}>
               <Button as={Link} href={Routes.SIGN_IN} variant={ButtonVariant.LINK}>
                 {t.signInLink}
