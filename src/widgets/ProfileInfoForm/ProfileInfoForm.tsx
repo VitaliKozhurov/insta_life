@@ -1,11 +1,12 @@
+import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import {
   Button,
   ControlledInput,
   ControlledSelect,
+  DateInput,
   SelectOptions,
-  TextField,
   UserProfileRequestType,
   useMeQuery,
   useUpdateUserProfileMutation,
@@ -27,6 +28,7 @@ const citiesOptions: SelectOptions[] = [
 ]
 
 export const ProfileInfoForm = () => {
+  const [selectedDay, setSelectedDay] = useState<Date>()
   const { data } = useMeQuery()
   const [updateProfile] = useUpdateUserProfileMutation()
   const formData = {
@@ -39,8 +41,9 @@ export const ProfileInfoForm = () => {
     username: data?.username || '',
   }
 
-  const { control, formState, handleSubmit } = useProfileForm(formData)
+  const { control, formState, handleSubmit, watch } = useProfileForm(formData)
 
+  console.log(watch('dateOfBirth'))
   const onSubmitHandler = (data: UserProfileRequestType) => {
     console.log(data)
   }
@@ -50,7 +53,26 @@ export const ProfileInfoForm = () => {
       <ControlledInput control={control} isRequired label={'Username'} name={'username'} />
       <ControlledInput control={control} isRequired label={'First Name'} name={'firstName'} />
       <ControlledInput control={control} isRequired label={'Last Name'} name={'lastName'} />
-      {/*<DatePicker fullWidth mode={'single'} />*/}
+      <DatePicker mode={'single'} selectedDay={selectedDay} setSelectedDay={setSelectedDay}>
+        <Controller
+          control={control}
+          name={'dateOfBirth'}
+          render={({ field: { ref }, fieldState: {}, formState: {} }) => {
+            const value = new Date().getSeconds()
+
+            return (
+              <DateInput
+                fullWidth
+                label={'Date of birth'}
+                mode={'single'}
+                ref={ref}
+                selectedDay={selectedDay}
+                value={value}
+              />
+            )
+          }}
+        />
+      </DatePicker>
       <div className={s.selectWrapper}>
         <div className={s.select}>
           <ControlledSelect

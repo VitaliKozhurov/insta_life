@@ -21,7 +21,7 @@ export type UserProfileRequestType = {
   aboutMe: string
   city: string
   country: string
-  dateOfBirth?: string
+  dateOfBirth: string
   firstName: string
   lastName: string
   username: string

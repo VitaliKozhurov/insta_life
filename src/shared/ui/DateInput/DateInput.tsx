@@ -13,7 +13,7 @@ type Props = {
   label?: string
   mode?: 'range' | 'single'
   selectedDay?: Date | undefined
-} & Omit<ComponentPropsWithoutRef<'input'>, 'value'>
+} & ComponentPropsWithoutRef<'input'>
 
 export const DateInput = forwardRef<ElementRef<'input'>, Props>(
   (
@@ -56,7 +56,7 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
             placeholder={datePlaceholder}
             readOnly
             ref={ref}
-            value={inputValue}
+            // value={inputValue}
             {...restProps}
           />
           <button className={classNames.calendar} disabled={disabled}>

@@ -14,6 +14,7 @@ const userProfileSchema = () =>
     aboutMe: z.string().trim().max(200, 'Error max length').regex(ABOUT_ME_PATTERN, 'Regex error'),
     city: z.string(),
     country: z.string(),
+    dateOfBirth: z.string(),
     firstName: z
       .string()
       .trim()
