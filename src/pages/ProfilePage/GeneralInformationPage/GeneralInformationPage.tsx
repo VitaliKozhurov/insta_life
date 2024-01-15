@@ -10,14 +10,9 @@ export const GeneralInformationPage = () => {
   return (
     <>
       <HeadMeta title={'Profile'} />
-      <main>
-        <div className={s.rootGeneral}>
-          <AddProfilePhoto className={s.profilePhoto} />
-          <ProfileInfoForm />
-        </div>
-        <div style={{ textAlign: 'right' }}>
-          <Button>Save changes</Button>
-        </div>
+      <main className={s.rootGeneral}>
+        <AddProfilePhoto className={s.profilePhoto} />
+        <ProfileInfoForm />
       </main>
     </>
   )
