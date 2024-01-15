@@ -1,18 +1,18 @@
-import { getFileFromFormData } from '@/shared'
+import { Nullable, getFileFromFormData } from '@/shared'
 
 import { baseApi } from './baseApi'
 
 type AuthMeResponseType = {
-  aboutMe: string
-  avatarUrl: string
-  city: string
-  country: string
+  aboutMe: Nullable<string>
+  avatarUrl: Nullable<string>
+  city: Nullable<string>
+  country: Nullable<string>
   createdAt: string
-  dateOfBirth: string
+  dateOfBirth: Nullable<string>
   email: string
-  firstName: string
+  firstName: Nullable<string>
   id: string
-  lastName: string
+  lastName: Nullable<string>
   updatedAt: string
   username: string
 }
