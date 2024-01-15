@@ -10,6 +10,7 @@ import {
   useMeQuery,
   useUpdateUserProfileMutation,
 } from '@/shared'
+import { ControlledTextField } from '@/shared/controlledUI/ControlledTextField'
 import { DatePicker } from '@/widgets'
 import { useProfileForm } from '@/widgets/ProfileInfoForm/lib'
 
@@ -74,14 +75,7 @@ export const ProfileInfoForm = () => {
           />
         </div>
       </div>
-      <Controller
-        control={control}
-        name={'aboutMe'}
-        render={({ field: { onChange, ref, value } }) => (
-          <TextField fullWidth label={'About me'} onChange={onChange} ref={ref} value={value} />
-        )}
-      />
-
+      <ControlledTextField control={control} fullWidth label={'About me'} name={'aboutMe'} />
       <Button className={s.submitButton}>Save changes</Button>
     </form>
   )
