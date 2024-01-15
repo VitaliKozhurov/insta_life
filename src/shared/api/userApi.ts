@@ -18,10 +18,10 @@ type AuthMeResponseType = {
 }
 
 export type UserProfileRequestType = {
-  aboutMe: string
-  city: string
-  country: string
-  dateOfBirth: string
+  aboutMe?: string
+  city?: string
+  country?: string
+  dateOfBirth?: Date
   firstName: string
   lastName: string
   username: string
