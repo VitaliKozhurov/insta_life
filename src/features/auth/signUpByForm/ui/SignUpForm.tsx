@@ -7,7 +7,7 @@ import {
   Trans,
   Typography,
   TypographyVariant,
-  onAuthErrorsHandler,
+  onSendFormErrorsHandlers,
   useSignUpMutation,
   useTranslation,
 } from '@/shared'
@@ -53,7 +53,7 @@ export const SignUpForm = ({ onSendFormData }: Props) => {
         onSendFormData(formData.email)
         reset()
       })
-      .catch(error => onAuthErrorsHandler(error, setError))
+      .catch(error => onSendFormErrorsHandlers(error, setError))
   }
   const isDisabledButton = !isValid || !watch('policyAgreement')
 

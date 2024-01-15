@@ -1,1 +1,1 @@
-export { useProfileForm } from './useProfileForm'
+export { type UserProfileFormValuesType, useProfileForm } from './useProfileForm'

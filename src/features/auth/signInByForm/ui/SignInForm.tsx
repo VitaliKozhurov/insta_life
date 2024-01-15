@@ -5,7 +5,7 @@ import {
   Routes,
   Typography,
   TypographyVariant,
-  onAuthErrorsHandler,
+  onSendFormErrorsHandlers,
   saveToLocalStorage,
   useSignInMutation,
   useTranslation,
@@ -45,7 +45,7 @@ export const SignInForm = () => {
         saveToLocalStorage('token', data.accessToken)
         router.push(Routes.HOME)
       })
-      .catch(error => onAuthErrorsHandler(error, setError, 'password'))
+      .catch(error => onSendFormErrorsHandlers(error, setError, 'password'))
   }
 
   return (

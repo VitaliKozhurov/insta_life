@@ -44,11 +44,12 @@ const isErrorWithMessageInData = (data: unknown): data is { message: string } =>
   )
 }
 
-export const onAuthErrorsHandler = <T>(
+export const onSendFormErrorsHandlers = <T>(
   error: unknown,
   setError: (name: T, error: ErrorOption) => void,
   fieldName?: T
 ) => {
+  console.log('Call error handler')
   if (isFetchBaseQueryError(error)) {
     if (isArrayOfErrors(error.data)) {
       error.data.message.forEach(item =>
@@ -60,7 +61,7 @@ export const onAuthErrorsHandler = <T>(
         setError(fieldName, { message: error.data.message, type: 'validationError' })
       } else if (error.status === 404) {
         getToast({
-          text: 'The link you followed may be outdated or incorrect',
+          text: 'Incorrect request address, check your request url!',
           variant: 'error',
           withClose: true,
         })

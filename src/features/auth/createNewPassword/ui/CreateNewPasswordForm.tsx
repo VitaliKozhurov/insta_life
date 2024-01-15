@@ -5,7 +5,7 @@ import {
   Typography,
   TypographyVariant,
   checkRecoveryCodeError,
-  onAuthErrorsHandler,
+  onSendFormErrorsHandlers,
   useCreateNewPasswordMutation,
   useTranslation,
 } from '@/shared'
@@ -53,7 +53,7 @@ export const CreateNewPasswordForm = ({ setIsErrorFetch }: Props) => {
         if (checkRecoveryCodeError(error)) {
           setIsErrorFetch(true)
         } else {
-          onAuthErrorsHandler(error, setError)
+          onSendFormErrorsHandlers(error, setError)
         }
       })
   }

@@ -1,9 +1,9 @@
 export {
   checkConfirmationCodeError,
   checkRecoveryCodeError,
-  onAuthErrorsHandler,
   onGoogleOauthErrorHandler,
   onLogoutErrorHandler,
+  onSendFormErrorsHandlers,
   onUploadPhotoErrorHandler,
 } from './errorHandlers'
 export { firstLetterUppercaseTransform } from './firstLetterUppercaseTransform'
