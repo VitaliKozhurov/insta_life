@@ -8,6 +8,7 @@ export {
 } from './errorHandlers'
 export { firstLetterUppercaseTransform } from './firstLetterUppercaseTransform'
 export { getCroppedImage } from './getCroppedImage'
+export { getDateInputValue } from './getDateInputValue'
 export { getFallBackUserName } from './getFallBackUserName'
 export { getFileFromFormData } from './getFileFromFormData'
 export { getFromLocalStorage } from './getFromLocalStorage'

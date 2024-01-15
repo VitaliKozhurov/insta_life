@@ -58,7 +58,8 @@ export const userApi = baseApi.injectEndpoints({
     }),
     updateUserProfile: build.mutation<AuthMeResponseType, UserProfileRequestType>({
       invalidatesTags: ['Me'],
-      query: () => ({
+      query: body => ({
+        body,
         method: 'PUT',
         url: 'user',
       }),

@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { format } from 'date-fns'
-
 import { DateInput } from './DateInput'
 
 const meta = {
@@ -39,17 +37,18 @@ export const DisabledDateInput: Story = {
 export const DateInputSingleMode: Story = {
   args: {
     label: 'Single mode date',
-    value: format(new Date(), 'dd/MM/yyyy'),
+    selectedDay: new Date(),
   },
 }
 const today = new Date()
 const nextDay = new Date(today)
 
 nextDay.setDate(today.getDate() + 1)
+
 export const DateInputRangeMode: Story = {
   args: {
+    daysRange: { from: new Date(), to: nextDay },
     label: 'Range mode date',
     mode: 'range',
-    value: format(new Date(), 'dd/MM/yyyy') + ' - ' + format(nextDay, 'dd/MM/yyyy'),
   },
 }
