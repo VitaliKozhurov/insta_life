@@ -1,18 +1,13 @@
 import { useForm } from 'react-hook-form'
 
-import { ABOUT_ME_PATTERN, USER_FIRST_LAST_NAME_PATTERN, USERNAME_PATTERN } from '@/shared'
+import {
+  ABOUT_ME_PATTERN,
+  USER_FIRST_LAST_NAME_PATTERN,
+  USERNAME_PATTERN,
+  UserProfileRequestType,
+} from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-
-type UserProfileData = {
-  aboutMe: string
-  city: string
-  country: string
-  dateOfBirth: string
-  firstName: string
-  lastName: string
-  username: string
-}
 
 const userProfileSchema = () =>
   z.object({
@@ -41,7 +36,7 @@ const userProfileSchema = () =>
 
 export type UserProfileFormValuesType = z.infer<ReturnType<typeof userProfileSchema>>
 
-export const useProfileForm = (values: UserProfileData) =>
+export const useProfileForm = (values: UserProfileRequestType) =>
   useForm<UserProfileFormValuesType>({
     mode: 'onTouched',
     resolver: zodResolver(userProfileSchema()),
