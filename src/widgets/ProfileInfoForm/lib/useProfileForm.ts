@@ -1,11 +1,6 @@
 import { useForm } from 'react-hook-form'
 
-import {
-  ABOUT_ME_PATTERN,
-  USER_FIRST_LAST_NAME_PATTERN,
-  USERNAME_PATTERN,
-  UserProfileRequestType,
-} from '@/shared'
+import { ABOUT_ME_PATTERN, USER_FIRST_LAST_NAME_PATTERN, USERNAME_PATTERN } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
@@ -14,7 +9,7 @@ const userProfileSchema = () =>
     aboutMe: z.string().trim().max(200, 'Error max length').regex(ABOUT_ME_PATTERN, 'Regex error'),
     city: z.string(),
     country: z.string(),
-    dateOfBirth: z.string(),
+    dateOfBirth: z.date().optional(),
     firstName: z
       .string()
       .trim()
@@ -37,7 +32,7 @@ const userProfileSchema = () =>
 
 export type UserProfileFormValuesType = z.infer<ReturnType<typeof userProfileSchema>>
 
-export const useProfileForm = (values: UserProfileRequestType) =>
+export const useProfileForm = (values: UserProfileFormValuesType) =>
   useForm<UserProfileFormValuesType>({
     mode: 'onTouched',
     resolver: zodResolver(userProfileSchema()),
