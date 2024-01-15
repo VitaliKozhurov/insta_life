@@ -1,7 +1,6 @@
-import { useForm } from 'react-hook-form'
-
-import { ControlledInput, ControlledSelect, SelectOptions, TextField } from '@/shared'
+import { ControlledInput, ControlledSelect, SelectOptions, TextField, useMeQuery } from '@/shared'
 import { DatePicker } from '@/widgets'
+import { useProfileForm } from '@/widgets/ProfileInfoForm/lib'
 
 import s from './ProfileInfoForm.module.scss'
 
@@ -16,11 +15,22 @@ const citiesOptions: SelectOptions[] = [
 ]
 
 export const ProfileInfoForm = () => {
-  const { control } = useForm()
+  const { data } = useMeQuery()
+  const formData = {
+    aboutMe: data?.aboutMe || '',
+    city: data?.city || '',
+    country: data?.country || '',
+    dateOfBirth: data?.dateOfBirth || '',
+    firstName: data?.firstName || '',
+    lastName: data?.lastName || '',
+    username: data?.username || '',
+  }
+
+  const { control, handleSubmit } = useProfileForm(formData)
 
   return (
     <form className={s.form}>
-      <ControlledInput control={control} isRequired label={'Username'} name={'userName'} />
+      <ControlledInput control={control} isRequired label={'Username'} name={'username'} />
       <ControlledInput control={control} isRequired label={'First Name'} name={'firstName'} />
       <ControlledInput control={control} isRequired label={'Last Name'} name={'lastName'} />
       <DatePicker fullWidth mode={'single'} />
@@ -33,6 +43,7 @@ export const ProfileInfoForm = () => {
             label={'Select your country'}
             name={'country'}
             options={countriesOptions}
+            placeholder={'Country'}
           />
         </div>
         <div className={s.select}>
@@ -43,6 +54,7 @@ export const ProfileInfoForm = () => {
             label={'Select your city'}
             name={'city'}
             options={citiesOptions}
+            placeholder={'City'}
           />
         </div>
       </div>
