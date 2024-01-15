@@ -8,6 +8,7 @@ import {
   DateInput,
   SelectOptions,
   onSendFormErrorsHandlers,
+  profileFormDataCreator,
   useMeQuery,
   useUpdateUserProfileMutation,
 } from '@/shared'
@@ -30,17 +31,23 @@ const citiesOptions: SelectOptions[] = [
 export const ProfileInfoForm = () => {
   const { data } = useMeQuery()
   const [updateProfile] = useUpdateUserProfileMutation()
-  const formData = {
-    aboutMe: data?.aboutMe || '',
-    city: data?.city || '',
-    country: data?.country || '',
-    dateOfBirth: (data?.dateOfBirth && new Date(data.dateOfBirth)) || undefined,
-    firstName: data?.firstName || '',
-    lastName: data?.lastName || '',
-    username: data?.username || '',
+  const formData = profileFormDataCreator(data)
+
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    setError,
+  } = useProfileForm(formData)
+
+  const classNames = {
+    form: s.form,
+    formField(error?: string) {
+      return error && s.formFieldWithError
+    },
   }
 
-  const { control, handleSubmit, setError } = useProfileForm(formData)
+  console.log(errors)
 
   const onSubmitHandler = (data: UserProfileFormValuesType) => {
     updateProfile(data)
@@ -51,10 +58,22 @@ export const ProfileInfoForm = () => {
   }
 
   return (
-    <form className={s.form} onSubmit={handleSubmit(onSubmitHandler)}>
+    <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
       <ControlledInput control={control} isRequired label={'Username'} name={'username'} />
-      <ControlledInput control={control} isRequired label={'First Name'} name={'firstName'} />
-      <ControlledInput control={control} isRequired label={'Last Name'} name={'lastName'} />
+      <ControlledInput
+        className={classNames.formField(errors.firstName?.message)}
+        control={control}
+        isRequired
+        label={'First Name'}
+        name={'firstName'}
+      />
+      <ControlledInput
+        className={classNames.formField(errors.lastName?.message)}
+        control={control}
+        isRequired
+        label={'Last Name'}
+        name={'lastName'}
+      />
       <Controller
         control={control}
         name={'dateOfBirth'}

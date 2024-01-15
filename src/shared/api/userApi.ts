@@ -2,7 +2,7 @@ import { Nullable, getFileFromFormData } from '@/shared'
 
 import { baseApi } from './baseApi'
 
-type AuthMeResponseType = {
+export type UserResponseType = {
   aboutMe: Nullable<string>
   avatarUrl: Nullable<string>
   city: Nullable<string>
@@ -49,14 +49,14 @@ export const userApi = baseApi.injectEndpoints({
         url: 'user/avatar',
       }),
     }),
-    me: build.query<AuthMeResponseType, void>({
+    me: build.query<UserResponseType, void>({
       providesTags: ['Me'],
       query: () => ({
         method: 'GET',
         url: 'user/me',
       }),
     }),
-    updateUserProfile: build.mutation<AuthMeResponseType, UserProfileRequestType>({
+    updateUserProfile: build.mutation<UserResponseType, UserProfileRequestType>({
       invalidatesTags: ['Me'],
       query: body => ({
         body,

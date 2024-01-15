@@ -12,6 +12,7 @@ export {
 export { baseApi } from './baseApi'
 export {
   type UserProfileRequestType,
+  type UserResponseType,
   useDeleteAvatarMutation,
   useMeQuery,
   useUpdateUserProfileMutation,
