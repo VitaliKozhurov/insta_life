@@ -43,6 +43,7 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
       label: clsx(s.label, disabled && s.disabledLabel),
       root: clsx(s.root, fullWidth && s.fullWidth, mode === 'range' && s.rangeMode, className),
     }
+
     const datePlaceholder = mode === 'single' ? placeholder : placeholder + ' - ' + placeholder
     const inputValue = getDateInputValue(mode, selectedDay, daysRange)
 
@@ -56,7 +57,7 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
             placeholder={datePlaceholder}
             readOnly
             ref={ref}
-            // value={inputValue}
+            value={inputValue}
             {...restProps}
           />
           <button className={classNames.calendar} disabled={disabled}>

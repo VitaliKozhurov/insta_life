@@ -1,21 +1,21 @@
-import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import {
   Button,
   ControlledInput,
   ControlledSelect,
+  ControlledTextField,
   DateInput,
   SelectOptions,
-  UserProfileRequestType,
+  onSendFormErrorsHandlers,
   useMeQuery,
   useUpdateUserProfileMutation,
 } from '@/shared'
-import { ControlledTextField } from '@/shared/controlledUI/ControlledTextField'
 import { DatePicker } from '@/widgets'
-import { useProfileForm } from '@/widgets/ProfileInfoForm/lib'
 
 import s from './ProfileInfoForm.module.scss'
+
+import { UserProfileFormValuesType, useProfileForm } from './lib'
 
 const countriesOptions: SelectOptions[] = [
   { title: 'Belarus', value: 'belarus' },
@@ -28,24 +28,26 @@ const citiesOptions: SelectOptions[] = [
 ]
 
 export const ProfileInfoForm = () => {
-  const [selectedDay, setSelectedDay] = useState<Date>()
   const { data } = useMeQuery()
   const [updateProfile] = useUpdateUserProfileMutation()
   const formData = {
     aboutMe: data?.aboutMe || '',
     city: data?.city || '',
     country: data?.country || '',
-    dateOfBirth: data?.dateOfBirth || '',
+    dateOfBirth: (data?.dateOfBirth && new Date(data.dateOfBirth)) || undefined,
     firstName: data?.firstName || '',
     lastName: data?.lastName || '',
     username: data?.username || '',
   }
 
-  const { control, formState, handleSubmit, watch } = useProfileForm(formData)
+  const { control, handleSubmit, setError } = useProfileForm(formData)
 
-  console.log(watch('dateOfBirth'))
-  const onSubmitHandler = (data: UserProfileRequestType) => {
-    console.log(data)
+  const onSubmitHandler = (data: UserProfileFormValuesType) => {
+    updateProfile(data)
+      .unwrap()
+      .catch(err => {
+        onSendFormErrorsHandlers(err, setError)
+      })
   }
 
   return (
@@ -53,26 +55,24 @@ export const ProfileInfoForm = () => {
       <ControlledInput control={control} isRequired label={'Username'} name={'username'} />
       <ControlledInput control={control} isRequired label={'First Name'} name={'firstName'} />
       <ControlledInput control={control} isRequired label={'Last Name'} name={'lastName'} />
-      <DatePicker mode={'single'} selectedDay={selectedDay} setSelectedDay={setSelectedDay}>
-        <Controller
-          control={control}
-          name={'dateOfBirth'}
-          render={({ field: { ref }, fieldState: {}, formState: {} }) => {
-            const value = new Date().getSeconds()
-
-            return (
+      <Controller
+        control={control}
+        name={'dateOfBirth'}
+        render={({ field: { onChange, value }, fieldState: { error } }) => {
+          return (
+            <DatePicker mode={'single'} selectedDay={value} setSelectedDay={onChange}>
               <DateInput
+                error={error?.message}
                 fullWidth
                 label={'Date of birth'}
                 mode={'single'}
-                ref={ref}
-                selectedDay={selectedDay}
-                value={value}
+                placeholder={'00/00/0000'}
+                selectedDay={value}
               />
-            )
-          }}
-        />
-      </DatePicker>
+            </DatePicker>
+          )
+        }}
+      />
       <div className={s.selectWrapper}>
         <div className={s.select}>
           <ControlledSelect

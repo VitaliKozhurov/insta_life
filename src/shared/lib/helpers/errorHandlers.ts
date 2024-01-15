@@ -49,7 +49,6 @@ export const onSendFormErrorsHandlers = <T>(
   setError: (name: T, error: ErrorOption) => void,
   fieldName?: T
 ) => {
-  console.log('Call error handler')
   if (isFetchBaseQueryError(error)) {
     if (isArrayOfErrors(error.data)) {
       error.data.message.forEach(item =>
