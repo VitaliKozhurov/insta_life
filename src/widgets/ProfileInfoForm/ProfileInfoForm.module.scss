@@ -3,6 +3,7 @@
 .form {
   @include mixin.flex($direction: column, $gap: 2.4rem);
 
+  position: relative;
   width: 100%;
 
   .selectWrapper {
@@ -11,5 +12,11 @@
     .select {
       flex: 1 1 100%;
     }
+  }
+
+  .submitButton {
+    position: absolute;
+    right: 0;
+    bottom: -7.2rem;
   }
 }
