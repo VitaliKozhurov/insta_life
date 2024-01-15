@@ -17,6 +17,16 @@ type AuthMeResponseType = {
   username: string
 }
 
+type UserProfileRequestType = {
+  aboutMe: string
+  city: string
+  country: string
+  dateOfBirth: string
+  firstName: string
+  lastName: string
+  username: string
+}
+
 export const userApi = baseApi.injectEndpoints({
   endpoints: build => ({
     deleteAvatar: build.mutation<void, void>({
@@ -44,6 +54,13 @@ export const userApi = baseApi.injectEndpoints({
       query: () => ({
         method: 'GET',
         url: 'user/me',
+      }),
+    }),
+    updateUserProfile: build.mutation<AuthMeResponseType, UserProfileRequestType>({
+      invalidatesTags: ['Me'],
+      query: () => ({
+        method: 'PUT',
+        url: 'user',
       }),
     }),
     uploadAvatar: build.mutation<void, FormData>({
@@ -78,4 +95,9 @@ export const userApi = baseApi.injectEndpoints({
   }),
 })
 
-export const { useDeleteAvatarMutation, useMeQuery, useUploadAvatarMutation } = userApi
+export const {
+  useDeleteAvatarMutation,
+  useMeQuery,
+  useUpdateUserProfileMutation,
+  useUploadAvatarMutation,
+} = userApi
