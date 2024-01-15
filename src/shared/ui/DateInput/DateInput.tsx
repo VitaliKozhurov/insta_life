@@ -1,27 +1,32 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { DateRange } from 'react-day-picker'
 
-import { CalendarIcon } from '@/shared'
+import { CalendarIcon, getDateInputValue } from '@/shared'
 import clsx from 'clsx'
 
 import s from './DateInput.module.scss'
 
 type Props = {
+  daysRange?: DateRange | undefined
   error?: string
   fullWidth?: boolean
   label?: string
   mode?: 'range' | 'single'
-} & ComponentPropsWithoutRef<'input'>
+  selectedDay?: Date | undefined
+} & Omit<ComponentPropsWithoutRef<'input'>, 'value'>
 
 export const DateInput = forwardRef<ElementRef<'input'>, Props>(
   (
     {
       className,
+      daysRange,
       disabled,
       error,
       fullWidth,
       label,
       mode = 'single',
       placeholder,
+      selectedDay,
       ...restProps
     }: Props,
     ref
@@ -39,6 +44,7 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
       root: clsx(s.root, fullWidth && s.fullWidth, mode === 'range' && s.rangeMode, className),
     }
     const datePlaceholder = mode === 'single' ? placeholder : placeholder + ' - ' + placeholder
+    const inputValue = getDateInputValue(mode, selectedDay, daysRange)
 
     return (
       <div className={classNames.root}>
@@ -50,6 +56,7 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
             placeholder={datePlaceholder}
             readOnly
             ref={ref}
+            value={inputValue}
             {...restProps}
           />
           <button className={classNames.calendar} disabled={disabled}>
