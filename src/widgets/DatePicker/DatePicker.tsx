@@ -5,8 +5,6 @@ import { inter } from '@/application'
 import { Calendar } from '@/shared'
 import * as RadixDropDown from '@radix-ui/react-dropdown-menu'
 
-import s from './DatePicker.module.scss'
-
 export type DatePickerProps = {
   children: ReactNode
   daysRange?: DateRange | undefined
@@ -29,10 +27,10 @@ export const DatePicker = ({
   return (
     <RadixDropDown.Root onOpenChange={setOpen} open={open}>
       <RadixDropDown.Trigger asChild>
-        <div className={s.trigger}>{children}</div>
+        <div>{children}</div>
       </RadixDropDown.Trigger>
       <RadixDropDown.Portal>
-        <RadixDropDown.Content align={'start'} className={s.content}>
+        <RadixDropDown.Content align={'start'}>
           <Calendar
             className={inter.className}
             mode={mode}

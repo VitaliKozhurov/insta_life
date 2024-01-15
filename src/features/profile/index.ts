@@ -1,1 +1,1 @@
-export * from './photoUploader'
+export * from './PhotoUploader'
