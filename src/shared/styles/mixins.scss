@@ -120,3 +120,29 @@
     color: var(--color-accent-500);
   }
 }
+
+@mixin scroll-container($height: 36rem) {
+  scrollbar-width: thin;
+  position: relative;
+  overflow: hidden auto;
+  max-height: $height;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-dark-300);
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: var(--color-dark-100);
+    border-radius: 2px;
+
+    &:hover {
+      background-color: var(--color-light-900);
+    }
+  }
+}
