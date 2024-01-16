@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 
 import {
@@ -6,42 +7,45 @@ import {
   ControlledSelect,
   ControlledTextField,
   DateInput,
-  SelectOptions,
   onSendFormErrorsHandlers,
   profileFormDataCreator,
+  useGetCitiesMutation,
+  useGetCountriesQuery,
   useMeQuery,
   useUpdateUserProfileMutation,
 } from '@/shared'
-import { useGetCountriesQuery } from '@/shared/api/countriesApi'
 import { DatePicker } from '@/widgets'
 
 import s from './ProfileInfoForm.module.scss'
 
 import { UserProfileFormValuesType, useProfileForm } from './lib'
 
-const countriesOptions: SelectOptions[] = [
-  { title: 'Belarus', value: 'belarus' },
-  { title: 'Russia', value: 'russia' },
-]
-
-const citiesOptions: SelectOptions[] = [
-  { title: 'Minsk', value: 'minsk' },
-  { title: 'Moscow', value: 'moscow' },
-]
-
 export const ProfileInfoForm = () => {
   const { data } = useMeQuery()
-  const { data: countriesData } = useGetCountriesQuery()
-  const [updateProfile] = useUpdateUserProfileMutation()
   const formData = profileFormDataCreator(data)
+  const { data: countriesOptions = [{ title: formData.country, value: formData.country }] } =
+    useGetCountriesQuery()
+  const [updateProfile] = useUpdateUserProfileMutation()
+  const [
+    getCitiesByCountry,
+    { data: citiesOptions = [{ title: formData.city, value: formData.city }] },
+  ] = useGetCitiesMutation()
 
-  console.log(countriesData)
   const {
     control,
     formState: { errors },
     handleSubmit,
     setError,
+    watch,
   } = useProfileForm(formData)
+  const country = watch('country')
+
+  useEffect(() => {
+    if (!country) {
+      return
+    }
+    getCitiesByCountry({ country })
+  }, [country])
 
   const classNames = {
     form: s.form,
