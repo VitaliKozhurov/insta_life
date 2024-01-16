@@ -1,15 +1,18 @@
 import { useDispatch } from 'react-redux'
 
-import { baseApi, userApi } from '@/shared'
+import { baseApi, countriesApi } from '@/shared'
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
 export const store = configureStore({
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(baseApi.middleware).concat(userApi.middleware),
+    getDefaultMiddleware()
+      .concat(baseApi.middleware) //  TODO remove one base api
+      .concat(baseApi.middleware)
+      .concat(countriesApi.middleware),
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
-    [userApi.reducerPath]: userApi.reducer,
+    [countriesApi.reducerPath]: countriesApi.reducer,
   },
 })
 setupListeners(store.dispatch)
