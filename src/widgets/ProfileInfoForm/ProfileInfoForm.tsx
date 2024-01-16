@@ -36,6 +36,7 @@ export const ProfileInfoForm = () => {
     formState: { errors },
     handleSubmit,
     setError,
+    setValue,
     watch,
   } = useProfileForm(formData)
   const country = watch('country')
@@ -44,9 +45,10 @@ export const ProfileInfoForm = () => {
     if (!country) {
       return
     }
+    setValue('city', '')
     getCitiesByCountry({ country })
   }, [country])
-
+  console.log(watch('city'))
   const classNames = {
     form: s.form,
     formField(error?: string) {

@@ -80,6 +80,39 @@ const notificationChildren = (
         7 часов назад
       </Typography>
     </DropDownItem>
+    <DropDownItem className={s.notificationItem}>
+      <Typography as={'h4'} className={s.notificationTitle} variant={TypographyVariant.Regular_14}>
+        Новое уведомление!
+      </Typography>
+      <Typography as={'p'} variant={TypographyVariant.Regular_14}>
+        Следующий платеж у вас спишется через 1 день
+      </Typography>
+      <Typography as={'span'} className={s.notificationTime} variant={TypographyVariant.Small_text}>
+        7 часов назад
+      </Typography>
+    </DropDownItem>
+    <DropDownItem className={s.notificationItem}>
+      <Typography as={'h4'} className={s.notificationTitle} variant={TypographyVariant.Regular_14}>
+        Новое уведомление!
+      </Typography>
+      <Typography as={'p'} variant={TypographyVariant.Regular_14}>
+        Следующий платеж у вас спишется через 1 день
+      </Typography>
+      <Typography as={'span'} className={s.notificationTime} variant={TypographyVariant.Small_text}>
+        7 часов назад
+      </Typography>
+    </DropDownItem>
+    <DropDownItem className={s.notificationItem}>
+      <Typography as={'h4'} className={s.notificationTitle} variant={TypographyVariant.Regular_14}>
+        Новое уведомление!
+      </Typography>
+      <Typography as={'p'} variant={TypographyVariant.Regular_14}>
+        Следующий платеж у вас спишется через 1 день
+      </Typography>
+      <Typography as={'span'} className={s.notificationTime} variant={TypographyVariant.Small_text}>
+        7 часов назад
+      </Typography>
+    </DropDownItem>
   </>
 )
 
