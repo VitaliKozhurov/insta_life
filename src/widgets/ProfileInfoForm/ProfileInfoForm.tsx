@@ -35,7 +35,7 @@ export const ProfileInfoForm = () => {
   const [updateProfile] = useUpdateUserProfileMutation()
   const formData = profileFormDataCreator(data)
 
-  console.log(countriesData?.data)
+  console.log(countriesData)
   const {
     control,
     formState: { errors },
