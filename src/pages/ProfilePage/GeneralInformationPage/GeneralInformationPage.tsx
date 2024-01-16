@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
 
 import { AuthLayout, ProfilePageLayout, RootLayout } from '@/pages'
-import { Button, HeadMeta } from '@/shared'
+import { HeadMeta } from '@/shared'
 import { AddProfilePhoto, ProfileInfoForm } from '@/widgets'
 
 import s from './GeneralInformationPage.module.scss'

@@ -12,6 +12,7 @@ import {
   useMeQuery,
   useUpdateUserProfileMutation,
 } from '@/shared'
+import { useGetCountriesQuery } from '@/shared/api/countriesApi'
 import { DatePicker } from '@/widgets'
 
 import s from './ProfileInfoForm.module.scss'
@@ -30,9 +31,11 @@ const citiesOptions: SelectOptions[] = [
 
 export const ProfileInfoForm = () => {
   const { data } = useMeQuery()
+  const { data: countriesData } = useGetCountriesQuery()
   const [updateProfile] = useUpdateUserProfileMutation()
   const formData = profileFormDataCreator(data)
 
+  console.log(countriesData?.data)
   const {
     control,
     formState: { errors },
@@ -46,8 +49,6 @@ export const ProfileInfoForm = () => {
       return error && s.formFieldWithError
     },
   }
-
-  console.log(errors)
 
   const onSubmitHandler = (data: UserProfileFormValuesType) => {
     updateProfile(data)
