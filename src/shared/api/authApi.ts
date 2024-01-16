@@ -34,7 +34,7 @@ type LoginResponseType = {
   accessToken: string
 }
 
-const authApi = baseApi.injectEndpoints({
+export const authApi = baseApi.injectEndpoints({
   endpoints: build => ({
     createNewPassword: build.mutation<void, CreateNewPasswordRequestType>({
       query: body => ({

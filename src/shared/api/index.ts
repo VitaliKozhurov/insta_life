@@ -10,6 +10,8 @@ export {
   useSignUpMutation,
 } from './authApi'
 export { baseApi } from './baseApi'
+export { countriesApi, useGetCountriesQuery } from './countriesApi'
+
 export {
   type UserProfileRequestType,
   type UserResponseType,
@@ -17,5 +19,4 @@ export {
   useMeQuery,
   useUpdateUserProfileMutation,
   useUploadAvatarMutation,
-  userApi,
 } from './userApi'
