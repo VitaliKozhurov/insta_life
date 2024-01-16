@@ -30,6 +30,7 @@ export const Select = forwardRef<ElementRef<typeof RadixSelect.Root>, SelectProp
       content: clsx(s.content, inter.className),
       icon: s.icon,
       label: s.label,
+      scrollContainer: clsx(s.scrollContainer),
       trigger: clsx(s.trigger, fullWidth && s.fullWidth, className),
     }
 
@@ -47,11 +48,18 @@ export const Select = forwardRef<ElementRef<typeof RadixSelect.Root>, SelectProp
           <RadixSelect.Portal>
             <RadixSelect.Content className={classNames.content} position={'popper'}>
               <RadixSelect.Viewport className={'SelectViewport'}>
-                {options.map(item => (
-                  <SelectItem key={item.value} {...item}>
-                    {item.title}
-                  </SelectItem>
-                ))}
+                <div className={classNames.scrollContainer}>
+                  {options.map(item => (
+                    <SelectItem key={item.value} {...item}>
+                      {item.title}
+                    </SelectItem>
+                  ))}
+                </div>
+                {/*{options.map(item => (*/}
+                {/*  <SelectItem key={item.value} {...item}>*/}
+                {/*    {item.title}*/}
+                {/*  </SelectItem>*/}
+                {/*))}*/}
               </RadixSelect.Viewport>
             </RadixSelect.Content>
           </RadixSelect.Portal>

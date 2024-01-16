@@ -77,6 +77,10 @@
     border-top: none;
     border-radius: 0 0 2px 2px;
   }
+
+  .scrollContainer {
+    @include mixin.scroll-container($height:25rem)
+  }
 }
 
 .label {
