@@ -19,7 +19,7 @@ export const countriesApi = createApi({
     baseUrl: GET_COUNTRIES_URL,
   }),
   endpoints: build => ({
-    getCities: build.mutation<any, GetCitiesRequestType>({
+    getCities: build.mutation<SelectOptions[], GetCitiesRequestType>({
       query: body => ({
         body,
         method: 'POST',
