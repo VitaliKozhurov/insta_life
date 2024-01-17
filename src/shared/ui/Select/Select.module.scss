@@ -67,19 +67,25 @@
 
 .content {
   z-index: 101;
+
   width: var(--radix-select-trigger-width);
-  border: solid 1px var(--color-dark-100);
+
+  background-color: var(--color-dark-500);
+  border: solid 1px var(--color-light-100);
   border-radius: 2px;
 
-  &[data-state='open'] {
-    background-color: var(--color-dark-500);
-    border: solid 1px var(--color-light-100);
+  &[data-side='top'] {
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
+  }
+
+  &[data-side='bottom'] {
     border-top: none;
     border-radius: 0 0 2px 2px;
   }
 
   .scrollContainer {
-    @include mixin.scroll-container($height:25rem)
+    @include mixin.scroll-container($height: 25rem)
   }
 }
 
