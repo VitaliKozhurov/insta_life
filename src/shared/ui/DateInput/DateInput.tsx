@@ -34,7 +34,6 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
     const classNames = {
       calendar: s.calendar,
       dateInput: clsx(s.dateInput, error && s.dateInputWithError),
-      error: s.error,
       inputWrapper: clsx(
         s.inputWrapper,
         error && s.wrapperWithError,
@@ -60,11 +59,10 @@ export const DateInput = forwardRef<ElementRef<'input'>, Props>(
             value={inputValue}
             {...restProps}
           />
-          <button className={classNames.calendar} disabled={disabled}>
+          <button className={classNames.calendar} disabled={disabled} type={'button'}>
             <CalendarIcon />
           </button>
         </div>
-        {error && <span className={classNames.error}>{error}</span>}
       </div>
     )
   }

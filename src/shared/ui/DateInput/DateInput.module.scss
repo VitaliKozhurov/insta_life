@@ -1,6 +1,7 @@
 @use 'src/shared/styles/mixins' as mixin;
 
 .root {
+  position: relative;
   width: 16rem;
 
   .label {
@@ -79,11 +80,7 @@
     }
   }
 
-  .error {
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    color: var(--color-danger-500);
-  }
+
 }
 
 .fullWidth {
