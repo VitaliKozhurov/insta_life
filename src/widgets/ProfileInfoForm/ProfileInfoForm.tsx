@@ -1,45 +1,23 @@
-import { useEffect, useRef } from 'react'
 import { Controller } from 'react-hook-form'
 
 import {
   Button,
+  COUNTRIES_LIST,
   ControlledInput,
   ControlledSelect,
   ControlledTextField,
   DateInput,
   onSendFormErrorsHandlers,
-  profileFormDataCreator,
-  useGetCitiesMutation,
-  useGetCountriesQuery,
-  useMeQuery,
-  useUpdateUserProfileMutation,
 } from '@/shared'
 import { DatePicker } from '@/widgets'
 
 import s from './ProfileInfoForm.module.scss'
 
-import { UserProfileFormValuesType, useProfileForm } from './lib'
+import { UserProfileFormValuesType, useProfile, useProfileForm, useUpdateCity } from './lib'
 import { ProfileSelectChildren } from './ui/ProfileSelectChildren'
 
 export const ProfileInfoForm = () => {
-  const { data } = useMeQuery()
-  const formData = profileFormDataCreator(data)
-  const {
-    data: countriesOptions = [
-      /*{ title: formData.country, value: formData.country }*/
-    ],
-  } = useGetCountriesQuery()
-  const [updateProfile] = useUpdateUserProfileMutation()
-  const [
-    getCitiesByCountry,
-    {
-      data: citiesOptions = [
-        /*{ title: formData.city, value: formData.city }*/
-      ],
-      isLoading: citiesLoading,
-    },
-  ] = useGetCitiesMutation()
-  const renderCount = useRef(0)
+  const { citiesLoading, citiesOptions, formData, getCitiesByCountry, updateProfile } = useProfile()
   const {
     control,
     formState: { errors },
@@ -50,19 +28,7 @@ export const ProfileInfoForm = () => {
   } = useProfileForm(formData)
   const country = watch('country')
 
-  useEffect(() => {
-    if (!country) {
-      return
-    }
-    renderCount.current && setValue('city', '')
-    if (!renderCount.current) {
-      renderCount.current += 1
-    }
-
-    getCitiesByCountry({ country })
-
-    return () => {}
-  }, [country])
+  useUpdateCity({ country, getCitiesByCountry, setValue })
 
   const classNames = {
     form: s.form,
@@ -122,10 +88,10 @@ export const ProfileInfoForm = () => {
             fullWidth
             label={'Select your country'}
             name={'country'}
-            options={countriesOptions}
+            options={COUNTRIES_LIST}
             placeholder={'Country'}
           >
-            <ProfileSelectChildren options={countriesOptions} />
+            <ProfileSelectChildren options={COUNTRIES_LIST} />
           </ControlledSelect>
         </div>
         <div className={s.select}>
