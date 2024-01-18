@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import { Controller } from 'react-hook-form'
-import { FixedSizeList } from 'react-window'
 
 import {
   Button,
@@ -8,7 +7,6 @@ import {
   ControlledSelect,
   ControlledTextField,
   DateInput,
-  SelectItem,
   onSendFormErrorsHandlers,
   profileFormDataCreator,
   useGetCitiesMutation,
@@ -21,6 +19,7 @@ import { DatePicker } from '@/widgets'
 import s from './ProfileInfoForm.module.scss'
 
 import { UserProfileFormValuesType, useProfileForm } from './lib'
+import { ProfileSelectChildren } from './ui/ProfileSelectChildren'
 
 export const ProfileInfoForm = () => {
   const { data } = useMeQuery()
@@ -34,7 +33,9 @@ export const ProfileInfoForm = () => {
   const [
     getCitiesByCountry,
     {
-      data: citiesOptions = [{ title: formData.city, value: formData.city }],
+      data: citiesOptions = [
+        /*{ title: formData.city, value: formData.city }*/
+      ],
       isLoading: citiesLoading,
     },
   ] = useGetCitiesMutation()
@@ -124,25 +125,7 @@ export const ProfileInfoForm = () => {
             options={countriesOptions}
             placeholder={'Country'}
           >
-            <FixedSizeList
-              className={classNames.scrollContainer}
-              height={250}
-              itemCount={countriesOptions.length}
-              itemSize={36}
-              width={'100%'}
-            >
-              {({ index, style }) => {
-                return (
-                  <SelectItem
-                    key={countriesOptions[index].value}
-                    style={style}
-                    {...countriesOptions[index]}
-                  >
-                    {countriesOptions[index].title}
-                  </SelectItem>
-                )
-              }}
-            </FixedSizeList>
+            <ProfileSelectChildren options={countriesOptions} />
           </ControlledSelect>
         </div>
         <div className={s.select}>
@@ -156,25 +139,7 @@ export const ProfileInfoForm = () => {
             options={citiesOptions}
             placeholder={'City'}
           >
-            <FixedSizeList
-              className={classNames.scrollContainer}
-              height={250}
-              itemCount={citiesOptions.length}
-              itemSize={36}
-              width={'100%'}
-            >
-              {({ index, style }) => {
-                return (
-                  <SelectItem
-                    key={citiesOptions[index].value}
-                    style={style}
-                    {...citiesOptions[index]}
-                  >
-                    {citiesOptions[index].title}
-                  </SelectItem>
-                )
-              }}
-            </FixedSizeList>
+            <ProfileSelectChildren options={citiesOptions} />
           </ControlledSelect>
         </div>
       </div>

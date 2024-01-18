@@ -11,6 +11,12 @@
 
     .select {
       flex: 1 1 100%;
+      min-width: 25rem;
+
+      & span:first-child {
+        overflow-x: hidden;
+        white-space: nowrap;
+      }
     }
   }
 
@@ -21,6 +27,6 @@
   }
 }
 
-.formFieldWithError{
+.formFieldWithError {
   margin-bottom: -2.4rem;
 }
