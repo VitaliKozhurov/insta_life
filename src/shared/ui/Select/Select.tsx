@@ -32,6 +32,7 @@ export const Select = forwardRef<ElementRef<typeof RadixSelect.Root>, SelectProp
       scrollContainer: clsx(s.scrollContainer),
       trigger: clsx(s.trigger, fullWidth && s.fullWidth, className),
     }
+    const selectValue = options?.find(el => el.value === restProps.value)
 
     return (
       <>
@@ -39,7 +40,8 @@ export const Select = forwardRef<ElementRef<typeof RadixSelect.Root>, SelectProp
         <RadixSelect.Root {...restProps}>
           <RadixSelect.Trigger aria-label={'Select'} className={classNames.trigger} ref={ref}>
             <RadixSelect.Value placeholder={placeholder}>
-              {options?.find(el => el.value === restProps.value)?.title}
+              {selectValue?.icon}
+              {selectValue?.title || placeholder}
             </RadixSelect.Value>
             <RadixSelect.Icon className={classNames.icon}>
               <VerticalArrowIcon size={2.4} />

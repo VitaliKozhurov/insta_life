@@ -9,10 +9,12 @@
   .selectWrapper {
     @include mixin.flex($gap: 2.4rem);
 
-    .select {
+    & div {
       flex: 1 1 100%;
       min-width: 25rem;
+    }
 
+    .select {
       & span:first-child {
         overflow-x: hidden;
         white-space: nowrap;

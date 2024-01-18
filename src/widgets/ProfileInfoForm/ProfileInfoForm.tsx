@@ -9,6 +9,7 @@ import {
   DateInput,
   getToast,
   onSendFormErrorsHandlers,
+  useTranslation,
 } from '@/shared'
 import { DatePicker } from '@/widgets'
 
@@ -18,6 +19,8 @@ import { UserProfileFormValuesType, useProfile, useProfileForm, useUpdateCity } 
 import { ProfileSelectChildren } from './ui/ProfileSelectChildren'
 
 export const ProfileInfoForm = () => {
+  const { text } = useTranslation()
+  const t = text.profilePage.general.profileInfoForm
   const { citiesLoading, citiesOptions, formData, getCitiesByCountry, updateProfile } = useProfile()
   const {
     control,
@@ -51,19 +54,19 @@ export const ProfileInfoForm = () => {
 
   return (
     <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
-      <ControlledInput control={control} isRequired label={'Username'} name={'username'} />
+      <ControlledInput control={control} isRequired label={t.userNameLabel} name={'username'} />
       <ControlledInput
         className={classNames.formField(errors.firstName?.message)}
         control={control}
         isRequired
-        label={'First Name'}
+        label={t.firstNameLabel}
         name={'firstName'}
       />
       <ControlledInput
         className={classNames.formField(errors.lastName?.message)}
         control={control}
         isRequired
-        label={'Last Name'}
+        label={t.lastNameLabel}
         name={'lastName'}
       />
       <Controller
@@ -75,7 +78,7 @@ export const ProfileInfoForm = () => {
               <DateInput
                 error={error?.message}
                 fullWidth
-                label={'Date of birth'}
+                label={t.dateOfBirth}
                 mode={'single'}
                 placeholder={'00/00/0000'}
                 selectedDay={value}
@@ -85,35 +88,35 @@ export const ProfileInfoForm = () => {
         }}
       />
       <div className={s.selectWrapper}>
-        <div className={s.select}>
+        <div>
           <ControlledSelect
             className={s.select}
             control={control}
             fullWidth
-            label={'Select your country'}
+            label={t.countrySelectLabel}
             name={'country'}
             options={COUNTRIES_LIST}
-            placeholder={'Country'}
+            placeholder={t.countrySelectPlaceholder}
           >
             <ProfileSelectChildren options={COUNTRIES_LIST} />
           </ControlledSelect>
         </div>
-        <div className={s.select}>
+        <div>
           <ControlledSelect
             className={s.select}
             control={control}
             disabled={citiesLoading}
             fullWidth
-            label={'Select your city'}
+            label={t.citySelectLabel}
             name={'city'}
             options={citiesOptions}
-            placeholder={'City'}
+            placeholder={t.citySelectPlaceholder}
           >
             <ProfileSelectChildren options={citiesOptions} />
           </ControlledSelect>
         </div>
       </div>
-      <ControlledTextField control={control} fullWidth label={'About me'} name={'aboutMe'} />
+      <ControlledTextField control={control} fullWidth label={t.textFieldLabel} name={'aboutMe'} />
       <Button className={s.submitButton}>Save changes</Button>
     </form>
   )

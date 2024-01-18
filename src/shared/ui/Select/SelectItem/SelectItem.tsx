@@ -14,12 +14,11 @@ export const SelectItem = forwardRef<ElementRef<typeof RadixSelect.SelectItem>, 
   ({ children, className, icon, ...restProps }, forwardedRef) => {
     const classNames = {
       item: clsx(s.selectItem, className),
-      itemText: s.itemText,
     }
 
     return (
       <RadixSelect.Item className={classNames.item} {...restProps} ref={forwardedRef}>
-        <RadixSelect.ItemText className={classNames.itemText}>
+        <RadixSelect.ItemText>
           {icon}
           {children}
         </RadixSelect.ItemText>

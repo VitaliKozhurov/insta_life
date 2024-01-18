@@ -104,6 +104,18 @@ export const ru: LocalesType = {
           title: 'Выбрать с компьютера',
         },
       },
+      profileInfoForm: {
+        citySelectLabel: 'Выберете Ваш город',
+        citySelectPlaceholder: 'Город',
+        countrySelectLabel: 'Выберете Вашу страну',
+        countrySelectPlaceholder: 'Страна',
+        dateOfBirth: 'Дата рождения',
+        firstNameLabel: 'Имя',
+        lastNameLabel: 'Фамилия',
+        saveFormButton: 'Сохранить изменения',
+        textFieldLabel: 'Обо мне',
+        userNameLabel: 'Имя пользователя',
+      },
     },
     tabSwitcher: {
       account: 'Управление аккаунтом',
