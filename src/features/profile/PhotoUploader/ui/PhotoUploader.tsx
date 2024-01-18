@@ -20,30 +20,23 @@ type Props = {
   children: ReactNode
   className?: string
   croppedImage: Nullable<Blob>
+  onCloseModal: (isOpen: boolean) => void
   onPhotoUpload: (photo: Nullable<File>) => void
   onPhotoUploadError: (error: Nullable<string>) => void
-  onUpdatePhoto: (isOpen: boolean) => void
 }
 
 export const PhotoUploader = ({
   children,
   className,
   croppedImage,
+  onCloseModal,
   onPhotoUpload,
   onPhotoUploadError,
-  onUpdatePhoto,
 }: Props) => {
-  const {
-    text: {
-      profilePage: {
-        general: {
-          photoUploader: { modal: t },
-        },
-      },
-    },
-  } = useTranslation()
+  const { text } = useTranslation()
+  const t = text.profilePage.general.photoUploader.modal
   const [uploadAvatar] = useUploadAvatarMutation()
-  const { control, formState, handleSubmit, resetField, setError, watch } = useUploadFile(t.errors)
+  const { control, formState, handleSubmit, setError, watch } = useUploadFile(t.errors)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const userProfileImage = watch('image')
   const inputError = formState.errors.image?.message
@@ -76,8 +69,7 @@ export const PhotoUploader = ({
     uploadAvatar(formData)
       .unwrap()
       .then(() => {
-        resetField('image')
-        onUpdatePhoto(false)
+        onCloseModal(false)
       })
       .catch(e => {
         const errorMessage = onUploadPhotoErrorHandler(e)

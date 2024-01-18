@@ -30,7 +30,7 @@ export const getCroppedImage = async (
   pixelCrop: Area,
   rotation = 0,
   flip = { horizontal: false, vertical: false }
-): Promise<Nullable<Blob>> => {
+): Promise<Nullable<File>> => {
   const image = await createImage(imageSrc)
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
@@ -62,12 +62,15 @@ export const getCroppedImage = async (
 
   return new Promise((resolve, reject) => {
     try {
-      canvas.toBlob(file => {
-        if (file) {
+      canvas.toBlob(blob => {
+        if (blob) {
+          const fileName = `photo_${Date.now()}`
+          const file = new File([blob], fileName, { type: 'image/png' })
+
           resolve(file)
         }
         resolve(null)
-      }, 'image/jpeg')
+      }, 'image/png')
     } catch (e) {
       reject(e)
     }
