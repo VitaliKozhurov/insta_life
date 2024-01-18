@@ -1,41 +1,73 @@
 import { useForm } from 'react-hook-form'
 
-import { ABOUT_ME_PATTERN, USER_FIRST_LAST_NAME_PATTERN, USERNAME_PATTERN } from '@/shared'
+import {
+  ABOUT_ME_PATTERN,
+  LocalesType,
+  USER_FIRST_LAST_NAME_PATTERN,
+  USERNAME_PATTERN,
+} from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-const userProfileSchema = () =>
-  z.object({
-    aboutMe: z.string().trim().max(200, 'Error max length').regex(ABOUT_ME_PATTERN, 'Regex error'),
-    city: z.string(),
-    country: z.string(),
-    dateOfBirth: z.date().optional(),
-    firstName: z
-      .string()
-      .trim()
-      .min(1, 'Error min length')
-      .max(50, 'Error max length')
-      .regex(USER_FIRST_LAST_NAME_PATTERN, 'Regex error'),
-    lastName: z
-      .string()
-      .trim()
-      .min(1, 'Error min length')
-      .max(50, 'Error max length')
-      .regex(USER_FIRST_LAST_NAME_PATTERN, 'Regex error'),
-    username: z
-      .string()
-      .trim()
-      .min(6, 'Error min length')
-      .max(30, 'Error max length')
-      .regex(USERNAME_PATTERN, 'regex error'),
-  })
+const SECONDS_PER_YEAR = 1000 * 60 * 60 * 24 * 365
+
+type ErrorsTextProps = LocalesType['profilePage']['general']['profileInfoFormErrors']
+const userProfileSchema = (t: ErrorsTextProps) =>
+  z
+    .object({
+      aboutMe: z
+        .string()
+        .trim()
+        .max(200, t.maxAboutMeLength)
+        .regex(ABOUT_ME_PATTERN, t.aboutMeRegex),
+      city: z.string(),
+      country: z.string(),
+      dateOfBirth: z.date().optional(),
+      firstName: z
+        .string()
+        .trim()
+        .min(1, t.minFirstNameLength)
+        .max(50, t.maxFirstNameLength)
+        .regex(USER_FIRST_LAST_NAME_PATTERN, t.firstNameRegex),
+      lastName: z
+        .string()
+        .trim()
+        .min(1, t.minLastNameLength)
+        .max(50, t.maxLastNameLength)
+        .regex(USER_FIRST_LAST_NAME_PATTERN, t.lastNameRegex),
+      username: z
+        .string()
+        .trim()
+        .min(6, t.minUserNameLength)
+        .max(30, t.maxUserNameLength)
+        .regex(USERNAME_PATTERN, t.userNameRegex),
+    })
+    .refine(
+      data => {
+        const dateOfBirth = data.dateOfBirth
+
+        if (dateOfBirth) {
+          const currentDay: Date = new Date()
+          const differenceInYears: number =
+            (currentDay.getTime() - dateOfBirth.getTime()) / SECONDS_PER_YEAR
+
+          return differenceInYears > 13
+        }
+
+        return true
+      },
+      {
+        message: t.dateOfBirth,
+        path: ['dateOfBirth'],
+      }
+    )
 
 export type UserProfileFormValuesType = z.infer<ReturnType<typeof userProfileSchema>>
 
-export const useProfileForm = (values: UserProfileFormValuesType) => {
+export const useProfileForm = (values: UserProfileFormValuesType, errorsText: ErrorsTextProps) => {
   return useForm<UserProfileFormValuesType>({
     mode: 'onTouched',
-    resolver: zodResolver(userProfileSchema()),
+    resolver: zodResolver(userProfileSchema(errorsText)),
     values: values,
   })
 }
