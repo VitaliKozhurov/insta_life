@@ -1,0 +1,23 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.root{
+  width: 44rem;
+}
+
+.content{
+  padding: 3rem 2.4rem 3.6rem;
+
+  .text{
+    margin-bottom: 5.4rem;
+  }
+
+  .buttonsGroup{
+    @include mixin.flex($gap:2.4rem);
+
+    justify-content: right;
+
+    & button{
+      width: 9.6rem;
+    }
+  }
+}
