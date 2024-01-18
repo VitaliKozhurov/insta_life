@@ -128,7 +128,8 @@
   max-height: $height;
 
   &::-webkit-scrollbar {
-    width: 4px;
+    width: 5px;
+    height: 5px;
   }
 
   &::-webkit-scrollbar-track {
@@ -140,6 +141,7 @@
     cursor: pointer;
     background-color: var(--color-dark-100);
     border-radius: 2px;
+    transition: background-color 0.2s ease;
 
     &:hover {
       background-color: var(--color-light-900);

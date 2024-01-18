@@ -10,7 +10,7 @@ export {
   useSignUpMutation,
 } from './authApi'
 export { baseApi } from './baseApi'
-export { countriesApi, useGetCitiesMutation, useGetCountriesQuery } from './countriesApi'
+export { countriesApi, useGetCitiesMutation } from './countriesApi'
 
 export {
   type UserProfileRequestType,

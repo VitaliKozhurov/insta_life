@@ -1,36 +1,24 @@
-import { useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 
 import {
   Button,
+  COUNTRIES_LIST,
   ControlledInput,
   ControlledSelect,
   ControlledTextField,
   DateInput,
+  getToast,
   onSendFormErrorsHandlers,
-  profileFormDataCreator,
-  useGetCitiesMutation,
-  useGetCountriesQuery,
-  useMeQuery,
-  useUpdateUserProfileMutation,
 } from '@/shared'
 import { DatePicker } from '@/widgets'
 
 import s from './ProfileInfoForm.module.scss'
 
-import { UserProfileFormValuesType, useProfileForm } from './lib'
+import { UserProfileFormValuesType, useProfile, useProfileForm, useUpdateCity } from './lib'
+import { ProfileSelectChildren } from './ui/ProfileSelectChildren'
 
 export const ProfileInfoForm = () => {
-  const { data } = useMeQuery()
-  const formData = profileFormDataCreator(data)
-  const { data: countriesOptions = [{ title: formData.country, value: formData.country }] } =
-    useGetCountriesQuery()
-  const [updateProfile] = useUpdateUserProfileMutation()
-  const [
-    getCitiesByCountry,
-    { data: citiesOptions = [{ title: formData.city, value: formData.city }] },
-  ] = useGetCitiesMutation()
-
+  const { citiesLoading, citiesOptions, formData, getCitiesByCountry, updateProfile } = useProfile()
   const {
     control,
     formState: { errors },
@@ -41,14 +29,8 @@ export const ProfileInfoForm = () => {
   } = useProfileForm(formData)
   const country = watch('country')
 
-  useEffect(() => {
-    if (!country) {
-      return
-    }
-    setValue('city', '')
-    getCitiesByCountry({ country })
-  }, [country])
-  console.log(watch('city'))
+  useUpdateCity({ country, getCitiesByCountry, setValue })
+
   const classNames = {
     form: s.form,
     formField(error?: string) {
@@ -59,6 +41,9 @@ export const ProfileInfoForm = () => {
   const onSubmitHandler = (data: UserProfileFormValuesType) => {
     updateProfile(data)
       .unwrap()
+      .then(() =>
+        getToast({ text: 'User data was successfully saved!', variant: 'success', withClose: true })
+      )
       .catch(err => {
         onSendFormErrorsHandlers(err, setError)
       })
@@ -107,20 +92,25 @@ export const ProfileInfoForm = () => {
             fullWidth
             label={'Select your country'}
             name={'country'}
-            options={countriesOptions}
+            options={COUNTRIES_LIST}
             placeholder={'Country'}
-          />
+          >
+            <ProfileSelectChildren options={COUNTRIES_LIST} />
+          </ControlledSelect>
         </div>
         <div className={s.select}>
           <ControlledSelect
             className={s.select}
             control={control}
+            disabled={citiesLoading}
             fullWidth
             label={'Select your city'}
             name={'city'}
             options={citiesOptions}
             placeholder={'City'}
-          />
+          >
+            <ProfileSelectChildren options={citiesOptions} />
+          </ControlledSelect>
         </div>
       </div>
       <ControlledTextField control={control} fullWidth label={'About me'} name={'aboutMe'} />

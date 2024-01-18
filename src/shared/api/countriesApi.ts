@@ -8,7 +8,6 @@ type BaseResponseType<T> = {
   error: boolean
   msg: string
 }
-type GetCountriesResponseType = BaseResponseType<{ name: string }[]>
 type GetCitiesResponseType = BaseResponseType<string[]>
 type GetCitiesRequestType = {
   country: string
@@ -19,7 +18,7 @@ export const countriesApi = createApi({
     baseUrl: GET_COUNTRIES_URL,
   }),
   endpoints: build => ({
-    getCities: build.mutation<any, GetCitiesRequestType>({
+    getCities: build.mutation<SelectOptions[], GetCitiesRequestType>({
       query: body => ({
         body,
         method: 'POST',
@@ -30,30 +29,18 @@ export const countriesApi = createApi({
           return []
         }
 
-        return result.data.map(city => ({
-          title: city,
-          value: city,
-        }))
-      },
-    }),
-    getCountries: build.query<SelectOptions[], void>({
-      query: () => ({
-        method: 'GET',
-        url: '/info?returns=countries',
-      }),
-      transformResponse: (result: GetCountriesResponseType) => {
-        if (result.error) {
-          return []
-        }
-
-        return result.data.map(country => ({
-          title: country.name,
-          value: country.name,
-        }))
+        return result.data
+          .map(city => ({
+            title: city,
+            value: city,
+          }))
+          .sort((a, b) => {
+            return a.title > b.title ? 1 : -1
+          })
       },
     }),
   }),
   reducerPath: 'countriesApi',
 })
 
-export const { useGetCitiesMutation, useGetCountriesQuery } = countriesApi
+export const { useGetCitiesMutation } = countriesApi

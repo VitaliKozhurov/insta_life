@@ -6,7 +6,7 @@ import {
   ButtonVariant,
   Routes,
   Select,
-  SelectOptions,
+  SelectItem,
   Typography,
   TypographyVariant,
   getLanguageOptions,
@@ -16,11 +16,7 @@ import Link from 'next/link'
 
 import s from './Header.module.scss'
 
-type Props = {
-  options?: SelectOptions[]
-}
-
-export const Header = ({ options }: Props) => {
+export const Header = () => {
   const { isAuth } = useContext(AuthContext)
   const {
     router,
@@ -39,7 +35,7 @@ export const Header = ({ options }: Props) => {
     headerContainer: s.headerContainer,
     headerDashboard: s.headerDashboard,
   }
-  const localeValue = locale || (options && options[0].value) || languagesOptions[0].value
+  const localeValue = locale || languagesOptions[0].value
 
   return (
     <header className={classNames.header}>
@@ -48,11 +44,13 @@ export const Header = ({ options }: Props) => {
           Inctagram
         </Typography>
         <div className={classNames.headerDashboard}>
-          <Select
-            onValueChange={changeAppLanguageHandler}
-            options={options || languagesOptions}
-            value={localeValue}
-          />
+          <Select onValueChange={changeAppLanguageHandler} value={localeValue}>
+            {languagesOptions.map(item => (
+              <SelectItem key={item.value} {...item}>
+                {item.title}
+              </SelectItem>
+            ))}
+          </Select>
           {!isAuth && (
             <div className={classNames.authLinks}>
               <Button as={Link} href={Routes.SIGN_IN} variant={ButtonVariant.LINK}>

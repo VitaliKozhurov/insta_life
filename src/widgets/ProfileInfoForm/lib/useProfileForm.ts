@@ -32,9 +32,10 @@ const userProfileSchema = () =>
 
 export type UserProfileFormValuesType = z.infer<ReturnType<typeof userProfileSchema>>
 
-export const useProfileForm = (values: UserProfileFormValuesType) =>
-  useForm<UserProfileFormValuesType>({
+export const useProfileForm = (values: UserProfileFormValuesType) => {
+  return useForm<UserProfileFormValuesType>({
     mode: 'onTouched',
     resolver: zodResolver(userProfileSchema()),
     values: values,
   })
+}
