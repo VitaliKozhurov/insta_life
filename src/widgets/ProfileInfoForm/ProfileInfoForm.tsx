@@ -8,7 +8,6 @@ import {
   ControlledTextField,
   DateInput,
   getToast,
-  onSendFormErrorsHandlers,
   useTranslation,
 } from '@/shared'
 import { DatePicker } from '@/widgets'
@@ -20,16 +19,16 @@ import { ProfileSelectChildren } from './ui/ProfileSelectChildren'
 
 export const ProfileInfoForm = () => {
   const { text } = useTranslation()
-  const t = text.profilePage.general.profileInfoForm
+  const { profileInfoForm, profileInfoFormErrors, profileNotifications } = text.profilePage.general
+
   const { citiesLoading, citiesOptions, formData, getCitiesByCountry, updateProfile } = useProfile()
   const {
     control,
     formState: { errors },
     handleSubmit,
-    setError,
     setValue,
     watch,
-  } = useProfileForm(formData)
+  } = useProfileForm(formData, profileInfoFormErrors)
   const country = watch('country')
 
   useUpdateCity({ country, getCitiesByCountry, setValue })
@@ -45,28 +44,33 @@ export const ProfileInfoForm = () => {
     updateProfile(data)
       .unwrap()
       .then(() =>
-        getToast({ text: 'User data was successfully saved!', variant: 'success', withClose: true })
+        getToast({ text: profileNotifications.successfulSave, variant: 'success', withClose: true })
       )
-      .catch(err => {
-        onSendFormErrorsHandlers(err, setError)
+      .catch(() => {
+        getToast({ text: profileNotifications.errorSave, variant: 'error', withClose: true })
       })
   }
 
   return (
     <form className={classNames.form} onSubmit={handleSubmit(onSubmitHandler)}>
-      <ControlledInput control={control} isRequired label={t.userNameLabel} name={'username'} />
+      <ControlledInput
+        control={control}
+        isRequired
+        label={profileInfoForm.userNameLabel}
+        name={'username'}
+      />
       <ControlledInput
         className={classNames.formField(errors.firstName?.message)}
         control={control}
         isRequired
-        label={t.firstNameLabel}
+        label={profileInfoForm.firstNameLabel}
         name={'firstName'}
       />
       <ControlledInput
         className={classNames.formField(errors.lastName?.message)}
         control={control}
         isRequired
-        label={t.lastNameLabel}
+        label={profileInfoForm.lastNameLabel}
         name={'lastName'}
       />
       <Controller
@@ -74,11 +78,16 @@ export const ProfileInfoForm = () => {
         name={'dateOfBirth'}
         render={({ field: { onChange, value }, fieldState: { error } }) => {
           return (
-            <DatePicker mode={'single'} selectedDay={value} setSelectedDay={onChange}>
+            <DatePicker
+              error={error?.message}
+              mode={'single'}
+              selectedDay={value}
+              setSelectedDay={onChange}
+            >
               <DateInput
                 error={error?.message}
                 fullWidth
-                label={t.dateOfBirth}
+                label={profileInfoForm.dateOfBirth}
                 mode={'single'}
                 placeholder={'00/00/0000'}
                 selectedDay={value}
@@ -93,10 +102,10 @@ export const ProfileInfoForm = () => {
             className={s.select}
             control={control}
             fullWidth
-            label={t.countrySelectLabel}
+            label={profileInfoForm.countrySelectLabel}
             name={'country'}
             options={COUNTRIES_LIST}
-            placeholder={t.countrySelectPlaceholder}
+            placeholder={profileInfoForm.countrySelectPlaceholder}
           >
             <ProfileSelectChildren options={COUNTRIES_LIST} />
           </ControlledSelect>
@@ -107,17 +116,22 @@ export const ProfileInfoForm = () => {
             control={control}
             disabled={citiesLoading}
             fullWidth
-            label={t.citySelectLabel}
+            label={profileInfoForm.citySelectLabel}
             name={'city'}
             options={citiesOptions}
-            placeholder={t.citySelectPlaceholder}
+            placeholder={profileInfoForm.citySelectPlaceholder}
           >
             <ProfileSelectChildren options={citiesOptions} />
           </ControlledSelect>
         </div>
       </div>
-      <ControlledTextField control={control} fullWidth label={t.textFieldLabel} name={'aboutMe'} />
-      <Button className={s.submitButton}>Save changes</Button>
+      <ControlledTextField
+        control={control}
+        fullWidth
+        label={profileInfoForm.textFieldLabel}
+        name={'aboutMe'}
+      />
+      <Button className={s.submitButton}>{profileInfoForm.saveFormButton}</Button>
     </form>
   )
 }
