@@ -109,6 +109,25 @@ export const en = {
         textFieldLabel: 'About Me',
         userNameLabel: 'Username',
       },
+      profileInfoFormErrors: {
+        aboutMeRegex:
+          'About me may contain 0-9, a-z, A-Z, ! " # $ % & \' () * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~',
+        dateOfBirth: 'A user under 13 cannot create a profile. <1>link</1>',
+        firstNameRegex: 'First Name may contain A-Z a-z, А-Я а-я',
+        lastNameRegex: 'Last Name may contain A-Z a-z, А-Я а-я',
+        maxAboutMeLength: 'Maximum number of characters 200',
+        maxFirstNameLength: 'Maximum number of characters 50',
+        maxLastNameLength: 'Maximum number of characters 50',
+        maxUserNameLength: 'Maximum number of characters 30',
+        minFirstNameLength: 'Minimum number of characters 1',
+        minLastNameLength: 'Minimum number of characters 1',
+        minUserNameLength: 'Minimum number of characters 6',
+        userNameRegex: 'Username may contain 0-9, a-z A-Z, _, -',
+      },
+      profileNotifications: {
+        errorSave: 'Error! Server is not available!',
+        successfulSave: 'Your settings are saved!',
+      },
     },
     tabSwitcher: {
       account: 'Account Management',
