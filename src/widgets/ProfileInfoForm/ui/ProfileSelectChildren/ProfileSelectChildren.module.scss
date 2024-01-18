@@ -1,0 +1,15 @@
+@use 'src/shared/styles/mixins' as mixin;
+
+.scrollContainer {
+  @include mixin.scroll-container($height: 25rem);
+}
+
+.example span {
+  overflow-x: hidden;
+  display: inline-block;
+
+  width: 25rem;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
