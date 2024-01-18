@@ -14,18 +14,11 @@ type Props = {
 }
 
 export const AddingPhotoModal = ({ onOpenChange, open }: Props) => {
-  const {
-    text: {
-      profilePage: {
-        general: {
-          photoUploader: { modal: t },
-        },
-      },
-    },
-  } = useTranslation()
-  const [image, setImage] = useState<Nullable<File>>(null)
-  const [croppedImage, setCroppedImage] = useState<Nullable<Blob>>(null)
-  const [error, setError] = useState<Nullable<string>>(null)
+  const { text } = useTranslation()
+  const t = text.profilePage.general.photoUploader.modal
+  const [image, setImage] = useState<Nullable<File>>(null) // image after upload from PC
+  const [croppedImage, setCroppedImage] = useState<Nullable<Blob>>(null) // image after cropped
+  const [error, setError] = useState<Nullable<string>>(null) // errors after upload image from PC
   const imagePreview = useMemo(() => (image && !error ? URL.createObjectURL(image) : null), [image])
 
   const classNames = {
@@ -72,9 +65,9 @@ export const AddingPhotoModal = ({ onOpenChange, open }: Props) => {
         <PhotoUploader
           className={classNames.button}
           croppedImage={croppedImage}
+          onCloseModal={onOpenChangeHandler}
           onPhotoUpload={setImage}
           onPhotoUploadError={setError}
-          onUpdatePhoto={onOpenChangeHandler}
         >
           {t.selectPhotoButton}
         </PhotoUploader>

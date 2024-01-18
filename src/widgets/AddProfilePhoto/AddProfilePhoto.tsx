@@ -1,14 +1,7 @@
 import { useState } from 'react'
 
-import {
-  Button,
-  CrossIcon,
-  ImageIcon,
-  onUploadPhotoErrorHandler,
-  useDeleteAvatarMutation,
-  useMeQuery,
-  useTranslation,
-} from '@/shared'
+import { Button, CrossIcon, ImageIcon, useMeQuery, useTranslation } from '@/shared'
+import { DeletePhotoModal } from '@/widgets/AddProfilePhoto/DeletePhotoModal'
 import clsx from 'clsx'
 import Image from 'next/image'
 
@@ -22,27 +15,14 @@ type Props = {
 }
 
 export const AddProfilePhoto = ({ className }: Props) => {
-  const { data, fulfilledTimeStamp } = useMeQuery()
-  const [deleteAvatar] = useDeleteAvatarMutation()
+  const { data } = useMeQuery()
 
-  let avatarUrl
+  const avatarUrl = data?.avatarUrl || ''
 
-  if (data?.avatarUrl) {
-    avatarUrl = data?.avatarUrl.startsWith('blob')
-      ? `${data?.avatarUrl}`
-      : `${data?.avatarUrl}?${fulfilledTimeStamp}`
-  } else {
-    avatarUrl = data?.avatarUrl
-  }
-
-  const {
-    text: {
-      profilePage: {
-        general: { photoUploader: t },
-      },
-    },
-  } = useTranslation()
-  const [open, setOpen] = useState(false)
+  const { text } = useTranslation()
+  const t = text.profilePage.general.photoUploader
+  const [openPhotoUploader, setOpenPhotoUploader] = useState(false)
+  const [openDeletePhotoModal, setOpenDeletePhotoModal] = useState(false)
 
   const classNames = {
     button: s.button,
@@ -52,21 +32,20 @@ export const AddProfilePhoto = ({ className }: Props) => {
     root: clsx(s.root, className),
   }
 
-  const openPhotoUploader = () => {
-    setOpen(true)
+  const openPhotoUploaderHandler = () => {
+    setOpenPhotoUploader(true)
   }
-  const onRemoveAvatarHandler = () => {
-    deleteAvatar()
-      .unwrap()
-      .catch(error => onUploadPhotoErrorHandler(error, true))
+  const openDeletePhotoModalHandler = () => {
+    setOpenDeletePhotoModal(true)
   }
 
   return (
     <>
-      <AddingPhotoModal onOpenChange={setOpen} open={open} />
+      <AddingPhotoModal onOpenChange={setOpenPhotoUploader} open={openPhotoUploader} />
+      <DeletePhotoModal onOpenChange={setOpenDeletePhotoModal} open={openDeletePhotoModal} />
       <div className={classNames.root}>
         {avatarUrl && (
-          <Button className={classNames.cross} onClick={onRemoveAvatarHandler}>
+          <Button className={classNames.cross} onClick={openDeletePhotoModalHandler}>
             <CrossIcon size={1.6} />
           </Button>
         )}
@@ -83,7 +62,7 @@ export const AddProfilePhoto = ({ className }: Props) => {
             />
           )}
         </div>
-        <Button className={classNames.button} onClick={openPhotoUploader}>
+        <Button className={classNames.button} onClick={openPhotoUploaderHandler}>
           {t.addPhotoButton}
         </Button>
       </div>
