@@ -7,6 +7,7 @@ import {
   ControlledSelect,
   ControlledTextField,
   DateInput,
+  getToast,
   onSendFormErrorsHandlers,
 } from '@/shared'
 import { DatePicker } from '@/widgets'
@@ -40,6 +41,9 @@ export const ProfileInfoForm = () => {
   const onSubmitHandler = (data: UserProfileFormValuesType) => {
     updateProfile(data)
       .unwrap()
+      .then(() =>
+        getToast({ text: 'User data was successfully saved!', variant: 'success', withClose: true })
+      )
       .catch(err => {
         onSendFormErrorsHandlers(err, setError)
       })
