@@ -17,7 +17,7 @@ export const AddingPhotoModal = ({ onOpenChange, open }: Props) => {
   const {
     text: {
       profilePage: {
-        management: {
+        general: {
           photoUploader: { modal: t },
         },
       },

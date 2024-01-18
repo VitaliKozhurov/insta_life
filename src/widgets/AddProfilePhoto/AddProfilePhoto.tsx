@@ -38,7 +38,7 @@ export const AddProfilePhoto = ({ className }: Props) => {
   const {
     text: {
       profilePage: {
-        management: { photoUploader: t },
+        general: { photoUploader: t },
       },
     },
   } = useTranslation()

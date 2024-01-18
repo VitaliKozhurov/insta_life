@@ -84,7 +84,7 @@ export const en = {
     title: 'Privacy Policy',
   },
   profilePage: {
-    management: {
+    general: {
       photoUploader: {
         addPhotoButton: 'Add a Profile Photo',
         modal: {

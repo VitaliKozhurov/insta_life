@@ -91,7 +91,7 @@ export const ru: LocalesType = {
     title: 'Политика конфиденциальности',
   },
   profilePage: {
-    management: {
+    general: {
       photoUploader: {
         addPhotoButton: 'Добавить фотографию профиля',
         modal: {

@@ -7,7 +7,7 @@ import { LocalesType } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-type Props = LocalesType['profilePage']['management']['photoUploader']['modal']['errors']
+type Props = LocalesType['profilePage']['general']['photoUploader']['modal']['errors']
 
 const uploadFileSchema = (t: Props) =>
   z.object({

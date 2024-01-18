@@ -36,7 +36,7 @@ export const PhotoUploader = ({
   const {
     text: {
       profilePage: {
-        management: {
+        general: {
           photoUploader: { modal: t },
         },
       },

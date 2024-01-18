@@ -44,7 +44,11 @@ export const Header = () => {
           Inctagram
         </Typography>
         <div className={classNames.headerDashboard}>
-          <Select onValueChange={changeAppLanguageHandler} value={localeValue}>
+          <Select
+            onValueChange={changeAppLanguageHandler}
+            options={languagesOptions}
+            value={localeValue}
+          >
             {languagesOptions.map(item => (
               <SelectItem key={item.value} {...item}>
                 {item.title}

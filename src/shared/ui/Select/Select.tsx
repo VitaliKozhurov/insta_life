@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
 import { inter } from '@/application'
-import { VerticalArrowIcon } from '@/shared/assets'
+import { VerticalArrowIcon } from '@/shared'
 import * as RadixSelect from '@radix-ui/react-select'
 import clsx from 'clsx'
 
@@ -19,7 +19,7 @@ export type SelectProps = {
   className?: string
   fullWidth?: boolean
   label?: string
-  options?: SelectOptions[]
+  options: SelectOptions[]
   placeholder?: string
 } & ComponentPropsWithoutRef<typeof RadixSelect.Root>
 
@@ -55,35 +55,3 @@ export const Select = forwardRef<ElementRef<typeof RadixSelect.Root>, SelectProp
     )
   }
 )
-
-//   <FixedSizeList
-// className={classNames.scrollContainer}
-// height={250}
-// itemCount={options.length}
-// itemSize={36}
-// width={'100%'}
-//   >
-//   {({ index, style }) => {
-//   return (
-//     <SelectItem key={index} style={style} {...options[index]}>
-//       {options[index].title}
-//     </SelectItem>
-//   )
-// }}
-// </FixedSizeList>
-
-{
-  /*{options.map(item => (*/
-}
-{
-  /*  <SelectItem key={item.value} {...item}>*/
-}
-{
-  /*    {item.title}*/
-}
-{
-  /*  </SelectItem>*/
-}
-{
-  /*))}*/
-}
