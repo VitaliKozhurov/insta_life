@@ -16,9 +16,7 @@ type Props = {
 
 export const AddProfilePhoto = ({ className }: Props) => {
   const { data } = useMeQuery()
-
   const avatarUrl = data?.avatarUrl || ''
-
   const { text } = useTranslation()
   const t = text.profilePage.general.photoUploader
   const [openPhotoUploader, setOpenPhotoUploader] = useState(false)
