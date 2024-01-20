@@ -1,14 +1,17 @@
 import { useEffect, useRef } from 'react'
 
+import { useGetCitiesMutation } from '@/shared'
+
 import { UserProfileFormValuesType } from './useProfileForm'
 
 type Props = {
   country: string
-  getCitiesByCountry: ({ country }: { country: string }) => void
   setValue: (name: keyof UserProfileFormValuesType, value: string) => void
 }
 
-export const useUpdateCity = ({ country, getCitiesByCountry, setValue }: Props) => {
+export const useUpdateCity = ({ country, setValue }: Props) => {
+  const [getCitiesByCountry, { data: citiesOptions = [], isLoading: citiesLoading }] =
+    useGetCitiesMutation()
   const renderCount = useRef(0)
 
   useEffect(() => {
@@ -24,4 +27,6 @@ export const useUpdateCity = ({ country, getCitiesByCountry, setValue }: Props) 
 
     return () => {}
   }, [country])
+
+  return { citiesLoading, citiesOptions }
 }
