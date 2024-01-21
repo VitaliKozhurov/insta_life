@@ -66,12 +66,6 @@ export const en = {
     link: 'Go to main page',
     text: 'Unfortunately, we were unable to find the page you requested. It may have been moved, deleted, or never existed. Please make sure you entered the correct URL and try again.',
   },
-  pageTitle: {
-    createNewPassword: 'Create New Password',
-    forgotPassword: 'Forgot Password',
-    signIn: 'Sign In',
-    signUp: 'Sign Up',
-  },
   privacyPolicyPage: {
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas integer eget aliquet nibh. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Tortor vitae purus faucibus ornare suspendisse sed nisi. Dolor sit amet consectetur adipiscing. Massa enim nec dui nunc mattis enim ut tellus. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Feugiat nisl pretium fusce id velit ut tortor pretium viverra. Tortor aliquam nulla facilisi cras. Elit pellentesque habitant morbi tristique senectus et netus. Nulla facilisi nullam vehicula ipsum a arcu cursus. Ut lectus arcu bibendum at varius vel pharetra. Etiam erat velit scelerisque in dictum non consectetur. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Id diam maecenas ultricies mi eget mauris pharetra. Tincidunt lobortis feugiat vivamus at augue. Non odio euismod lacinia at. Aliquet eget sit amet tellus. Auctor neque vitae tempus quam.\n' +
