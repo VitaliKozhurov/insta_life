@@ -14,7 +14,7 @@ export const SignInPage = () => {
 
   return (
     <>
-      <HeadMeta title={text.pageTitle.signIn} />
+      <HeadMeta title={text.signInPage.title} />
       <main className={classNames.main}>
         <SignIn />
       </main>

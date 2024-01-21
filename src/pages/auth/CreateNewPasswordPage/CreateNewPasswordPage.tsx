@@ -37,7 +37,7 @@ export const CreateNewPasswordPage = () => {
 
   return (
     <>
-      <HeadMeta title={text.pageTitle.createNewPassword} />
+      <HeadMeta title={text.createNewPasswordPage.title} />
       <main className={classNames.main}>
         <ModalOnEmail onOpenChange={setOpen} open={open} />
         {!isErrorFetch && <CreateNewPassword setIsErrorFetch={setIsErrorFetch} />}

@@ -14,7 +14,7 @@ export const SignUpPage = () => {
 
   return (
     <>
-      <HeadMeta title={text.pageTitle.signUp} />
+      <HeadMeta title={text.signUpPage.title} />
       <main className={classNames.main}>
         <SignUp />
       </main>

@@ -14,7 +14,7 @@ export const ForgotPasswordPage = () => {
 
   return (
     <>
-      <HeadMeta title={text.pageTitle.forgotPassword} />
+      <HeadMeta title={text.forgotPasswordPage.title} />
       <main className={classNames.main}>
         <ForgotPassword />
       </main>
