@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Button, CrossIcon, ImageIcon, useMeQuery, useTranslation } from '@/shared'
+import { Button, ButtonVariant, CrossIcon, ImageIcon, useMeQuery, useTranslation } from '@/shared'
 import { DeletePhotoModal } from '@/widgets/AddProfilePhoto/DeletePhotoModal'
 import clsx from 'clsx'
 import Image from 'next/image'
@@ -16,9 +16,7 @@ type Props = {
 
 export const AddProfilePhoto = ({ className }: Props) => {
   const { data } = useMeQuery()
-
   const avatarUrl = data?.avatarUrl || ''
-
   const { text } = useTranslation()
   const t = text.profilePage.general.photoUploader
   const [openPhotoUploader, setOpenPhotoUploader] = useState(false)
@@ -62,7 +60,11 @@ export const AddProfilePhoto = ({ className }: Props) => {
             />
           )}
         </div>
-        <Button className={classNames.button} onClick={openPhotoUploaderHandler}>
+        <Button
+          className={classNames.button}
+          onClick={openPhotoUploaderHandler}
+          variant={ButtonVariant.TERTIARY}
+        >
           {t.addPhotoButton}
         </Button>
       </div>

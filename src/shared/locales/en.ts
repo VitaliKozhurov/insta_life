@@ -81,6 +81,12 @@ export const en = {
     general: {
       photoUploader: {
         addPhotoButton: 'Add a Profile Photo',
+        deleteModal: {
+          cancelButton: 'No',
+          submitButton: 'Yes',
+          text: 'Are you sure you want to delete the photo?',
+          title: 'Delete Photo',
+        },
         modal: {
           errors: {
             imageType: 'The photo must have JPEG or PNG format',

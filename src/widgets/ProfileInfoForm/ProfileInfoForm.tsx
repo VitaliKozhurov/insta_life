@@ -18,20 +18,17 @@ import { UserProfileFormValuesType, useProfile, useProfileForm, useUpdateCity } 
 import { ProfileSelectChildren } from './ui/ProfileSelectChildren'
 
 export const ProfileInfoForm = () => {
-  const { text } = useTranslation()
-  const { profileInfoForm, profileInfoFormErrors, profileNotifications } = text.profilePage.general
-
-  const { citiesLoading, citiesOptions, formData, getCitiesByCountry, updateProfile } = useProfile()
+  const { formData, formErrorsText, formNotificationsText, formText, updateProfile } = useProfile()
   const {
     control,
     formState: { errors },
     handleSubmit,
     setValue,
     watch,
-  } = useProfileForm(formData, profileInfoFormErrors)
+  } = useProfileForm(formData, formErrorsText)
   const country = watch('country')
 
-  useUpdateCity({ country, getCitiesByCountry, setValue })
+  const { citiesLoading, citiesOptions } = useUpdateCity({ country, setValue })
 
   const classNames = {
     form: s.form,
@@ -44,10 +41,14 @@ export const ProfileInfoForm = () => {
     updateProfile(data)
       .unwrap()
       .then(() =>
-        getToast({ text: profileNotifications.successfulSave, variant: 'success', withClose: true })
+        getToast({
+          text: formNotificationsText.successfulSave,
+          variant: 'success',
+          withClose: true,
+        })
       )
       .catch(() => {
-        getToast({ text: profileNotifications.errorSave, variant: 'error', withClose: true })
+        getToast({ text: formNotificationsText.errorSave, variant: 'error', withClose: true })
       })
   }
 
@@ -56,21 +57,21 @@ export const ProfileInfoForm = () => {
       <ControlledInput
         control={control}
         isRequired
-        label={profileInfoForm.userNameLabel}
+        label={formText.userNameLabel}
         name={'username'}
       />
       <ControlledInput
         className={classNames.formField(errors.firstName?.message)}
         control={control}
         isRequired
-        label={profileInfoForm.firstNameLabel}
+        label={formText.firstNameLabel}
         name={'firstName'}
       />
       <ControlledInput
         className={classNames.formField(errors.lastName?.message)}
         control={control}
         isRequired
-        label={profileInfoForm.lastNameLabel}
+        label={formText.lastNameLabel}
         name={'lastName'}
       />
       <Controller
@@ -87,7 +88,7 @@ export const ProfileInfoForm = () => {
               <DateInput
                 error={error?.message}
                 fullWidth
-                label={profileInfoForm.dateOfBirth}
+                label={formText.dateOfBirth}
                 mode={'single'}
                 placeholder={'00/00/0000'}
                 selectedDay={value}
@@ -102,10 +103,10 @@ export const ProfileInfoForm = () => {
             className={s.select}
             control={control}
             fullWidth
-            label={profileInfoForm.countrySelectLabel}
+            label={formText.countrySelectLabel}
             name={'country'}
             options={COUNTRIES_LIST}
-            placeholder={profileInfoForm.countrySelectPlaceholder}
+            placeholder={formText.countrySelectPlaceholder}
           >
             <ProfileSelectChildren options={COUNTRIES_LIST} />
           </ControlledSelect>
@@ -116,10 +117,10 @@ export const ProfileInfoForm = () => {
             control={control}
             disabled={citiesLoading}
             fullWidth
-            label={profileInfoForm.citySelectLabel}
+            label={formText.citySelectLabel}
             name={'city'}
             options={citiesOptions}
-            placeholder={profileInfoForm.citySelectPlaceholder}
+            placeholder={formText.citySelectPlaceholder}
           >
             <ProfileSelectChildren options={citiesOptions} />
           </ControlledSelect>
@@ -128,10 +129,10 @@ export const ProfileInfoForm = () => {
       <ControlledTextField
         control={control}
         fullWidth
-        label={profileInfoForm.textFieldLabel}
+        label={formText.textFieldLabel}
         name={'aboutMe'}
       />
-      <Button className={s.submitButton}>{profileInfoForm.saveFormButton}</Button>
+      <Button className={s.submitButton}>{formText.saveFormButton}</Button>
     </form>
   )
 }

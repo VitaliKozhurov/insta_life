@@ -88,6 +88,12 @@ export const ru: LocalesType = {
     general: {
       photoUploader: {
         addPhotoButton: 'Добавить фотографию профиля',
+        deleteModal: {
+          cancelButton: 'Нет',
+          submitButton: 'Да',
+          text: 'Вы уверены, что хотите удалить фото?',
+          title: 'Удалить фото',
+        },
         modal: {
           errors: {
             imageType: 'Фотография должна быть в формате JPEG или PNG',

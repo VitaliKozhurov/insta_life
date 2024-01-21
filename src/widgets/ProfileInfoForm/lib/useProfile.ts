@@ -1,22 +1,22 @@
 import {
   profileFormDataCreator,
-  useGetCitiesMutation,
   useMeQuery,
+  useTranslation,
   useUpdateUserProfileMutation,
 } from '@/shared'
 
 export const useProfile = () => {
+  const { text } = useTranslation()
+  const { profileInfoForm, profileInfoFormErrors, profileNotifications } = text.profilePage.general
   const { data } = useMeQuery()
   const formData = profileFormDataCreator(data)
   const [updateProfile] = useUpdateUserProfileMutation()
-  const [getCitiesByCountry, { data: citiesOptions = [], isLoading: citiesLoading }] =
-    useGetCitiesMutation()
 
   return {
-    citiesLoading,
-    citiesOptions,
     formData,
-    getCitiesByCountry,
+    formErrorsText: profileInfoFormErrors,
+    formNotificationsText: profileNotifications,
+    formText: profileInfoForm,
     updateProfile,
   }
 }
