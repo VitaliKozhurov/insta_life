@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react'
-import '../src/application/index.scss'
+import '@/application/styles/index.scss'
 import { StorybookFontsDecorator } from '../src/shared/config'
 import { inter } from '../src/application'
 

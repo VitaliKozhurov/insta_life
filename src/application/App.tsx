@@ -1,8 +1,7 @@
 import { ReactElement, ReactNode } from 'react'
 import { ToastContainer } from 'react-toastify'
 
-import { AuthProvider } from '@/application'
-import { ReduxProvider } from '@/shared'
+import { AuthProvider, ReduxProvider } from '@/application'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 
