@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
 import { Button, ButtonVariant, CrossIcon, ImageIcon, useMeQuery, useTranslation } from '@/shared'
-import { DeletePhotoModal } from '@/widgets/AddProfilePhoto/DeletePhotoModal'
 import clsx from 'clsx'
 import Image from 'next/image'
 
 import s from './AddProfilePhoto.module.scss'
 
 import { AddingPhotoModal } from './AddingPhotoModal'
+import { DeletePhotoModal } from './DeletePhotoModal'
 
 type Props = {
   avatarUrl?: string
