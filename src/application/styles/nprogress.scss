@@ -1,0 +1,71 @@
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  position: fixed;
+  z-index: 1031;
+  top: 6rem;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: #29d;
+}
+
+#nprogress .peg {
+  position: absolute;
+  right: 0;
+
+  display: block;
+
+  width: 200px;
+  height: 100%;
+
+  opacity: .7;
+  box-shadow: 0 0 30px #29d, 0 0 25px #29d;
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  position: fixed;
+  z-index: 1031;
+  right: 25px;
+  bottom: 25px;
+
+  display: block;
+}
+
+#nprogress .spinner-icon {
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 50%;
+
+  animation: nprogress-spinner 500ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  position: relative;
+  overflow: hidden;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
