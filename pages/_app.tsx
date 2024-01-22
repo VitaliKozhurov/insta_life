@@ -1,5 +1,6 @@
 import { App } from '@/application'
 
-import '@/application/index.scss'
+import '@/application/styles/nprogress.scss'
+import '@/application/styles/index.scss'
 
 export default App

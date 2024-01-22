@@ -8,6 +8,7 @@ import {
   Typography,
   TypographyVariant,
   onSendFormErrorsHandlers,
+  useLoader,
   useSignUpMutation,
   useTranslation,
 } from '@/shared'
@@ -25,6 +26,7 @@ type Props = {
 export const SignUpForm = ({ onSendFormData }: Props) => {
   const [signUpHandler, { isLoading }] = useSignUpMutation()
 
+  useLoader(isLoading)
   const {
     text: { signUpPage: t },
   } = useTranslation()

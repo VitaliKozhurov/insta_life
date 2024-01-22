@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode } from 'react'
 import { ToastContainer } from 'react-toastify'
 
-import { AuthProvider } from '@/application'
-import { ReduxProvider } from '@/shared'
+import { AuthProvider, ReduxProvider } from '@/application'
+import { useRouterLoader } from '@/shared'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 
@@ -17,6 +17,7 @@ type AppPropsWithLayout = AppProps & {
 }
 
 export const App = ({ Component, pageProps }: AppPropsWithLayout) => {
+  useRouterLoader()
   const getLayout = Component.getLayout ?? (page => page)
 
   return (

@@ -10,6 +10,7 @@ import {
   useSignInMutation,
   useTranslation,
 } from '@/shared'
+import { useLoader } from '@/shared/lib/hooks/useLoader'
 import clsx from 'clsx'
 import Link from 'next/link'
 
@@ -19,6 +20,8 @@ import { SignInFormValuesType, useSignIn } from '../lib'
 
 export const SignInForm = () => {
   const [signInHandler, { isLoading }] = useSignInMutation()
+
+  useLoader(isLoading)
   const {
     router,
     text: { signInPage: t },

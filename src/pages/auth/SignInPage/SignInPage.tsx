@@ -1,15 +1,23 @@
-import { ReactElement } from 'react'
+import { ReactElement, useContext } from 'react'
 
+import { AuthContext } from '@/application'
 import { RootLayout } from '@/pages'
-import { HeadMeta, useTranslation } from '@/shared'
+import { HeadMeta, Routes, useTranslation } from '@/shared'
 import { SignIn } from '@/widgets'
 
 import s from './SignInPage.module.scss'
 
 export const SignInPage = () => {
-  const { text } = useTranslation()
+  const { isAuth } = useContext(AuthContext)
+  const { router, text } = useTranslation()
   const classNames = {
     main: s.main,
+  }
+
+  if (isAuth) {
+    router.push(Routes.HOME)
+
+    return null
   }
 
   return (
