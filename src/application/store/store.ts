@@ -6,10 +6,7 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 
 export const store = configureStore({
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware()
-      .concat(baseApi.middleware) //  TODO remove one base api
-      .concat(baseApi.middleware)
-      .concat(countriesApi.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware).concat(countriesApi.middleware),
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     [countriesApi.reducerPath]: countriesApi.reducer,
