@@ -4,16 +4,14 @@ import { PhotoUploader } from '@/features'
 import { Crop, ImageIcon, Modal, Nullable, useTranslation } from '@/shared'
 import { clsx } from 'clsx'
 
-import 'react-image-crop/src/ReactCrop.scss'
-
-import s from './AddingPhotoModal.module.scss'
+import s from './AddPhotoModal.module.scss'
 
 type Props = {
   onOpenChange: (value: boolean) => void
   open: boolean
 }
 
-export const AddingPhotoModal = ({ onOpenChange, open }: Props) => {
+export const AddPhotoModal = ({ onOpenChange, open }: Props) => {
   const { text } = useTranslation()
   const t = text.profilePage.general.photoUploader.modal
   const [image, setImage] = useState<Nullable<File>>(null) // image after upload from PC

@@ -1,1 +1,1 @@
-export { AddProfilePhoto } from './AddProfilePhoto'
+export { AddProfilePhoto } from './ui/AddProfilePhoto'

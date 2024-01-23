@@ -1,26 +1,26 @@
-import { useState } from 'react'
-
-import { Button, ButtonVariant, CrossIcon, ImageIcon, useMeQuery, useTranslation } from '@/shared'
+import { Button, ButtonVariant, CrossIcon, ImageIcon } from '@/shared'
 import clsx from 'clsx'
 import Image from 'next/image'
 
 import s from './AddProfilePhoto.module.scss'
 
-import { AddingPhotoModal } from './AddingPhotoModal'
+import { useAddProfilePhoto } from '../lib'
+import { AddPhotoModal } from './AddPhotoModal'
 import { DeletePhotoModal } from './DeletePhotoModal'
 
 type Props = {
-  avatarUrl?: string
   className?: string
 }
 
 export const AddProfilePhoto = ({ className }: Props) => {
-  const { data } = useMeQuery()
-  const avatarUrl = data?.avatarUrl || ''
-  const { text } = useTranslation()
-  const t = text.profilePage.general.photoUploader
-  const [openPhotoUploader, setOpenPhotoUploader] = useState(false)
-  const [openDeletePhotoModal, setOpenDeletePhotoModal] = useState(false)
+  const {
+    avatarUrl,
+    openDeletePhotoModal,
+    openPhotoUploader,
+    setOpenDeletePhotoModal,
+    setOpenPhotoUploader,
+    text,
+  } = useAddProfilePhoto()
 
   const classNames = {
     button: s.button,
@@ -39,7 +39,7 @@ export const AddProfilePhoto = ({ className }: Props) => {
 
   return (
     <>
-      <AddingPhotoModal onOpenChange={setOpenPhotoUploader} open={openPhotoUploader} />
+      <AddPhotoModal onOpenChange={setOpenPhotoUploader} open={openPhotoUploader} />
       <DeletePhotoModal onOpenChange={setOpenDeletePhotoModal} open={openDeletePhotoModal} />
       <div className={classNames.root}>
         {avatarUrl && (
@@ -65,7 +65,7 @@ export const AddProfilePhoto = ({ className }: Props) => {
           onClick={openPhotoUploaderHandler}
           variant={ButtonVariant.TERTIARY}
         >
-          {t.addPhotoButton}
+          {text.addPhotoButton}
         </Button>
       </div>
     </>
