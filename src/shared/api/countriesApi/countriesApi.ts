@@ -1,17 +1,9 @@
 import { SelectOptions } from '@/shared'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const GET_COUNTRIES_URL = 'https://countriesnow.space/api/v0.1/countries'
+import { GetCitiesRequestType, GetCitiesResponseType } from './countriesApi.types'
 
-type BaseResponseType<T> = {
-  data: T
-  error: boolean
-  msg: string
-}
-type GetCitiesResponseType = BaseResponseType<string[]>
-type GetCitiesRequestType = {
-  country: string
-}
+const GET_COUNTRIES_URL = 'https://countriesnow.space/api/v0.1/countries'
 
 export const countriesApi = createApi({
   baseQuery: fetchBaseQuery({

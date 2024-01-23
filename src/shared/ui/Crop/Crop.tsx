@@ -12,7 +12,7 @@ export const Crop = ({ imagePreview, onCropImage }: Props) => {
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
 
-  const onCropComplete = async (croppedArea: Area, croppedAreaPixels: Area) => {
+  const onCropComplete = async (_: Area, croppedAreaPixels: Area) => {
     try {
       const imageFile = await getCroppedImage(imagePreview ?? '', croppedAreaPixels)
 

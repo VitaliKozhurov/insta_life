@@ -1,38 +1,13 @@
-import { baseApi } from './baseApi'
-
-type SignInRequestType = {
-  email: string
-  password: string
-}
-
-type SignUpRequestType = SignInRequestType & {
-  passwordConfirm: string
-  username: string
-}
-
-type ForgotPasswordRequestType = Omit<SignInRequestType, 'password'>
-
-type SignUpResponseType = {
-  createdAt: string
-  email: string
-  id: string
-  updatedAt: string
-  username: string
-}
-
-type CreateNewPasswordRequestType = {
-  password: string
-  passwordConfirmation: string
-  recoveryCode: string
-}
-
-type RequestWithCodeType = {
-  code: string
-}
-
-type LoginResponseType = {
-  accessToken: string
-}
+import { baseApi } from '../baseApi/baseApi'
+import {
+  CreateNewPasswordRequestType,
+  ForgotPasswordRequestType,
+  LoginResponseType,
+  RequestWithCodeType,
+  SignInRequestType,
+  SignUpRequestType,
+  SignUpResponseType,
+} from './authApi.types'
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: build => ({
