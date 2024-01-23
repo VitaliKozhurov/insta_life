@@ -10,13 +10,14 @@ export const useProfile = () => {
   const { profileInfoForm, profileInfoFormErrors, profileNotifications } = text.profilePage.general
   const { data } = useMeQuery()
   const formData = profileFormDataCreator(data)
-  const [updateProfile] = useUpdateUserProfileMutation()
+  const [updateProfile, { isLoading }] = useUpdateUserProfileMutation()
 
   return {
     formData,
     formErrorsText: profileInfoFormErrors,
     formNotificationsText: profileNotifications,
     formText: profileInfoForm,
+    loadingOnUpdate: isLoading,
     updateProfile,
   }
 }

@@ -6,6 +6,7 @@ import {
   ButtonVariant,
   Nullable,
   onUploadPhotoErrorHandler,
+  useLoader,
   useTranslation,
   useUploadAvatarMutation,
 } from '@/shared'
@@ -35,12 +36,15 @@ export const PhotoUploader = ({
 }: Props) => {
   const { text } = useTranslation()
   const t = text.profilePage.general.photoUploader.modal
-  const [uploadAvatar] = useUploadAvatarMutation()
   const { control, formState, handleSubmit, setError, watch } = useUploadFile(t.errors)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const userProfileImage = watch('image')
   const inputError = formState.errors.image?.message
   const isValidImage = userProfileImage && !inputError
+
+  const [uploadAvatar, { isLoading }] = useUploadAvatarMutation()
+
+  useLoader(isLoading)
 
   const classNames = {
     form: clsx(s.form, isValidImage && s.validForm, !isValidImage && s.invalidForm),
@@ -68,14 +72,12 @@ export const PhotoUploader = ({
     formData.append('file', croppedImage ? croppedImage : data.image)
     uploadAvatar(formData)
       .unwrap()
-      .then(() => {
-        onCloseModal(false)
-      })
       .catch(e => {
         const errorMessage = onUploadPhotoErrorHandler(e)
 
         setError('image', { message: errorMessage, type: 'custom' })
       })
+    onCloseModal(false)
   }
 
   return (

@@ -8,7 +8,7 @@ import {
   ControlledTextField,
   DateInput,
   getToast,
-  useTranslation,
+  useLoader,
 } from '@/shared'
 import { DatePicker } from '@/widgets'
 
@@ -18,7 +18,14 @@ import { UserProfileFormValuesType, useProfile, useProfileForm, useUpdateCity } 
 import { ProfileSelectChildren } from './ui/ProfileSelectChildren'
 
 export const ProfileInfoForm = () => {
-  const { formData, formErrorsText, formNotificationsText, formText, updateProfile } = useProfile()
+  const {
+    formData,
+    formErrorsText,
+    formNotificationsText,
+    formText,
+    loadingOnUpdate,
+    updateProfile,
+  } = useProfile()
   const {
     control,
     formState: { errors },
@@ -26,9 +33,12 @@ export const ProfileInfoForm = () => {
     setValue,
     watch,
   } = useProfileForm(formData, formErrorsText)
+
   const country = watch('country')
 
   const { citiesLoading, citiesOptions } = useUpdateCity({ country, setValue })
+
+  useLoader(loadingOnUpdate)
 
   const classNames = {
     form: s.form,

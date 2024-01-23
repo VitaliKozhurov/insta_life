@@ -19,11 +19,12 @@ export const DeletePhotoModal = ({ onOpenChange, open }: Props) => {
   const { text } = useTranslation()
   const t = text.profilePage.general.photoUploader.deleteModal
   const [deleteAvatar] = useDeleteAvatarMutation()
+
   const onRemoveAvatarHandler = () => {
     deleteAvatar()
       .unwrap()
-      .then(() => onOpenChange(false))
       .catch(error => onUploadPhotoErrorHandler(error, true))
+    onOpenChange(false)
   }
   const onCloseModal = () => {
     onOpenChange(false)
